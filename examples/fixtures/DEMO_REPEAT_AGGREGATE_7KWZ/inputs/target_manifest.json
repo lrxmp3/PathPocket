@@ -1,0 +1,82 @@
+{
+  "families": [
+    {
+      "region_family_id": "KWZ_P001",
+      "members": [
+        "structure_A_R0001_P001"
+      ],
+      "center": [
+        80.7418476190476,
+        107.05294285714288,
+        92.1561904761905
+      ],
+      "consensus_residues": [
+        "RC_001:-2:27",
+        "RC_001:-2:28",
+        "RC_001:-2:29",
+        "RC_001:-2:31",
+        "RC_001:-2:35",
+        "RC_001:-2:36",
+        "RC_001:-2:37",
+        "RC_001:-2:38",
+        "RC_001:-2:39",
+        "RC_001:-1:27",
+        "RC_001:-1:28",
+        "RC_001:-1:29",
+        "RC_001:-1:38",
+        "RC_001:-1:39",
+        "RC_001:0:27",
+        "RC_001:0:28",
+        "RC_001:0:29",
+        "RC_001:0:38",
+        "RC_001:0:39",
+        "RC_001:+1:27",
+        "RC_001:+1:28",
+        "RC_001:+1:29",
+        "RC_001:+1:38",
+        "RC_001:+1:39",
+        "RC_001:+2:26",
+        "RC_001:+2:27",
+        "RC_001:+2:28",
+        "RC_001:+2:29",
+        "RC_001:+2:38",
+        "RC_001:+2:39"
+      ],
+      "state_occurrence": {
+        "real_7KWZ": 1.0
+      },
+      "matching_stability": null,
+      "strict_state_stable_control": false,
+      "role": "real_inter_repeat_candidate"
+    }
+  ],
+  "targets": [
+    {
+      "target_id": "KWZ_P001_real_7KWZ",
+      "region_family_id": "KWZ_P001",
+      "state_id": "real_7KWZ",
+      "receptor_id": "real_7KWZ_R0001",
+      "receptor": "KWZ_P001_real_7KWZ_receptor.pdb",
+      "full_receptor": "KWZ_P001_real_7KWZ_full_receptor.pdb",
+      "center": [
+        80.7418476190476,
+        107.05294285714288,
+        92.1561904761905
+      ],
+      "detected_pocket": true,
+      "role": "real_inter_repeat_candidate",
+      "local_fit_RMSD_A": 8.987733679556355e-15
+    }
+  ],
+  "provenance": {
+    "source": "<WORKSPACE>/20_PROJECTS/R073_REAL_AMYLOID_7KWZ/inputs/fpocket_top10.json",
+    "source_sha256": "f85b3f83925ebf5f9a1a0ab81d39c6dd4713290a2215e2f42bd9d4d646e68f4a",
+    "frozen_rule_sha256": "46eb80d98b379ef8aa90ba21cdf55d250eaa6ac5c52fd939579399e365afc17a",
+    "selection_before_generation": true
+  },
+  "r074_lineage": {
+    "source": "<WORKSPACE>/20_PROJECTS/R073_REAL_AMYLOID_7KWZ/inputs/gate_A_targets.json",
+    "sha256": "dd91599be29c9e2464f60225228ff25eec4ad8f229b1e049c190fd8860b686ce",
+    "selection": "first previously audited target; no result-based selection"
+  }
+}

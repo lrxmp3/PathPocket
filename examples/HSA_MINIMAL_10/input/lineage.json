@@ -1,0 +1,17 @@
+[
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/inputs/HSA_state_B_1N5U_A.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/inputs/state_B_HSA_state_B_1N5U_A.pdb",
+    "sha256": "9cd2d2a217e967ccc7a7d116d38668ef6cbfe06f7ccaf940711d6e876ad29cf5"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/runs/RUN_20260918_100321/05_TARGET_SELECTION/RF_0011_state_B/receptor.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/inputs/RF_0011_state_B_receptor.pdb",
+    "sha256": "eb51b4a223e3ab1d814c61fb03247a70b8c91016c4dc152ee1996807ea8f4ed1"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/runs/RUN_20260918_100321/05_TARGET_SELECTION/RF_0011_state_B/receptor_full.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/inputs/RF_0011_state_B_full_receptor.pdb",
+    "sha256": "c1bddfde7bef6b10d353e59ba0ddfa57e4edb59f155be8f035b73e482d6a4e04"
+  }
+]

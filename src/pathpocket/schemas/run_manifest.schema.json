@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "run_manifest",
+  "type": "object",
+  "required": [
+    "pathpocket_version",
+    "git_commit",
+    "project_config_sha256",
+    "python",
+    "pytorch",
+    "cuda",
+    "gpu",
+    "fpocket_version",
+    "ed2mol_commit",
+    "ed2mol_weights",
+    "start_time",
+    "end_time",
+    "host_info",
+    "random_seeds",
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "RUNNING",
+        "FAIL",
+        "DISCOVERED",
+        "CHALLENGED",
+        "ANALYZED",
+        "COMPLETE"
+      ]
+    },
+    "ed2mol_weights": {
+      "type": "object"
+    },
+    "random_seeds": {
+      "type": "array"
+    }
+  }
+}

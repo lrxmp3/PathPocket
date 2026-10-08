@@ -1,0 +1,17 @@
+[
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/R073_REAL_AMYLOID_7KWZ/inputs/7KWZ.cif",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/inputs/real_7KWZ_7KWZ.cif",
+    "sha256": "b76fa69ed3bf78474c7cdb6a0be010d04581104496062b7cdd26689af92ee6e0"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/R073_REAL_AMYLOID_7KWZ/inputs/prepared_targets/KWZ_P001_real_7KWZ/receptor.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/inputs/KWZ_P001_real_7KWZ_receptor.pdb",
+    "sha256": "75a271967d6adc9a68aea632764418e60408025b072956907176cd91ade54a7c"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/R073_REAL_AMYLOID_7KWZ/inputs/prepared_targets/KWZ_P001_real_7KWZ/receptor_full.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/inputs/KWZ_P001_real_7KWZ_full_receptor.pdb",
+    "sha256": "c184b5a9ae327d08d807967bb5bec0f6972b08471d8cee5f7d207e2f2ffefcbc"
+  }
+]

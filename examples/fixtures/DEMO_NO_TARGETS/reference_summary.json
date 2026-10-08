@@ -1,0 +1,152 @@
+{
+  "schema_version": "0.1.0",
+  "project": "R074_SMOKE_C",
+  "run_id": "RUN_20260918_154948",
+  "status": "COMPLETE",
+  "result_class": "NO_TARGETS",
+  "target_count": 0,
+  "generation_status": "SKIPPED",
+  "residue_mapping": {
+    "status": "PASS",
+    "mapping_mode": "identity",
+    "reference_state": "state_A",
+    "reference_receptor_id": "state_A_R0001",
+    "policy": {
+      "min_chain_identity": 0.95,
+      "min_chain_coverage": 0.9,
+      "ambiguity_margin": 0.02,
+      "on_ambiguous": "fail"
+    },
+    "warnings": [
+      "Observed-residue gaps retained; no coordinates modeled"
+    ],
+    "chain_mappings": [
+      {
+        "receptor_id": "state_A_R0001",
+        "state_id": "state_A",
+        "reference_state": "state_A",
+        "reference_chain": "A",
+        "target_chain": "A",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 578
+      },
+      {
+        "receptor_id": "state_B_R0001",
+        "state_id": "state_B",
+        "reference_state": "state_A",
+        "reference_chain": "A",
+        "target_chain": "A",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 0.9914236706689536,
+        "gap_count": 5,
+        "mismatch_count": 0,
+        "score": 0.9914236706689536,
+        "status": "PASS_WITH_GAPS",
+        "ambiguity": false,
+        "mapped_residue_count": 583
+      },
+      {
+        "receptor_id": "state_C_R0001",
+        "state_id": "state_C",
+        "reference_state": "state_A",
+        "reference_chain": "A",
+        "target_chain": "A",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 578
+      }
+    ],
+    "mapped_chains": 3,
+    "mapped_residue_count": 1739,
+    "gap_count": 10
+  },
+  "aggregate": {
+    "structure_mode": "conventional",
+    "status": "NOT_AGGREGATE",
+    "adapters": []
+  },
+  "states": {
+    "state_A": {
+      "label": "HSA 1AO6 chain A",
+      "metadata": {
+        "benchmark_only": true,
+        "chain": "A",
+        "interpretation": "crystallographic conformer; not a pathological or thermal state",
+        "pdb_id": "1AO6"
+      },
+      "order": 0,
+      "structures": [
+        "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_A_HSA_state_A_1AO6_A.pdb"
+      ]
+    },
+    "state_B": {
+      "label": "HSA 1N5U chain A",
+      "metadata": {
+        "benchmark_only": true,
+        "chain": "A",
+        "interpretation": "crystallographic conformer; not a pathological or thermal state",
+        "pdb_id": "1N5U"
+      },
+      "order": 1,
+      "structures": [
+        "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_B_HSA_state_B_1N5U_A.pdb"
+      ]
+    },
+    "state_C": {
+      "label": "HSA 1E78 chain A",
+      "metadata": {
+        "benchmark_only": true,
+        "chain": "A",
+        "interpretation": "crystallographic conformer; not a pathological or thermal state",
+        "pdb_id": "1E78"
+      },
+      "order": 2,
+      "structures": [
+        "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_C_HSA_state_C_1E78_A.pdb"
+      ]
+    }
+  },
+  "selected_region_families": [],
+  "targets": [],
+  "generation_summary": [],
+  "key_metrics": {
+    "generated": 0,
+    "valid_unique_within_targets": 0,
+    "physical_compatible_unique": 0,
+    "generation_depth_confounded": false,
+    "state_comparisons": []
+  },
+  "figures": [],
+  "warnings": [
+    "Residue mapping: Observed-residue gaps retained; no coordinates modeled"
+  ],
+  "limitations": [
+    "本结果用于低精度工作流筛选和假设生成，不用于单独证明病理口袋、结合常数、药物滞留或荧光机制。",
+    "fpocket region ≠ validated pocket; predicted ligand ED ≠ experimental electron density.",
+    "Generated molecule ≠ binder; Q-score ≠ binding affinity; geometry-compatible ≠ binder.",
+    "One representative/state is not ensemble thermodynamics; one seed does not exhaust chemical space.",
+    "Generated molecules are not biological independent replicates; no p-value analysis.",
+    "Basic geometry QC is not a full strain-energy or pose-validation assessment.",
+    "Raw engineering isotope labels are retained; these are not a designed isotope-labelled compound series.",
+    "Canonical sequence/chain mapping requires unique high-confidence correspondence; renamed homomers and low-confidence mappings fail safely. Canonical IDs are project-local observed-sequence identities.",
+    "No strict state-stable control; persistent/remodeling comparators must not be called proven stable controls."
+  ],
+  "next_step": "Review Fast Screening outputs; further work requires separate authorization."
+}

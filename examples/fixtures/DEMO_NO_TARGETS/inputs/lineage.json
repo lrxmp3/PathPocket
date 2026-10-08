@@ -1,0 +1,17 @@
+[
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/inputs/HSA_state_A_1AO6_A.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_A_HSA_state_A_1AO6_A.pdb",
+    "sha256": "d8dc5f86795099c52629c370b270a7b874ce5604f82f6591f22c7120ec5ff65b"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/inputs/HSA_state_B_1N5U_A.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_B_HSA_state_B_1N5U_A.pdb",
+    "sha256": "9cd2d2a217e967ccc7a7d116d38668ef6cbfe06f7ccaf940711d6e876ad29cf5"
+  },
+  {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/inputs/HSA_state_C_1E78_A.pdb",
+    "destination": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_C/inputs/state_C_HSA_state_C_1E78_A.pdb",
+    "sha256": "d818ddb3118754cb8239799c4ad1443777a36cc689b318d2e5b3d8adb5b2019a"
+  }
+]

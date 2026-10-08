@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "progress",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "step",
+    "status",
+    "progress",
+    "message"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "step": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "running",
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "progress": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

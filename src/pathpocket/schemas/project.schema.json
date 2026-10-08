@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "project",
+  "type": "object",
+  "required": [
+    "project",
+    "protein",
+    "runtime"
+  ],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "profile": {
+          "const": "fast"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+        }
+      }
+    },
+    "protein": {
+      "type": "object",
+      "required": [
+        "states"
+      ],
+      "properties": {
+        "states": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "structures"
+            ],
+            "properties": {
+              "structures": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "structure_mode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "conventional",
+            "repeat_aggregate"
+          ],
+          "default": "auto"
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "properties": {
+        "iteration": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "const": "auto"
+            }
+          ]
+        },
+        "molecules": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "python",
+        "ed2mol_root",
+        "fpocket",
+        "template_config"
+      ]
+    }
+  }
+}

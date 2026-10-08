@@ -1,0 +1,105 @@
+{
+  "distribution_version": "1.0.6",
+  "baseline": "PathPocket Fast Screening Baseline 1.0",
+  "backend": {
+    "version": "0.3.0",
+    "commit": "f2e5d7ffd49d8e3546d6841337b4f68b58f0abd3"
+  },
+  "GUI": {
+    "version": "1.0.6",
+    "base_commit": "c230a021a173a1f858d042b8ba4982ccf6a590c5",
+    "changes": "Shared Linux and Windows/WSL result-opening repair, result plot navigation, friendly filenames, and exact-coordinate complex export; scientific algorithms unchanged",
+    "inherited_commit": "b88dc1d03d9ab6cdae5c5641503689cbc2a9f9de",
+        "source_sha256": {
+            "gui/pathpocket_gui/engineering_fixture_runner.py": "13206b6cedf5b33aaa1f754e508450550b437730e5b1b664bf85963cb8f582da",
+      "gui/pathpocket_gui/__init__.py": "2b5ba93890bc485c5b11602d19a659102b40e6e06ff576f339efd305f79efad9",
+      "gui/pathpocket_gui/__main__.py": "9880dc5d41b40f5fab89d17b0764f6ac3852b4e109eb1a00ecd0c657cb6a0a03",
+      "gui/pathpocket_gui/app.py": "f43e9011216a5d940f22e3eea552fa619eaa549488808f200263deca882fce03",
+      "gui/pathpocket_gui/bridge.py": "70aa9b67d873eccf246bc25657b379e3642107191d4919dcec87fcc560120c78",
+      "gui/pathpocket_gui/contracts.py": "6bd2f14d4bab96262ef4f741bf63389660a9849fb6815a72fbabb050c42d3e0b",
+      "gui/pathpocket_gui/polish.py": "0ce3c55939c64a19990bbd85af0af38491284b6b5b9015e7fe3c74b6bb93aba7",
+      "gui/pathpocket_gui/portable_projects.py": "93233e72597e3b60cb320f1a5becb9061828f88f5dccf16b7bfdf82ea2bb365b",
+      "gui/pathpocket_gui/portable_ui.py": "598350a16b9ca355466046a273d37c6935fbdabecf59e2c0021bed165512e04b",
+      "gui/pathpocket_gui/storage.py": "135677f61bb6e2a97a5014a42fecf341476fe3a3fbd263daf8841a4914a976b5",
+      "gui/pathpocket_gui/ux_app.py": "e13fc8b5b20a470d946f8dc871051a68126d5d8fc910c458d514cb2e8d57a5da",
+      "gui/pathpocket_gui/ux_draw.py": "46770a4a4870d08b5ed1e5f5da67e7081193434ade2b117d8ef43fa6a8f31f48",
+      "gui/pathpocket_gui/ux_export.py": "3994b8ea1fb1587765a0b789f9d9ad37ee40513787d6fe7fe5b2240df3e20bce",
+      "gui/pathpocket_gui/ux_guidance.py": "a64906eb892ffb265f4f0ccfe50fa88f5e6cdbc2721f190e1b6a23c1a3dc9d77",
+      "gui/pathpocket_gui/ux_i18n.py": "90e5cc0899e034bbe5fac85f0520da36b64b0d9e159d89c8f9ce4fad2a024446",
+      "gui/pathpocket_gui/ux_paths.py": "2b456e4dbd112bf76dda21024c130cbd73bb0e19449177fd50e652116ab7572c",
+      "gui/pathpocket_gui/ux_plots.py": "e3f4422fa6905b905b13e9c3686709ed76d8477cc5809f9f4c124e840c196f22",
+      "gui/pathpocket_gui/ux_progress.py": "9d5261bffe17472568ed9b7e81ba84d04b03f1a7d09704e4f39dbc291a9526a9",
+      "gui/pathpocket_gui/ux_reports.py": "82711b1daff002c9f3dca071cfbe0f1d903f141b7f20b8f5781a6afce5f2c693",
+      "gui/pathpocket_gui/ux_results.py": "764cfd52fe2c4b2481a2596d24a4eba41db73710bfb369e1c743a8b32d0d43e5",
+      "gui/pathpocket_gui/ux_scene.py": "be28af4bee491dfea43e55b65d47ea394c5495f1f5a63328d475a8814c0a38d4",
+      "gui/pathpocket_gui/ux_structure.py": "0d85a1dd1f9386a03dc24d76c6c7c9bca1b829a93d3c7366d14fdc696b0ebed3",
+      "gui/pathpocket_gui/workers.py": "ff5d6cf8157553d6b98d246e22d3bceb22394fc72aaf3dd799935f84826a405e",
+      "gui/pathpocket_gui/wsl_supervisor.py": "f82ddf45e5fa477e9cdbbac51d7eed287c54fbfc9b5a91d3af882a2fadc7d3a4"
+    }
+  },
+  "engine_commit": "09f133da913179f82b285dbb046f1ecb81d1da37",
+  "publication_commit": "40c5b2fa79254227d7f4ca28cb09298f31d784b5",
+  "fpocket_sha256": "18a3a5e78481e572018703fd7e463969dd1cc598464efde18acf30284f5941eb",
+  "runtime_mode": "OFFICIAL_HASH_LOCKED_FIRST_RUN_INSTALL_IN_PACKAGE",
+  "distribution_tools": {
+    "Create_Shortcuts.sh": "ad2527b47806b799c807adb116ecc7c100fc3cc7328ed10cce129e7a7f89c8ef",
+    "Validate_Linux_Desktop.sh": "462d7fa656a42e7968da48bfd0fc1f341812117bc6ee66549b1ab264986907b4"
+  },
+  "network_required_first_run": true,
+  "telemetry": false,
+  "auto_update": false,
+  "scientific_defaults": {
+    "Fast_Smoke": {
+      "molecules_per_target": 20,
+      "seed": 42,
+      "iteration": 2
+    },
+    "Fast_Default": {
+      "molecules_per_target": 100,
+      "seed": 42,
+      "iteration": 2
+    },
+    "backend_defaults": {
+      "region_discovery": {
+        "engine": "fpocket",
+        "top_n": 10,
+        "imported_manifest": null
+      },
+      "region_matching": {
+        "centroid_cutoff_A": 6.0,
+        "residue_jaccard_min": 0.3,
+        "sensitivity_analysis": false
+      },
+      "target_selection": {
+        "max_region_families": 3,
+        "include_comparator": true
+      },
+      "generation": {
+        "engine": "ed2mol",
+        "mode": "de_novo",
+        "molecules": 100,
+        "seed": 42,
+        "iteration": 2,
+        "timeout_seconds": 7200,
+        "max_parallel_targets": 1,
+        "retain_cores_num": null,
+        "retain_mols_num": null
+      },
+      "analysis": {
+        "chemical_space": true,
+        "ed_metrics": true,
+        "descriptors": true,
+        "scaffolds": true,
+        "state_comparison": true
+      },
+      "report": {
+        "markdown": true,
+        "html": true,
+        "figures_png_dpi": 600,
+        "svg": true
+      }
+    }
+  },
+    "hotfix": "V1.0.6-NO_TARGETS-HF5: HF4 plus portable desktop/application-menu shortcut creation; scientific backend identity, GUI design, and defaults unchanged",
+  "scientific_algorithms_modified": false
+}

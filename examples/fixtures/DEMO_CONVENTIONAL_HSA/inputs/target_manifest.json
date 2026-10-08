@@ -1,0 +1,79 @@
+{
+  "families": [
+    {
+      "region_family_id": "RF_0011",
+      "members": [
+        "state_B_R0001_P001"
+      ],
+      "consensus_residues": [
+        "REF_001:000397:LEU",
+        "REF_001:000400:TYR",
+        "REF_001:000401:LYS",
+        "REF_001:000404:ASN",
+        "REF_001:000405:ALA",
+        "REF_001:000408:VAL",
+        "REF_001:000501:PHE",
+        "REF_001:000506:PHE",
+        "REF_001:000508:PHE",
+        "REF_001:000524:LYS",
+        "REF_001:000527:ALA",
+        "REF_001:000528:LEU",
+        "REF_001:000531:LEU",
+        "REF_001:000534:HIS",
+        "REF_001:000535:LYS",
+        "REF_001:000540:LYS",
+        "REF_001:000543:LEU",
+        "REF_001:000544:LYS",
+        "REF_001:000546:VAL",
+        "REF_001:000547:MET",
+        "REF_001:000548:ASP",
+        "REF_001:000550:PHE",
+        "REF_001:000551:ALA",
+        "REF_001:000574:LEU",
+        "REF_001:000575:VAL",
+        "REF_001:000578:SER",
+        "REF_001:000579:GLN",
+        "REF_001:000582:LEU"
+      ],
+      "center": [
+        11.449156756756759,
+        15.454108108108109,
+        2.8572108108108094
+      ],
+      "state_occurrence": {
+        "state_B": 1.0
+      },
+      "matching_stability": null,
+      "matching_stability_evaluated": false,
+      "strict_state_stable_control": false,
+      "role": "emergent"
+    }
+  ],
+  "targets": [
+    {
+      "target_id": "RF_0011_state_B",
+      "region_family_id": "RF_0011",
+      "state_id": "state_B",
+      "receptor_id": "state_B_R0001",
+      "receptor": "RF_0011_state_B_receptor.pdb",
+      "full_receptor": "RF_0011_state_B_full_receptor.pdb",
+      "center": [
+        11.449156756756759,
+        15.454108108108109,
+        2.8572108108108094
+      ],
+      "detected_pocket": true,
+      "role": "emergent",
+      "local_fit_RMSD_A": 4.148997704170547e-15
+    }
+  ],
+  "provenance": {
+    "source_run": "<WORKSPACE>/20_PROJECTS/HSA_R071_IDENTITY/runs/RUN_20260918_100321",
+    "purpose": "R071 10-molecule label invariance replay of one previously selected target; no target selection rule change"
+  },
+  "r074_lineage": {
+    "source": "<WORKSPACE>/20_PROJECTS/HSA_R071_ENGINE_ORIGINAL/inputs/audited_single_target.json",
+    "sha256": "02b111f8c84db72a3c9a660ff8dcf6ae0067df308e59b9b6514d2c7723c1f550",
+    "selection": "first previously audited target; no result-based selection"
+  }
+}

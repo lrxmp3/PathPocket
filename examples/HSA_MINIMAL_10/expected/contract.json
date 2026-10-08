@@ -1,0 +1,17 @@
+{
+  "target_count": 1,
+  "requested_molecules": 10,
+  "iteration": 2,
+  "seed": 42,
+  "engine": "pretrained ED2Mol",
+  "assertions": [
+    "COMPLETE run",
+    "one target",
+    "10 requested records",
+    "QC fields and source provenance present"
+  ],
+  "not_asserted": [
+    "identical molecules across GPU architectures",
+    "all molecules clash-compatible"
+  ]
+}

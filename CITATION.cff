@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the PathPocket paper and the released software record after publication. Author metadata is pending approval."
+title: "PathPocket: a state-aware, repeat-aware protein microregion chemical-space workflow"
+type: software
+version: "1.0.6"
+authors:
+  - name: "PathPocket authors — AUTHOR LIST PENDING APPROVAL"
+abstract: "Local release staging snapshot. Uses pretrained ED2Mol as the molecular generation engine."
+keywords:
+  - cheminformatics
+  - protein microregions
+  - reproducibility

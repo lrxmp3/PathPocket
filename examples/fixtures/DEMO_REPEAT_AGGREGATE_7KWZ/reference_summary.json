@@ -1,0 +1,493 @@
+{
+  "schema_version": "0.1.0",
+  "project": "R074_SMOKE_B",
+  "run_id": "RUN_20260918_154414",
+  "status": "COMPLETE",
+  "result_class": "TARGETS_GENERATED",
+  "target_count": 1,
+  "generation_status": "COMPLETE",
+  "residue_mapping": {
+    "status": "PASS",
+    "mapping_mode": "repeat_equivalence",
+    "reference_state": "real_7KWZ",
+    "reference_receptor_id": "real_7KWZ_R0001",
+    "policy": {
+      "min_chain_identity": 0.95,
+      "min_chain_coverage": 0.9,
+      "ambiguity_margin": 0.02,
+      "on_ambiguous": "fail"
+    },
+    "warnings": [],
+    "chain_mappings": [
+      {
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ",
+        "reference_state": "real_7KWZ",
+        "reference_chain": "A",
+        "target_chain": "A",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 139
+      },
+      {
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ",
+        "reference_state": "real_7KWZ",
+        "reference_chain": "B",
+        "target_chain": "B",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 139
+      },
+      {
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ",
+        "reference_state": "real_7KWZ",
+        "reference_chain": "C",
+        "target_chain": "C",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 139
+      },
+      {
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ",
+        "reference_state": "real_7KWZ",
+        "reference_chain": "D",
+        "target_chain": "D",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 139
+      },
+      {
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ",
+        "reference_state": "real_7KWZ",
+        "reference_chain": "E",
+        "target_chain": "E",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 139
+      }
+    ],
+    "mapped_chains": 5,
+    "mapped_residue_count": 695,
+    "gap_count": 0,
+    "canonical_identity": "repeat_class:repeat_offset:canonical_position"
+  },
+  "aggregate": {
+    "structure_mode": "repeat_aggregate",
+    "status": "REPEAT_AGGREGATE_PASS",
+    "adapters": [
+      {
+        "structure_mode": "repeat_aggregate",
+        "status": "REPEAT_AGGREGATE_PASS",
+        "repeat_class_count": 1,
+        "copy_count": 5,
+        "central_original_chain": "C",
+        "window_radius": 2,
+        "repeat_offsets": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "selected_original_chains": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "policy": {
+          "min_identity": 0.95,
+          "min_coverage": 0.9,
+          "min_repeat_copies": 5,
+          "min_axis_explained_variance": 0.85,
+          "max_spacing_cv": 0.25,
+          "max_repeat_chain_rmsd_A": 2.0,
+          "contact_cutoff_A": 8.0,
+          "repeat_radius": 2,
+          "central_equivalence_rmsd_A": 0.1,
+          "orientation_equivalence_rmsd_A": 0.01,
+          "lateral_spacing_ratio": 0.5,
+          "coincident_projection_ratio": 0.25
+        },
+        "geometry": {
+          "axis": [
+            0.004673797902113332,
+            0.015455919513841737,
+            -0.9998696265839623
+          ],
+          "explained_variance": 0.9999991155007366,
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "projections": [
+            -9.462055703022838,
+            -4.7239561254419415,
+            0.005915824650592857,
+            4.726821947761653,
+            9.453274056052532
+          ],
+          "spacing": [
+            4.738099577580896,
+            4.729871950092535,
+            4.72090612311106,
+            4.726452108290879
+          ],
+          "spacing_mean": 4.728832439768842,
+          "spacing_median": 4.728162029191706,
+          "spacing_sd": 0.006234037589016387,
+          "spacing_cv": 0.0013183037606892079,
+          "status": "REPEAT_AGGREGATE_PASS",
+          "axis_sign_convention": "intrinsic_sequence_backbone_normal; representation only"
+        },
+        "warnings": [
+          "Local outer padding includes a deposited end; central copy is never terminal. Finite-window end effects are not eliminated."
+        ],
+        "candidate_chains": [
+          {
+            "original_chain_id": "A",
+            "sequence_length": 139,
+            "ca_count": 139,
+            "centroid": [
+              85.28005035971223,
+              81.99928057553956,
+              90.94492086330933
+            ],
+            "axial_coordinate": -9.462055703022838,
+            "sequence_identity": 1.0
+          },
+          {
+            "original_chain_id": "B",
+            "sequence_length": 139,
+            "ca_count": 139,
+            "centroid": [
+              85.31581294964029,
+              82.0674532374101,
+              86.20742446043162
+            ],
+            "axial_coordinate": -4.7239561254419415,
+            "sequence_identity": 1.0
+          },
+          {
+            "original_chain_id": "C",
+            "sequence_length": 139,
+            "ca_count": 139,
+            "centroid": [
+              85.3394460431655,
+              82.14311510791363,
+              81.47821582733815
+            ],
+            "axial_coordinate": 0.005915824650592857,
+            "sequence_identity": 1.0
+          },
+          {
+            "original_chain_id": "D",
+            "sequence_length": 139,
+            "ca_count": 139,
+            "centroid": [
+              85.35584892086331,
+              82.21658273381291,
+              76.75790647482019
+            ],
+            "axial_coordinate": 4.726821947761653,
+            "sequence_identity": 1.0
+          },
+          {
+            "original_chain_id": "E",
+            "sequence_length": 139,
+            "ca_count": 139,
+            "centroid": [
+              85.37051079136687,
+              82.29010791366906,
+              72.03204316546764
+            ],
+            "axial_coordinate": 9.453274056052532,
+            "sequence_identity": 1.0
+          }
+        ],
+        "median_chain_rmsd_A": 0.0006855067458729081,
+        "max_chain_rmsd_A": 0.0006940460861900392,
+        "adjacent_CA_contacts": [
+          608,
+          607,
+          608,
+          607
+        ],
+        "repeat_sequence": "FGGNPGGFGNQGGFGNSRGGGAGLGNNQGSNMGGGMNFGAFSINPAMMAAAQAALQSSWGMMGMLASQQNQSGPSGNNQNQGNMQREPNQAFGSGNNSYSGSNSGAAIGWGSASNAGSGSGFNGGFGSSMDSKSSGWGM",
+        "sequence_reference_convention": "longest observed sequence, lexical sequence tie; no chain labels",
+        "orientation": {
+          "status": "SINGLE_STRUCTURE_CONVENTION",
+          "axis_sign": "intrinsic_sequence_backbone_normal; representation only"
+        },
+        "prepared_chains": [
+          {
+            "prepared_chain_id": "A",
+            "repeat_offset": -2,
+            "original_chain_id": "A",
+            "repeat_class": "RC_001"
+          },
+          {
+            "prepared_chain_id": "B",
+            "repeat_offset": -1,
+            "original_chain_id": "B",
+            "repeat_class": "RC_001"
+          },
+          {
+            "prepared_chain_id": "C",
+            "repeat_offset": 0,
+            "original_chain_id": "C",
+            "repeat_class": "RC_001"
+          },
+          {
+            "prepared_chain_id": "D",
+            "repeat_offset": 1,
+            "original_chain_id": "D",
+            "repeat_class": "RC_001"
+          },
+          {
+            "prepared_chain_id": "E",
+            "repeat_offset": 2,
+            "original_chain_id": "E",
+            "repeat_class": "RC_001"
+          }
+        ],
+        "export_status": "COMPLETE",
+        "receptor_id": "real_7KWZ_R0001",
+        "state_id": "real_7KWZ"
+      }
+    ]
+  },
+  "states": {
+    "real_7KWZ": {
+      "label": "7KWZ experimental fibril, single structure",
+      "order": 0,
+      "structures": [
+        "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/inputs/real_7KWZ_7KWZ.cif"
+      ],
+      "metadata": {}
+    }
+  },
+  "selected_region_families": [
+    {
+      "region_family_id": "KWZ_P001",
+      "members": [
+        "structure_A_R0001_P001"
+      ],
+      "center": [
+        80.7418476190476,
+        107.05294285714288,
+        92.1561904761905
+      ],
+      "consensus_residues": [
+        "RC_001:-2:27",
+        "RC_001:-2:28",
+        "RC_001:-2:29",
+        "RC_001:-2:31",
+        "RC_001:-2:35",
+        "RC_001:-2:36",
+        "RC_001:-2:37",
+        "RC_001:-2:38",
+        "RC_001:-2:39",
+        "RC_001:-1:27",
+        "RC_001:-1:28",
+        "RC_001:-1:29",
+        "RC_001:-1:38",
+        "RC_001:-1:39",
+        "RC_001:0:27",
+        "RC_001:0:28",
+        "RC_001:0:29",
+        "RC_001:0:38",
+        "RC_001:0:39",
+        "RC_001:+1:27",
+        "RC_001:+1:28",
+        "RC_001:+1:29",
+        "RC_001:+1:38",
+        "RC_001:+1:39",
+        "RC_001:+2:26",
+        "RC_001:+2:27",
+        "RC_001:+2:28",
+        "RC_001:+2:29",
+        "RC_001:+2:38",
+        "RC_001:+2:39"
+      ],
+      "state_occurrence": {
+        "real_7KWZ": 1.0
+      },
+      "matching_stability": null,
+      "strict_state_stable_control": false,
+      "role": "real_inter_repeat_candidate"
+    }
+  ],
+  "targets": [
+    {
+      "target_id": "KWZ_P001_real_7KWZ",
+      "region_family_id": "KWZ_P001",
+      "state_id": "real_7KWZ",
+      "receptor_id": "real_7KWZ_R0001",
+      "receptor": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/runs/RUN_20260918_154414/05_TARGET_SELECTION/KWZ_P001_real_7KWZ/receptor.pdb",
+      "full_receptor": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_B/runs/RUN_20260918_154414/05_TARGET_SELECTION/KWZ_P001_real_7KWZ/full_receptor.pdb",
+      "center": [
+        80.7418476190476,
+        107.05294285714288,
+        92.1561904761905
+      ],
+      "detected_pocket": true,
+      "role": "real_inter_repeat_candidate",
+      "local_fit_RMSD_A": 8.987733679556355e-15
+    }
+  ],
+  "generation_summary": [
+    {
+      "target_id": "KWZ_P001_real_7KWZ",
+      "region_family_id": "KWZ_P001",
+      "state_id": "real_7KWZ",
+      "requested": 10,
+      "generated": 10,
+      "readable": 10,
+      "sanitized": 10,
+      "valid_3D": 10,
+      "valid": 10,
+      "unique": 10,
+      "duplicate_fraction": 0.0,
+      "physical_compatible": 6,
+      "clash_rate": 0.4,
+      "heavy_atom_min": 12,
+      "heavy_atom_max": 14,
+      "formal_charge_distribution": {
+        "0": 10
+      },
+      "predicted_ED_volume": 194.75,
+      "median_Q_normalized": 0.544522101119867,
+      "actual_steps": 2,
+      "generation_depth_confounded": false
+    }
+  ],
+  "key_metrics": {
+    "generated": 10,
+    "valid_unique_within_targets": 10,
+    "physical_compatible_unique": 6,
+    "generation_depth_confounded": false,
+    "state_comparisons": []
+  },
+  "figures": [
+    {
+      "name": "region_occurrence",
+      "path": "figures/region_occurrence.png",
+      "svg": "figures/region_occurrence.svg",
+      "source": "figures/region_occurrence.csv",
+      "caption": "Detected region occurrence (fraction); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "generation_unique",
+      "path": "figures/generation_unique.png",
+      "svg": "figures/generation_unique.svg",
+      "source": "figures/generation_unique.csv",
+      "caption": "Valid unique molecules (count); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "generation_valid",
+      "path": "figures/generation_valid.png",
+      "svg": "figures/generation_valid.svg",
+      "source": "figures/generation_valid.csv",
+      "caption": "Valid molecules (count); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "predicted_ED",
+      "path": "figures/predicted_ED.png",
+      "svg": "figures/predicted_ED.svg",
+      "source": "figures/predicted_ED.csv",
+      "caption": "Predicted ED volume ($\\AA^3$); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "normalized_Q",
+      "path": "figures/normalized_Q.png",
+      "svg": "figures/normalized_Q.svg",
+      "source": "figures/normalized_Q.csv",
+      "caption": "Median normalized Q (unitless); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "embedding_KWZ_P001",
+      "path": "figures/embedding_KWZ_P001.png",
+      "svg": "figures/embedding_KWZ_P001.svg",
+      "source": "figures/embedding_KWZ_P001.csv",
+      "caption": "Joint family PCA of all valid unique ECFP4 fingerprints; one common fit across states. Projection is illustrative."
+    },
+    {
+      "name": "descriptor_MW_KWZ_P001",
+      "path": "figures/descriptor_MW_KWZ_P001.png",
+      "svg": "figures/descriptor_MW_KWZ_P001.svg",
+      "source": "figures/descriptor_MW_KWZ_P001.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    },
+    {
+      "name": "descriptor_cLogP_KWZ_P001",
+      "path": "figures/descriptor_cLogP_KWZ_P001.png",
+      "svg": "figures/descriptor_cLogP_KWZ_P001.svg",
+      "source": "figures/descriptor_cLogP_KWZ_P001.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    },
+    {
+      "name": "descriptor_TPSA_KWZ_P001",
+      "path": "figures/descriptor_TPSA_KWZ_P001.png",
+      "svg": "figures/descriptor_TPSA_KWZ_P001.svg",
+      "source": "figures/descriptor_TPSA_KWZ_P001.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    }
+  ],
+  "warnings": [],
+  "limitations": [
+    "本结果用于低精度工作流筛选和假设生成，不用于单独证明病理口袋、结合常数、药物滞留或荧光机制。",
+    "fpocket region ≠ validated pocket; predicted ligand ED ≠ experimental electron density.",
+    "Generated molecule ≠ binder; Q-score ≠ binding affinity; geometry-compatible ≠ binder.",
+    "One representative/state is not ensemble thermodynamics; one seed does not exhaust chemical space.",
+    "Generated molecules are not biological independent replicates; no p-value analysis.",
+    "Basic geometry QC is not a full strain-energy or pose-validation assessment.",
+    "Raw engineering isotope labels are retained; these are not a designed isotope-labelled compound series.",
+    "Canonical sequence/chain mapping requires unique high-confidence correspondence; renamed homomers and low-confidence mappings fail safely. Canonical IDs are project-local observed-sequence identities.",
+    "No strict state-stable control; persistent/remodeling comparators must not be called proven stable controls."
+  ],
+  "next_step": "Review Fast Screening outputs; further work requires separate authorization."
+}

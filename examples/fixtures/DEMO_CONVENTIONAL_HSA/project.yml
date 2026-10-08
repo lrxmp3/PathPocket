@@ -1,0 +1,38 @@
+generation:
+  iteration: 2
+  max_parallel_targets: 1
+  molecules: 20
+  seed: 42
+project:
+  name: DEMO_CONVENTIONAL_HSA
+  profile: fast
+protein:
+  states:
+    state_B:
+      label: HSA 1N5U chain A
+      metadata:
+        benchmark_only: true
+        chain: A
+        interpretation: crystallographic conformer; not a pathological or thermal
+          state
+        pdb_id: 1N5U
+      order: 0
+      structures:
+      - inputs/state_B_HSA_state_B_1N5U_A.pdb
+  structure_mode: conventional
+region_discovery:
+  engine: fpocket
+  imported_manifest: inputs/target_manifest.json
+  top_n: 10
+region_matching:
+  centroid_cutoff_A: 6.0
+  residue_jaccard_min: 0.3
+  sensitivity_analysis: false
+runtime:
+  ed2mol_root: SET_BY_FIRST_RUN
+  fpocket: SET_BY_FIRST_RUN
+  python: SET_BY_FIRST_RUN
+  template_config: SET_BY_FIRST_RUN
+target_selection:
+  include_comparator: true
+  max_region_families: 1

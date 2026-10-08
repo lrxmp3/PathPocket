@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1.0",
+  "project": "R074_SMOKE_A",
+  "run_id": "RUN_20260918_153521",
+  "status": "COMPLETE",
+  "result_class": "TARGETS_GENERATED",
+  "target_count": 1,
+  "generation_status": "COMPLETE",
+  "residue_mapping": {
+    "status": "PASS",
+    "mapping_mode": "identity",
+    "reference_state": "state_B",
+    "reference_receptor_id": "state_B_R0001",
+    "policy": {
+      "min_chain_identity": 0.95,
+      "min_chain_coverage": 0.9,
+      "ambiguity_margin": 0.02,
+      "on_ambiguous": "fail"
+    },
+    "warnings": [],
+    "chain_mappings": [
+      {
+        "receptor_id": "state_B_R0001",
+        "state_id": "state_B",
+        "reference_state": "state_B",
+        "reference_chain": "A",
+        "target_chain": "A",
+        "mapping_mode": "identity",
+        "identity": 1.0,
+        "coverage_ref": 1.0,
+        "coverage_target": 1.0,
+        "gap_count": 0,
+        "mismatch_count": 0,
+        "score": 1.0,
+        "status": "PASS",
+        "ambiguity": false,
+        "mapped_residue_count": 583
+      }
+    ],
+    "mapped_chains": 1,
+    "mapped_residue_count": 583,
+    "gap_count": 0
+  },
+  "aggregate": {
+    "structure_mode": "conventional",
+    "status": "NOT_AGGREGATE",
+    "adapters": []
+  },
+  "states": {
+    "state_B": {
+      "label": "HSA 1N5U chain A",
+      "metadata": {
+        "benchmark_only": true,
+        "chain": "A",
+        "interpretation": "crystallographic conformer; not a pathological or thermal state",
+        "pdb_id": "1N5U"
+      },
+      "order": 0,
+      "structures": [
+        "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/inputs/state_B_HSA_state_B_1N5U_A.pdb"
+      ]
+    }
+  },
+  "selected_region_families": [
+    {
+      "region_family_id": "RF_0011",
+      "members": [
+        "state_B_R0001_P001"
+      ],
+      "consensus_residues": [
+        "REF_001:000397:LEU",
+        "REF_001:000400:TYR",
+        "REF_001:000401:LYS",
+        "REF_001:000404:ASN",
+        "REF_001:000405:ALA",
+        "REF_001:000408:VAL",
+        "REF_001:000501:PHE",
+        "REF_001:000506:PHE",
+        "REF_001:000508:PHE",
+        "REF_001:000524:LYS",
+        "REF_001:000527:ALA",
+        "REF_001:000528:LEU",
+        "REF_001:000531:LEU",
+        "REF_001:000534:HIS",
+        "REF_001:000535:LYS",
+        "REF_001:000540:LYS",
+        "REF_001:000543:LEU",
+        "REF_001:000544:LYS",
+        "REF_001:000546:VAL",
+        "REF_001:000547:MET",
+        "REF_001:000548:ASP",
+        "REF_001:000550:PHE",
+        "REF_001:000551:ALA",
+        "REF_001:000574:LEU",
+        "REF_001:000575:VAL",
+        "REF_001:000578:SER",
+        "REF_001:000579:GLN",
+        "REF_001:000582:LEU"
+      ],
+      "center": [
+        11.449156756756759,
+        15.454108108108109,
+        2.8572108108108094
+      ],
+      "state_occurrence": {
+        "state_B": 1.0
+      },
+      "matching_stability": null,
+      "matching_stability_evaluated": false,
+      "strict_state_stable_control": false,
+      "role": "emergent"
+    }
+  ],
+  "targets": [
+    {
+      "target_id": "RF_0011_state_B",
+      "region_family_id": "RF_0011",
+      "state_id": "state_B",
+      "receptor_id": "state_B_R0001",
+      "receptor": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/runs/RUN_20260918_153521/05_TARGET_SELECTION/RF_0011_state_B/receptor.pdb",
+      "full_receptor": "<WORKSPACE>/20_PROJECTS/R074_SMOKE_A/runs/RUN_20260918_153521/05_TARGET_SELECTION/RF_0011_state_B/full_receptor.pdb",
+      "center": [
+        11.449156756756759,
+        15.454108108108109,
+        2.8572108108108094
+      ],
+      "detected_pocket": true,
+      "role": "emergent",
+      "local_fit_RMSD_A": 4.148997704170547e-15
+    }
+  ],
+  "generation_summary": [
+    {
+      "target_id": "RF_0011_state_B",
+      "region_family_id": "RF_0011",
+      "state_id": "state_B",
+      "requested": 10,
+      "generated": 10,
+      "readable": 10,
+      "sanitized": 10,
+      "valid_3D": 10,
+      "valid": 10,
+      "unique": 10,
+      "duplicate_fraction": 0.0,
+      "physical_compatible": 9,
+      "clash_rate": 0.1,
+      "heavy_atom_min": 12,
+      "heavy_atom_max": 16,
+      "formal_charge_distribution": {
+        "0": 10
+      },
+      "predicted_ED_volume": 432.625,
+      "median_Q_normalized": 0.4713451711879509,
+      "actual_steps": 2,
+      "generation_depth_confounded": false
+    }
+  ],
+  "key_metrics": {
+    "generated": 10,
+    "valid_unique_within_targets": 10,
+    "physical_compatible_unique": 9,
+    "generation_depth_confounded": false,
+    "state_comparisons": []
+  },
+  "figures": [
+    {
+      "name": "region_occurrence",
+      "path": "figures/region_occurrence.png",
+      "svg": "figures/region_occurrence.svg",
+      "source": "figures/region_occurrence.csv",
+      "caption": "Detected region occurrence (fraction); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "generation_unique",
+      "path": "figures/generation_unique.png",
+      "svg": "figures/generation_unique.svg",
+      "source": "figures/generation_unique.csv",
+      "caption": "Valid unique molecules (count); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "generation_valid",
+      "path": "figures/generation_valid.png",
+      "svg": "figures/generation_valid.svg",
+      "source": "figures/generation_valid.csv",
+      "caption": "Valid molecules (count); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "predicted_ED",
+      "path": "figures/predicted_ED.png",
+      "svg": "figures/predicted_ED.svg",
+      "source": "figures/predicted_ED.csv",
+      "caption": "Predicted ED volume ($\\AA^3$); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "normalized_Q",
+      "path": "figures/normalized_Q.png",
+      "svg": "figures/normalized_Q.svg",
+      "source": "figures/normalized_Q.csv",
+      "caption": "Median normalized Q (unitless); one target per family/state, descriptive values, no biological replicates. NA means unavailable, not zero."
+    },
+    {
+      "name": "embedding_RF_0011",
+      "path": "figures/embedding_RF_0011.png",
+      "svg": "figures/embedding_RF_0011.svg",
+      "source": "figures/embedding_RF_0011.csv",
+      "caption": "Joint family PCA of all valid unique ECFP4 fingerprints; one common fit across states. Projection is illustrative."
+    },
+    {
+      "name": "descriptor_MW_RF_0011",
+      "path": "figures/descriptor_MW_RF_0011.png",
+      "svg": "figures/descriptor_MW_RF_0011.svg",
+      "source": "figures/descriptor_MW_RF_0011.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    },
+    {
+      "name": "descriptor_cLogP_RF_0011",
+      "path": "figures/descriptor_cLogP_RF_0011.png",
+      "svg": "figures/descriptor_cLogP_RF_0011.svg",
+      "source": "figures/descriptor_cLogP_RF_0011.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    },
+    {
+      "name": "descriptor_TPSA_RF_0011",
+      "path": "figures/descriptor_TPSA_RF_0011.png",
+      "svg": "figures/descriptor_TPSA_RF_0011.svg",
+      "source": "figures/descriptor_TPSA_RF_0011.csv",
+      "caption": "Median and interquartile range of generated valid unique molecules; not a biological confidence interval."
+    }
+  ],
+  "warnings": [],
+  "limitations": [
+    "本结果用于低精度工作流筛选和假设生成，不用于单独证明病理口袋、结合常数、药物滞留或荧光机制。",
+    "fpocket region ≠ validated pocket; predicted ligand ED ≠ experimental electron density.",
+    "Generated molecule ≠ binder; Q-score ≠ binding affinity; geometry-compatible ≠ binder.",
+    "One representative/state is not ensemble thermodynamics; one seed does not exhaust chemical space.",
+    "Generated molecules are not biological independent replicates; no p-value analysis.",
+    "Basic geometry QC is not a full strain-energy or pose-validation assessment.",
+    "Raw engineering isotope labels are retained; these are not a designed isotope-labelled compound series.",
+    "Canonical sequence/chain mapping requires unique high-confidence correspondence; renamed homomers and low-confidence mappings fail safely. Canonical IDs are project-local observed-sequence identities.",
+    "No strict state-stable control; persistent/remodeling comparators must not be called proven stable controls."
+  ],
+  "next_step": "Review Fast Screening outputs; further work requires separate authorization."
+}

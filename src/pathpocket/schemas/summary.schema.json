@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "summary",
+  "type": "object",
+  "required": [
+    "project",
+    "run_id",
+    "status",
+    "states",
+    "selected_region_families",
+    "targets",
+    "generation_summary",
+    "key_metrics",
+    "figures",
+    "warnings",
+    "limitations",
+    "next_step"
+  ],
+  "properties": {
+    "result_class": {
+      "enum": [
+        "NO_TARGETS",
+        "TARGETS_GENERATED"
+      ]
+    },
+    "target_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "generation_status": {
+      "enum": [
+        "SKIPPED",
+        "COMPLETE"
+      ]
+    },
+    "residue_mapping": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "const": "COMPLETE"
+    },
+    "states": {
+      "type": "object"
+    },
+    "targets": {
+      "type": "array"
+    },
+    "figures": {
+      "type": "array"
+    },
+    "limitations": {
+      "type": "array"
+    },
+    "aggregate": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

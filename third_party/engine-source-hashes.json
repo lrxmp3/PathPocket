@@ -1,0 +1,19 @@
+{
+  "source_commit": "09f133da913179f82b285dbb046f1ecb81d1da37",
+  "files": {
+    "Generate.py": "015b76c56b00c65741e50e86e9c5d5ee0f05af3b914e1679f943a96641d7bc84",
+    "frag_lib/Cores.sdf": "a8862dc389f69b1e3afdefd8c3554208d01592645ec59516894227b8ec009e57",
+    "frag_lib/Frags.sdf": "98b8c98571710b43f6d47d4ef4f1c619b42aa5457ba980493b72e4424560898b",
+    "models/ED_Generator.py": "c8481c219bbc3f5781a182774a40ad3986be89823421769334500dcf74a35660",
+    "models/EGNN_Block.py": "dcd9e6b97499fbb359d66bbd765aa249cee71bf506ae59fba2d66a52b2e691ad",
+    "models/Mol_Generator.py": "e023d4a6f243d57b5728f17b8dccb25ed0f69641d922c6db85b59a21cb4ec1c3",
+    "tests/run_generation.py": "b292b779673fbc61d1024157981ad63b91a9311da31bc5893805fa411c96cca4",
+    "utils/CorePlacement.py": "5dd3f32fdfa1dce8bfda0735b10fd2aa74a995f112781b197da022dc2202f4a7",
+    "utils/DataProcessing.py": "bfe09b97a93b692d5b0839b04646db8b6c5d72ce9e30dd3e966106d9483d60b7",
+    "utils/EDExtract.py": "a9c8e97107217ad552957e6a0db8e3668de00e761f6e3ab779625cebbadc4901",
+    "utils/ProbeConstraints.py": "fd0bdccb28218d41ef335466a58ccb1394acb874290845872513857b7005a46f",
+    "utils/ProbeRuntime.py": "7341b2f80dd71b9916acce582069dee3ff4d4d21ad3b5b8a25e613878d900c9c",
+    "utils/Score.py": "9571219143a9e990dde72cbb7f30357e70b8fbfd3f60f16ff8aa111155b75594",
+    "utils/Utils.py": "3fd01c1b7421b7dc16b657a9e7570a3b9b950895cf37b9217b0bceb7c28d63c4"
+  }
+}

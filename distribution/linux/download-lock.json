@@ -1,0 +1,401 @@
+{
+  "linux": [
+    {
+      "name": "nvidia-nccl-cu13",
+      "version": "2.30.7",
+      "url": "https://files.pythonhosted.org/packages/3f/34/c500f90c7ae641b8e0f98965b36b8a7ac79cc8b296e8d251fe3eb592ee54/nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl",
+      "sha256": "cefa7fdb9710efd0f39c5f1be1d61ff6fc9a996c451265bd7fbdcf9455ed4b50",
+      "filename": "nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl",
+      "license": null
+    },
+    {
+      "name": "filelock",
+      "version": "3.32.7",
+      "url": "https://files.pythonhosted.org/packages/15/df/31098c5aeb4d966b553641472bd55fcf5fdfac953549894b8a765ba44e91/filelock-3.32.7-py3-none-any.whl",
+      "sha256": "65ff0d0190ea42038b32bda4b77834fb05be2cad4c5b9b01aa4dfb3614536e52",
+      "filename": "filelock-3.32.7-py3-none-any.whl",
+      "license": "MIT"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6",
+      "url": "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "filename": "jinja2-3.1.6-py3-none-any.whl",
+      "license": null
+    },
+    {
+      "name": "aiohappyeyeballs",
+      "version": "2.7.1",
+      "url": "https://files.pythonhosted.org/packages/71/43/1947f06babed6b3f1d7f38b0c767f52df66bfb2bc10b468c4a7de9eceff2/aiohappyeyeballs-2.7.1-py3-none-any.whl",
+      "sha256": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+      "filename": "aiohappyeyeballs-2.7.1-py3-none-any.whl",
+      "license": "PSF-2.0"
+    },
+    {
+      "name": "nvidia-curand",
+      "version": "10.4.0.35",
+      "url": "https://files.pythonhosted.org/packages/a5/9f/be0a41ca4a4917abf5cb9ae0daff1a6060cc5de950aec0396de9f3b52bc5/nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl",
+      "sha256": "1aee33a5da6e1db083fe2b90082def8915f30f3248d5896bcec36a579d941bfc",
+      "filename": "nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0",
+      "url": "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl",
+      "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5",
+      "filename": "sympy-1.14.0-py3-none-any.whl",
+      "license": "BSD"
+    },
+    {
+      "name": "nvidia-cuda-nvrtc",
+      "version": "13.0.88",
+      "url": "https://files.pythonhosted.org/packages/c3/68/483a78f5e8f31b08fb1bb671559968c0ca3a065ac7acabfc7cee55214fd6/nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+      "sha256": "ad9b6d2ead2435f11cbb6868809d2adeeee302e9bb94bcf0539c7a40d80e8575",
+      "filename": "nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "xxhash",
+      "version": "4.0.1",
+      "url": "https://files.pythonhosted.org/packages/40/ff/e39e1900179ce7f0f23e7000d9fc672471a8d05b6b2dc657cb496c8975d0/xxhash-4.0.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "101aa300de6ceef3d9c77569706330d8921fc45dd82bceed2084f1e9f2557a24",
+      "filename": "xxhash-4.0.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "BSD-2-Clause"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+      "license": "PSF-2.0"
+    },
+    {
+      "name": "nvidia-nvtx",
+      "version": "13.0.85",
+      "url": "https://files.pythonhosted.org/packages/c2/f3/d86c845465a2723ad7e1e5c36dcd75ddb82898b3f53be47ebd429fb2fa5d/nvidia_nvtx-13.0.85-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl",
+      "sha256": "4936d1d6780fbe68db454f5e72a42ff64d1fd6397df9f363ae786930fd5c1cd4",
+      "filename": "nvidia_nvtx-13.0.85-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl",
+      "license": "Apache 2.0"
+    },
+    {
+      "name": "nvidia-cudnn-cu13",
+      "version": "9.24.0.43",
+      "url": "https://files.pythonhosted.org/packages/5c/ba/791cffd048fe5b044e620df55267e3e95c0e6e07d50b41e377c03dfc910f/nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl",
+      "sha256": "71f181cd810e90f9b6023b01186fe82d13d65f0ec098581ee201d39fad769e4b",
+      "filename": "nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl",
+      "license": null
+    },
+    {
+      "name": "cuda-toolkit",
+      "version": "13.0.3.0",
+      "url": "https://files.pythonhosted.org/packages/d1/c7/a79086a62c98befcdb8349656c6f114e2db3b8b2422f6e25c97a7f2a9a3c/cuda_toolkit-13.0.3.0-py2.py3-none-any.whl",
+      "sha256": "d693caaa261214ddd7dbb60d68e71cbed884e68c2be7509778f3051da0b91c3f",
+      "filename": "cuda_toolkit-13.0.3.0-py2.py3-none-any.whl",
+      "license": null
+    },
+    {
+      "name": "nvidia-cufft",
+      "version": "12.0.0.61",
+      "url": "https://files.pythonhosted.org/packages/a8/2f/7b57e29836ea8714f81e9898409196f47d772d5ddedddf1592eadb8ab743/nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "6c44f692dce8fd5ffd3e3df134b6cdb9c2f72d99cf40b62c32dde45eea9ddad3",
+      "filename": "nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "torch-geometric",
+      "version": "2.8.0.post1",
+      "url": "https://files.pythonhosted.org/packages/14/5c/edf74a71249ad19aa0390fb97ff021e2a5b04ce23252730014e1feac957e/torch_geometric-2.8.0.post1-py3-none-any.whl",
+      "sha256": "5d9841cbfa64eadc425e445767127d103dd52fdc5890548c6364986c9bc78029",
+      "filename": "torch_geometric-2.8.0.post1-py3-none-any.whl",
+      "license": "MIT"
+    },
+    {
+      "name": "triton",
+      "version": "3.8.0",
+      "url": "https://files.pythonhosted.org/packages/6f/9a/2c3d3823726d5ad5359f7065b02b984925158b74611c1e3987f6a37461fb/triton-3.8.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "68988ac85d5e7086baeda0ddc175af9667db7529b3c5e11a5c0601b8bef2200a",
+      "filename": "triton-3.8.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "MIT"
+    },
+    {
+      "name": "yarl",
+      "version": "1.25.1",
+      "url": "https://files.pythonhosted.org/packages/95/0c/a71501bbc1a674ff72c4d6c2b75f4d9a5af819f5244c3a7558080a8802c5/yarl-1.25.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "d5add7b4ca7afeea91d52e4d4e4db3b1fe9885b71f07054560d8c4296b7441a2",
+      "filename": "yarl-1.25.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "nvidia-cufile",
+      "version": "1.15.1.6",
+      "url": "https://files.pythonhosted.org/packages/3f/70/4f193de89a48b71714e74602ee14d04e4019ad36a5a9f20c425776e72cd6/nvidia_cufile-1.15.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "08a3ecefae5a01c7f5117351c64f17c7c62efa5fffdbe24fc7d298da19cd0b44",
+      "filename": "nvidia_cufile-1.15.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "nvidia-cuda-cupti",
+      "version": "13.0.85",
+      "url": "https://files.pythonhosted.org/packages/33/6d/737d164b4837a9bbd202f5ae3078975f0525a55730fe871d8ed4e3b952b0/nvidia_cuda_cupti-13.0.85-py3-none-manylinux_2_25_x86_64.whl",
+      "sha256": "4eb01c08e859bf924d222250d2e8f8b8ff6d3db4721288cf35d14252a4d933c8",
+      "filename": "nvidia_cuda_cupti-13.0.85-py3-none-manylinux_2_25_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "nvidia-cusparse",
+      "version": "12.6.3.3",
+      "url": "https://files.pythonhosted.org/packages/fa/18/623c77619c31d62efd55302939756966f3ecc8d724a14dab2b75f1508850/nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "2b3c89c88d01ee0e477cb7f82ef60a11a4bcd57b6b87c33f789350b59759360b",
+      "filename": "nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "aiohttp",
+      "version": "3.14.3",
+      "url": "https://files.pythonhosted.org/packages/a5/b9/2b8f0c0ce09c87a1daf80fd483431b56b1435d3f62789bc86f572e1245de/aiohttp-3.14.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "53e7b4ce82b54a8bcc71b3b67a5cbd177ca1d7f592cbc92cd38b7349f73482db",
+      "filename": "aiohttp-3.14.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "Apache-2.0 AND MIT"
+    },
+    {
+      "name": "frozenlist",
+      "version": "1.8.0",
+      "url": "https://files.pythonhosted.org/packages/11/b1/71a477adc7c36e5fb628245dfbdea2166feae310757dea848d02bd0689fd/frozenlist-1.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "sha256": "2552f44204b744fba866e573be4c1f9048d6a324dfe14475103fd51613eb1d1f",
+      "filename": "frozenlist-1.8.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "networkx",
+      "version": "3.6.1",
+      "url": "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl",
+      "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762",
+      "filename": "networkx-3.6.1-py3-none-any.whl",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "nvidia-nvshmem-cu13",
+      "version": "3.4.5",
+      "url": "https://files.pythonhosted.org/packages/3c/35/a9bf80a609e74e3b000fef598933235c908fcefcef9026042b8e6dfde2a9/nvidia_nvshmem_cu13-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "290f0a2ee94c9f3687a02502f3b9299a9f9fe826e6d0287ee18482e78d495b80",
+      "filename": "nvidia_nvshmem_cu13-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": null
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1",
+      "url": "https://files.pythonhosted.org/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl",
+      "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73",
+      "filename": "tqdm-4.70.1-py3-none-any.whl",
+      "license": "MPL-2.0 AND MIT"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "url": "https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl",
+      "sha256": "c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309",
+      "filename": "attrs-26.1.0-py3-none-any.whl",
+      "license": "MIT"
+    },
+    {
+      "name": "nvidia-cusolver",
+      "version": "12.0.4.66",
+      "url": "https://files.pythonhosted.org/packages/5f/67/cba3777620cdacb99102da4042883709c41c709f4b6323c10781a9c3aa34/nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_x86_64.whl",
+      "sha256": "0a759da5dea5c0ea10fd307de75cdeb59e7ea4fcb8add0924859b944babf1112",
+      "filename": "nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.7.0",
+      "url": "https://files.pythonhosted.org/packages/fd/3c/6a2bf344106328fd04963664a60b9bb6496fc25df8e962fcdc1367285fb9/fsspec-2026.7.0-py3-none-any.whl",
+      "sha256": "b57ddbafedfaef7018c1ecab32aa200a9d7ca26b77965f64e48b70061249d279",
+      "filename": "fsspec-2026.7.0-py3-none-any.whl",
+      "license": null
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.3",
+      "url": "https://files.pythonhosted.org/packages/30/ac/0273f6fcb5f42e314c6d8cd99effae6a5354604d461b8d392b5ec9530a54/markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "0bf2a864d67e76e5c9a34dc26ec616a66b9888e25e7b9460e1c76d3293bd9dbf",
+      "filename": "markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "cuda-bindings",
+      "version": "13.4.1",
+      "url": "https://files.pythonhosted.org/packages/ff/00/15dc1b8f2e5e98975107c366ec5671256d32b8e5c5ed6c1bb3a90a64f035/cuda_bindings-13.4.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "e5dc0f13cfd14cd62206fede462f91c497d0c484b8236f4158531d20377066cd",
+      "filename": "cuda_bindings-13.4.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "aiosignal",
+      "version": "1.4.0",
+      "url": "https://files.pythonhosted.org/packages/fb/76/641ae371508676492379f16e2fa48f4e2c11741bd63c48be4b12a6b09cba/aiosignal-1.4.0-py3-none-any.whl",
+      "sha256": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+      "filename": "aiosignal-1.4.0-py3-none-any.whl",
+      "license": "Apache 2.0"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.9",
+      "url": "https://files.pythonhosted.org/packages/79/db/e28c1b83e3680740aa78925f5fb2ae4d16207207419ad75ea9fe604f8676/matplotlib-3.10.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "8e436d155fa8a3399dc62683f8f5d0e2e50d25d0144a73edd73f82eec8f4abfb",
+      "filename": "matplotlib-3.10.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": "License agreement for matplotlib versions 1.3.0 and later\n         =========================================================\n         \n         1. This LICENSE AGREEMENT is between the Matplotlib Development Team\n         (\"MDT\"), and the Individual or Organization (\"Licensee\") accessing and\n         otherwise using matplotlib software in source or binary form and its\n         associated documentation.\n         \n         2. Subject to the terms and conditions of this License Agreement, MDT\n         hereby grants Licensee a nonexclusive, royalty-free, world-wide license\n         to reproduce, analyze, test, perform and/or display publicly, prepare\n         derivative works, distribute, and otherwise use matplotlib\n         alone or in any derivative version, provided, however, that MDT's\n         License Agreement and MDT's notice of copyright, i.e., \"Copyright (c)\n         2012- Matplotlib Development Team; All Rights Reserved\" are retained in\n         matplotlib  alone or in any derivative version prepared by\n         Licensee.\n         \n         3. In the event Licensee prepares a derivative work that is based on or\n         incorporates matplotlib or any part thereof, and wants to\n         make the derivative work available to others as provided herein, then\n         Licensee hereby agrees to include in any such work a brief summary of\n         the changes made to matplotlib .\n         \n         4. MDT is making matplotlib available to Licensee on an \"AS\n         IS\" basis.  MDT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR\n         IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, MDT MAKES NO AND\n         DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS\n         FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF MATPLOTLIB\n         WILL NOT INFRINGE ANY THIRD PARTY RIGHTS.\n         \n         5. MDT SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF MATPLOTLIB\n          FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR\n         LOSS AS A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING\n         MATPLOTLIB , OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF\n         THE POSSIBILITY THEREOF.\n         \n         6. This License Agreement will automatically terminate upon a material\n         breach of its terms and conditions.\n         \n         7. Nothing in this License Agreement shall be deemed to create any\n         relationship of agency, partnership, or joint venture between MDT and\n         Licensee.  This License Agreement does not grant permission to use MDT\n         trademarks or trade name in a trademark sense to endorse or promote\n         products or services of Licensee, or any third party.\n         \n         8. By copying, installing or otherwise using matplotlib ,\n         Licensee agrees to be bound by the terms and conditions of this License\n         Agreement.\n         \n         License agreement for matplotlib versions prior to 1.3.0\n         ========================================================\n         \n         1. This LICENSE AGREEMENT is between John D. Hunter (\"JDH\"), and the\n         Individual or Organization (\"Licensee\") accessing and otherwise using\n         matplotlib software in source or binary form and its associated\n         documentation.\n         \n         2. Subject to the terms and conditions of this License Agreement, JDH\n         hereby grants Licensee a nonexclusive, royalty-free, world-wide license\n         to reproduce, analyze, test, perform and/or display publicly, prepare\n         derivative works, distribute, and otherwise use matplotlib\n         alone or in any derivative version, provided, however, that JDH's\n         License Agreement and JDH's notice of copyright, i.e., \"Copyright (c)\n         2002-2011 John D. Hunter; All Rights Reserved\" are retained in\n         matplotlib  alone or in any derivative version prepared by\n         Licensee.\n         \n         3. In the event Licensee prepares a derivative work that is based on or\n         incorporates matplotlib  or any part thereof, and wants to\n         make the derivative work available to others as provided herein, then\n         Licensee hereby agrees to include in any such work a brief summary of\n         the changes made to matplotlib.\n         \n         4. JDH is making matplotlib  available to Licensee on an \"AS\n         IS\" basis.  JDH MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR\n         IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, JDH MAKES NO AND\n         DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS\n         FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF MATPLOTLIB\n         WILL NOT INFRINGE ANY THIRD PARTY RIGHTS.\n         \n         5. JDH SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF MATPLOTLIB\n          FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR\n         LOSS AS A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING\n         MATPLOTLIB , OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF\n         THE POSSIBILITY THEREOF.\n         \n         6. This License Agreement will automatically terminate upon a material\n         breach of its terms and conditions.\n         \n         7. Nothing in this License Agreement shall be deemed to create any\n         relationship of agency, partnership, or joint venture between JDH and\n         Licensee.  This License Agreement does not grant permission to use JDH\n         trademarks or trade name in a trademark sense to endorse or promote\n         products or services of Licensee, or any third party.\n         \n         8. By copying, installing or otherwise using matplotlib,\n         Licensee agrees to be bound by the terms and conditions of this License\n         Agreement.\n         ----\n         \n         This binary distrubution of Matplotlib can also bundle the following software\n         (depending on the build):\n         \n         Name: AMS Fonts\n         Files: matplotlib/tests/cmr10.pfb\n         Description: Type-1 version of one of Knuth's Computer Modern fonts\n         License: OFL-1.1\n           The cmr10.pfb file is a Type-1 version of one of Knuth's Computer Modern fonts.\n           It is included here as test data only, but the following license applies.\n         \n           Copyright (c) 1997, 2009, American Mathematical Society (http://www.ams.org).\n           All Rights Reserved.\n         \n           \"cmb10\" is a Reserved Font Name for this Font Software.\n           \"cmbsy10\" is a Reserved Font Name for this Font Software.\n           \"cmbsy5\" is a Reserved Font Name for this Font Software.\n           \"cmbsy6\" is a Reserved Font Name for this Font Software.\n           \"cmbsy7\" is a Reserved Font Name for this Font Software.\n           \"cmbsy8\" is a Reserved Font Name for this Font Software.\n           \"cmbsy9\" is a Reserved Font Name for this Font Software.\n           \"cmbx10\" is a Reserved Font Name for this Font Software.\n           \"cmbx12\" is a Reserved Font Name for this Font Software.\n           \"cmbx5\" is a Reserved Font Name for this Font Software.\n           \"cmbx6\" is a Reserved Font Name for this Font Software.\n           \"cmbx7\" is a Reserved Font Name for this Font Software.\n           \"cmbx8\" is a Reserved Font Name for this Font Software.\n           \"cmbx9\" is a Reserved Font Name for this Font Software.\n           \"cmbxsl10\" is a Reserved Font Name for this Font Software.\n           \"cmbxti10\" is a Reserved Font Name for this Font Software.\n           \"cmcsc10\" is a Reserved Font Name for this Font Software.\n           \"cmcsc8\" is a Reserved Font Name for this Font Software.\n           \"cmcsc9\" is a Reserved Font Name for this Font Software.\n           \"cmdunh10\" is a Reserved Font Name for this Font Software.\n           \"cmex10\" is a Reserved Font Name for this Font Software.\n           \"cmex7\" is a Reserved Font Name for this Font Software.\n           \"cmex8\" is a Reserved Font Name for this Font Software.\n           \"cmex9\" is a Reserved Font Name for this Font Software.\n           \"cmff10\" is a Reserved Font Name for this Font Software.\n           \"cmfi10\" is a Reserved Font Name for this Font Software.\n           \"cmfib8\" is a Reserved Font Name for this Font Software.\n           \"cminch\" is a Reserved Font Name for this Font Software.\n           \"cmitt10\" is a Reserved Font Name for this Font Software.\n           \"cmmi10\" is a Reserved Font Name for this Font Software.\n           \"cmmi12\" is a Reserved Font Name for this Font Software.\n           \"cmmi5\" is a Reserved Font Name for this Font Software.\n           \"cmmi6\" is a Reserved Font Name for this Font Software.\n           \"cmmi7\" is a Reserved Font Name for this Font Software.\n           \"cmmi8\" is a Reserved Font Name for this Font Software.\n           \"cmmi9\" is a Reserved Font Name for this Font Software.\n           \"cmmib10\" is a Reserved Font Name for this Font Software.\n           \"cmmib5\" is a Reserved Font Name for this Font Software.\n           \"cmmib6\" is a Reserved Font Name for this Font Software.\n           \"cmmib7\" is a Reserved Font Name for this Font Software.\n           \"cmmib8\" is a Reserved Font Name for this Font Software.\n           \"cmmib9\" is a Reserved Font Name for this Font Software.\n           \"cmr10\" is a Reserved Font Name for this Font Software.\n           \"cmr12\" is a Reserved Font Name for this Font Software.\n           \"cmr17\" is a Reserved Font Name for this Font Software.\n           \"cmr5\" is a Reserved Font Name for this Font Software.\n           \"cmr6\" is a Reserved Font Name for this Font Software.\n           \"cmr7\" is a Reserved Font Name for this Font Software.\n           \"cmr8\" is a Reserved Font Name for this Font Software.\n           \"cmr9\" is a Reserved Font Name for this Font Software.\n           \"cmsl10\" is a Reserved Font Name for this Font Software.\n           \"cmsl12\" is a Reserved Font Name for this Font Software.\n           \"cmsl8\" is a Reserved Font Name for this Font Software.\n           \"cmsl9\" is a Reserved Font Name for this Font Software.\n           \"cmsltt10\" is a Reserved Font Name for this Font Software.\n           \"cmss10\" is a Reserved Font Name for this Font Software.\n           \"cmss12\" is a Reserved Font Name for this Font Software.\n           \"cmss17\" is a Reserved Font Name for this Font Software.\n           \"cmss8\" is a Reserved Font Name for this Font Software.\n           \"cmss9\" is a Reserved Font Name for this Font Software.\n           \"cmssbx10\" is a Reserved Font Name for this Font Software.\n           \"cmssdc10\" is a Reserved Font Name for this Font Software.\n           \"cmssi10\" is a Reserved Font Name for this Font Software.\n           \"cmssi12\" is a Reserved Font Name for this Font Software.\n           \"cmssi17\" is a Reserved Font Name for this Font Software.\n           \"cmssi8\" is a Reserved Font Name for this Font Software.\n           \"cmssi9\" is a Reserved Font Name for this Font Software.\n           \"cmssq8\" is a Reserved Font Name for this Font Software.\n           \"cmssqi8\" is a Reserved Font Name for this Font Software.\n           \"cmsy10\" is a Reserved Font Name for this Font Software.\n           \"cmsy5\" is a Reserved Font Name for this Font Software.\n           \"cmsy6\" is a Reserved Font Name for this Font Software.\n           \"cmsy7\" is a Reserved Font Name for this Font Software.\n           \"cmsy8\" is a Reserved Font Name for this Font Software.\n           \"cmsy9\" is a Reserved Font Name for this Font Software.\n           \"cmtcsc10\" is a Reserved Font Name for this Font Software.\n           \"cmtex10\" is a Reserved Font Name for this Font Software.\n           \"cmtex8\" is a Reserved Font Name for this Font Software.\n           \"cmtex9\" is a Reserved Font Name for this Font Software.\n           \"cmti10\" is a Reserved Font Name for this Font Software.\n           \"cmti12\" is a Reserved Font Name for this Font Software.\n           \"cmti7\" is a Reserved Font Name for this Font Software.\n           \"cmti8\" is a Reserved Font Name for this Font Software.\n           \"cmti9\" is a Reserved Font Name for this Font Software.\n           \"cmtt10\" is a Reserved Font Name for this Font Software.\n           \"cmtt12\" is a Reserved Font Name for this Font Software.\n           \"cmtt8\" is a Reserved Font Name for this Font Software.\n           \"cmtt9\" is a Reserved Font Name for this Font Software.\n           \"cmu10\" is a Reserved Font Name for this Font Software.\n           \"cmvtt10\" is a Reserved Font Name for this Font Software.\n           \"euex10\" is a Reserved Font Name for this Font Software.\n           \"euex7\" is a Reserved Font Name for this Font Software.\n           \"euex8\" is a Reserved Font Name for this Font Software.\n           \"euex9\" is a Reserved Font Name for this Font Software.\n           \"eufb10\" is a Reserved Font Name for this Font Software.\n           \"eufb5\" is a Reserved Font Name for this Font Software.\n           \"eufb7\" is a Reserved Font Name for this Font Software.\n           \"eufm10\" is a Reserved Font Name for this Font Software.\n           \"eufm5\" is a Reserved Font Name for this Font Software.\n           \"eufm7\" is a Reserved Font Name for this Font Software.\n           \"eurb10\" is a Reserved Font Name for this Font Software.\n           \"eurb5\" is a Reserved Font Name for this Font Software.\n           \"eurb7\" is a Reserved Font Name for this Font Software.\n           \"eurm10\" is a Reserved Font Name for this Font Software.\n           \"eurm5\" is a Reserved Font Name for this Font Software.\n           \"eurm7\" is a Reserved Font Name for this Font Software.\n           \"eusb10\" is a Reserved Font Name for this Font Software.\n           \"eusb5\" is a Reserved Font Name for this Font Software.\n           \"eusb7\" is a Reserved Font Name for this Font Software.\n           \"eusm10\" is a Reserved Font Name for this Font Software.\n           \"eusm5\" is a Reserved Font Name for this Font Software.\n           \"eusm7\" is a Reserved Font Name for this Font Software.\n           \"lasy10\" is a Reserved Font Name for this Font Software.\n           \"lasy5\" is a Reserved Font Name for this Font Software.\n           \"lasy6\" is a Reserved Font Name for this Font Software.\n           \"lasy7\" is a Reserved Font Name for this Font Software.\n           \"lasy8\" is a Reserved Font Name for this Font Software.\n           \"lasy9\" is a Reserved Font Name for this Font Software.\n           \"lasyb10\" is a Reserved Font Name for this Font Software.\n           \"lcircle1\" is a Reserved Font Name for this Font Software.\n           \"lcirclew\" is a Reserved Font Name for this Font Software.\n           \"lcmss8\" is a Reserved Font Name for this Font Software.\n           \"lcmssb8\" is a Reserved Font Name for this Font Software.\n           \"lcmssi8\" is a Reserved Font Name for this Font Software.\n           \"line10\" is a Reserved Font Name for this Font Software.\n           \"linew10\" is a Reserved Font Name for this Font Software.\n           \"msam10\" is a Reserved Font Name for this Font Software.\n           \"msam5\" is a Reserved Font Name for this Font Software.\n           \"msam6\" is a Reserved Font Name for this Font Software.\n           \"msam7\" is a Reserved Font Name for this Font Software.\n           \"msam8\" is a Reserved Font Name for this Font Software.\n           \"msam9\" is a Reserved Font Name for this Font Software.\n           \"msbm10\" is a Reserved Font Name for this Font Software.\n           \"msbm5\" is a Reserved Font Name for this Font Software.\n           \"msbm6\" is a Reserved Font Name for this Font Software.\n           \"msbm7\" is a Reserved Font Name for this Font Software.\n           \"msbm8\" is a Reserved Font Name for this Font Software.\n           \"msbm9\" is a Reserved Font Name for this Font Software.\n           \"wncyb10\" is a Reserved Font Name for this Font Software.\n           \"wncyi10\" is a Reserved Font Name for this Font Software.\n           \"wncyr10\" is a Reserved Font Name for this Font Software.\n           \"wncysc10\" is a Reserved Font Name for this Font Software.\n           \"wncyss10\" is a Reserved Font Name for this Font Software.\n         \n           This Font Software is licensed under the SIL Open Font License, Version 1.1.\n           This license is copied below, and is also available with a FAQ at:\n           http://scripts.sil.org/OFL\n         \n           -----------------------------------------------------------\n           SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007\n           -----------------------------------------------------------\n         \n           PREAMBLE\n           The goals of the Open Font License (OFL) are to stimulate worldwide\n           development of collaborative font projects, to support the font creation\n           efforts of academic and linguistic communities, and to provide a free and\n           open framework in which fonts may be shared and improved in partnership\n           with others.\n         \n           The OFL allows the licensed fonts to be used, studied, modified and\n           redistributed freely as long as they are not sold by themselves. The\n           fonts, including any derivative works, can be bundled, embedded, \n           redistributed and/or sold with any software provided that any reserved\n           names are not used by derivative works. The fonts and derivatives,\n           however, cannot be released under any other type of license. The\n           requirement for fonts to remain under this license does not apply\n           to any document created using the fonts or their derivatives.\n         \n           DEFINITIONS\n           \"Font Software\" refers to the set of files released by the Copyright\n           Holder(s) under this license and clearly marked as such. This may\n           include source files, build scripts and documentation.\n         \n           \"Reserved Font Name\" refers to any names specified as such after the\n           copyright statement(s).\n         \n           \"Original Version\" refers to the collection of Font Software components as\n           distributed by the Copyright Holder(s).\n         \n           \"Modified Version\" refers to any derivative made by adding to, deleting,\n           or substituting -- in part or in whole -- any of the components of the\n           Original Version, by changing formats or by porting the Font Software to a\n           new environment.\n         \n           \"Author\" refers to any designer, engineer, programmer, technical\n           writer or other person who contributed to the Font Software.\n         \n           PERMISSION & CONDITIONS\n           Permission is hereby granted, free of charge, to any person obtaining\n           a copy of the Font Software, to use, study, copy, merge, embed, modify,\n           redistribute, and sell modified and unmodified copies of the Font\n           Software, subject to the following conditions:\n         \n           1) Neither the Font Software nor any of its individual components,\n           in Original or Modified Versions, may be sold by itself.\n         \n           2) Original or Modified Versions of the Font Software may be bundled,\n           redistributed and/or sold with any software, provided that each copy\n           contains the above copyright notice and this license. These can be\n           included either as stand-alone text files, human-readable headers or\n           in the appropriate machine-readable metadata fields within text or\n           binary files as long as those fields can be easily viewed by the user.\n         \n           3) No Modified Version of the Font Software may use the Reserved Font\n           Name(s) unless explicit written permission is granted by the corresponding\n           Copyright Holder. This restriction only applies to the primary font name as\n           presented to the users.\n         \n           4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font\n           Software shall not be used to promote, endorse or advertise any\n           Modified Version, except to acknowledge the contribution(s) of the\n           Copyright Holder(s) and the Author(s) or with their explicit written\n           permission.\n         \n           5) The Font Software, modified or unmodified, in part or in whole,\n           must be distributed entirely under this license, and must not be\n           distributed under any other license. The requirement for fonts to\n           remain under this license does not apply to any document created\n           using the Font Software.\n         \n           TERMINATION\n           This license becomes null and void if any of the above conditions are\n           not met.\n         \n           DISCLAIMER\n           THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n           EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF\n           MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\n           OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE\n           COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n           INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL\n           DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n           FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM\n           OTHER DEALINGS IN THE FONT SOFTWARE.\n         \n         \n         \n         Name: BaKoMa Fonts\n         Files: matplotlib/mpl-data/fonts/ttf/cm*.ttf matplotlib/mpl-data/fonts/afm/cm*.afm \n         Description: Computer Modern Fonts in PostScript Type 1 and TrueType font formats.\n         License: BaKoMa Fonts Licence\n                 BaKoMa Fonts Licence\n                 --------------------\n         \n             This licence covers two font packs (known as BaKoMa Fonts Collection,\n             which is available at `CTAN:fonts/cm/ps-type1/bakoma/'):\n         \n               1) BaKoMa-CM (1.1/12-Nov-94)\n                  Computer Modern Fonts in PostScript Type 1 and TrueType font formats.\n         \n               2) BaKoMa-AMS (1.2/19-Jan-95)\n                  AMS TeX fonts in PostScript Type 1 and TrueType font formats.\n              \n             Copyright (C) 1994, 1995, Basil K. Malyshev. All Rights Reserved.\n         \n             Permission to copy and distribute these fonts for any purpose is \n             hereby granted without fee, provided that the above copyright notice, \n             author statement and this permission notice appear in all copies of \n             these fonts and related documentation.\n         \n             Permission to modify and distribute modified fonts for any purpose is \n             hereby granted without fee, provided that the copyright notice, \n             author statement, this permission notice and location of original \n             fonts (http://www.ctan.org/tex-archive/fonts/cm/ps-type1/bakoma)\n             appear in all copies of modified fonts and related documentation.\n         \n             Permission to use these fonts (embedding into PostScript, PDF, SVG\n             and printing by using any software) is hereby granted without fee. \n             It is not required to provide any notices about using these fonts.\n         \n            Basil K. Malyshev\n            INSTITUTE FOR HIGH ENERGY PHYSICS\n            IHEP, OMVT\n            Moscow Region\n            142281 PROTVINO\n            RUSSIA\n         \n            E-Mail:\tbakoma@mail.ru\n                 or\tmalyshev@mail.ihep.ru\n         \n         \n         \n         \n         Name: ColorBrewer Color Schemes\n         Files: lib/matplotlib/_cm.py\n         Description: Color schemes from ColorBrewer\n         License: Apache-2.0\n           Apache-Style Software License for ColorBrewer software and ColorBrewer Color Schemes\n         \n           Copyright (c) 2002 Cynthia Brewer, Mark Harrower, and The Pennsylvania State University.\n         \n           Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License.\n           You may obtain a copy of the License at\n         \n           http://www.apache.org/licenses/LICENSE-2.0\n         \n           Unless required by applicable law or agreed to in writing, software distributed\n           under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n           CONDITIONS OF ANY KIND, either express or implied. See the License for the\n           specific language governing permissions and limitations under the License.\n         \n         \n         Name: Courier 10\n         Files: matplotlib/tests/Courier10PitchBT-Bold.pfb\n         Description: Courier 10 font, used in tests.\n         License: Bitstream-Charter\n           The Courier10PitchBT-Bold.pfb file is a Type-1 version of\n           Courier 10 Pitch BT Bold by Bitstream, obtained from\n           <https://ctan.org/tex-archive/fonts/courierten>. It is included\n           here as test data only, but the following license applies.\n         \n         \n           (c) Copyright 1989-1992, Bitstream Inc., Cambridge, MA.\n         \n           You are hereby granted permission under all Bitstream propriety rights\n           to use, copy, modify, sublicense, sell, and redistribute the 4 Bitstream\n           Charter (r) Type 1 outline fonts and the 4 Courier Type 1 outline fonts\n           for any purpose and without restriction; provided, that this notice is\n           left intact on all copies of such fonts and that Bitstream's trademark\n           is acknowledged as shown below on all unmodified copies of the 4 Charter\n           Type 1 fonts.\n         \n           BITSTREAM CHARTER is a registered trademark of Bitstream Inc.\n         \n         \n         \n         Name: JSXTools resize observer\n         Files: \n         Description: Minimal polyfill for the ResizeObserver API\n         License: CC0-1.0\n           # CC0 1.0 Universal\n         \n           ## Statement of Purpose\n         \n           The laws of most jurisdictions throughout the world automatically confer\n           exclusive Copyright and Related Rights (defined below) upon the creator and\n           subsequent owner(s) (each and all, an \u201cowner\u201d) of an original work of\n           authorship and/or a database (each, a \u201cWork\u201d).\n         \n           Certain owners wish to permanently relinquish those rights to a Work for the\n           purpose of contributing to a commons of creative, cultural and scientific works\n           (\u201cCommons\u201d) that the public can reliably and without fear of later claims of\n           infringement build upon, modify, incorporate in other works, reuse and\n           redistribute as freely as possible in any form whatsoever and for any purposes,\n           including without limitation commercial purposes. These owners may contribute\n           to the Commons to promote the ideal of a free culture and the further\n           production of creative, cultural and scientific works, or to gain reputation or\n           greater distribution for their Work in part through the use and efforts of\n           others.\n         \n           For these and/or other purposes and motivations, and without any expectation of\n           additional consideration or compensation, the person associating CC0 with a\n           Work (the \u201cAffirmer\u201d), to the extent that he or she is an owner of Copyright\n           and Related Rights in the Work, voluntarily elects to apply CC0 to the Work and\n           publicly distribute the Work under its terms, with knowledge of his or her\n           Copyright and Related Rights in the Work and the meaning and intended legal\n           effect of CC0 on those rights.\n         \n           1. Copyright and Related Rights. A Work made available under CC0 may be\n              protected by copyright and related or neighboring rights (\u201cCopyright and\n              Related Rights\u201d). Copyright and Related Rights include, but are not limited\n              to, the following:\n              1. the right to reproduce, adapt, distribute, perform, display, communicate,\n                 and translate a Work;\n              2. moral rights retained by the original author(s) and/or performer(s);\n              3. publicity and privacy rights pertaining to a person\u2019s image or likeness\n                 depicted in a Work;\n              4. rights protecting against unfair competition in regards to a Work,\n                 subject to the limitations in paragraph 4(i), below;\n              5. rights protecting the extraction, dissemination, use and reuse of data in\n                 a Work;\n              6. database rights (such as those arising under Directive 96/9/EC of the\n                 European Parliament and of the Council of 11 March 1996 on the legal\n                 protection of databases, and under any national implementation thereof,\n                 including any amended or successor version of such directive); and\n              7. other similar, equivalent or corresponding rights throughout the world\n                 based on applicable law or treaty, and any national implementations\n                 thereof.\n         \n           2. Waiver. To the greatest extent permitted by, but not in contravention of,\n              applicable law, Affirmer hereby overtly, fully, permanently, irrevocably and\n              unconditionally waives, abandons, and surrenders all of Affirmer\u2019s Copyright\n              and Related Rights and associated claims and causes of action, whether now\n              known or unknown (including existing as well as future claims and causes of\n              action), in the Work (i) in all territories worldwide, (ii) for the maximum\n              duration provided by applicable law or treaty (including future time\n              extensions), (iii) in any current or future medium and for any number of\n              copies, and (iv) for any purpose whatsoever, including without limitation\n              commercial, advertising or promotional purposes (the \u201cWaiver\u201d). Affirmer\n              makes the Waiver for the benefit of each member of the public at large and\n              to the detriment of Affirmer\u2019s heirs and successors, fully intending that\n              such Waiver shall not be subject to revocation, rescission, cancellation,\n              termination, or any other legal or equitable action to disrupt the quiet\n              enjoyment of the Work by the public as contemplated by Affirmer\u2019s express\n              Statement of Purpose.\n         \n           3. Public License Fallback. Should any part of the Waiver for any reason be\n              judged legally invalid or ineffective under applicable law, then the Waiver\n              shall be preserved to the maximum extent permitted taking into account\n              Affirmer\u2019s express Statement of Purpose. In addition, to the extent the\n              Waiver is so judged Affirmer hereby grants to each affected person a\n              royalty-free, non transferable, non sublicensable, non exclusive,\n              irrevocable and unconditional license to exercise Affirmer\u2019s Copyright and\n              Related Rights in the Work (i) in all territories worldwide, (ii) for the\n              maximum duration provided by applicable law or treaty (including future time\n              extensions), (iii) in any current or future medium and for any number of\n              copies, and (iv) for any purpose whatsoever, including without limitation\n              commercial, advertising or promotional purposes (the \u201cLicense\u201d). The License\n              shall be deemed effective as of the date CC0 was applied by Affirmer to the\n              Work. Should any part of the License for any reason be judged legally\n              invalid or ineffective under applicable law, such partial invalidity or\n              ineffectiveness shall not invalidate the remainder of the License, and in\n              such case Affirmer hereby affirms that he or she will not (i) exercise any\n              of his or her remaining Copyright and Related Rights in the Work or (ii)\n              assert any associated claims and causes of action with respect to the Work,\n              in either case contrary to Affirmer\u2019s express Statement of Purpose.\n         \n           4. Limitations and Disclaimers.\n              1. No trademark or patent rights held by Affirmer are waived, abandoned,\n                 surrendered, licensed or otherwise affected by this document.\n              2. Affirmer offers the Work as-is and makes no representations or warranties\n                 of any kind concerning the Work, express, implied, statutory or\n                 otherwise, including without limitation warranties of title,\n                 merchantability, fitness for a particular purpose, non infringement, or\n                 the absence of latent or other defects, accuracy, or the present or\n                 absence of errors, whether or not discoverable, all to the greatest\n                 extent permissible under applicable law.\n              3. Affirmer disclaims responsibility for clearing rights of other persons\n                 that may apply to the Work or any use thereof, including without\n                 limitation any person\u2019s Copyright and Related Rights in the Work.\n                 Further, Affirmer disclaims responsibility for obtaining any necessary\n                 consents, permissions or other rights required for any use of the Work.\n              4. Affirmer understands and acknowledges that Creative Commons is not a\n                 party to this document and has no duty or obligation with respect to this\n                 CC0 or use of the Work.\n         \n           For more information, please see\n           http://creativecommons.org/publicdomain/zero/1.0/.\n         \n         \n         Name: QHull\n         Files: matplotlib/_qhull.*.so\n         Description: Convex hull, Delaunay triangulation, Voronoi diagrams, Halfspace intersection\n         License: Qhull\n                               Qhull, Copyright (c) 1993-2020\n                               \n                                       C.B. Barber\n                                      Arlington, MA \n                                     \n                                          and\n         \n                  The National Science and Technology Research Center for\n                   Computation and Visualization of Geometric Structures\n                                   (The Geometry Center)\n                                  University of Minnesota\n         \n                                  email: qhull@qhull.org\n         \n           This software includes Qhull from C.B. Barber and The Geometry Center.  \n           Files derived from Qhull 1.0 are copyrighted by the Geometry Center.  The\n           remaining files are copyrighted by C.B. Barber.  Qhull is free software \n           and may be obtained via http from www.qhull.org.  It may be freely copied, \n           modified, and redistributed under the following conditions:\n         \n           1. All copyright notices must remain intact in all files.\n         \n           2. A copy of this text file must be distributed along with any copies \n              of Qhull that you redistribute; this includes copies that you have \n              modified, or copies of programs or other software products that \n              include Qhull.\n         \n           3. If you modify Qhull, you must include a notice giving the\n              name of the person performing the modification, the date of\n              modification, and the reason for such modification.\n         \n           4. When distributing modified versions of Qhull, or other software \n              products that include Qhull, you must provide notice that the original \n              source code may be obtained as noted above.\n         \n           5. There is no warranty or other guarantee of fitness for Qhull, it is \n              provided solely \"as is\".  Bug reports or fixes may be sent to \n              qhull_bug@qhull.org; the authors may or may not act on them as \n              they desire.\n         \n         \n         Name: Qt4 Editor\n         Files: matplotlib/backends/qt_editor\n         Description: Module creating PyQt4 form dialogs/layouts to edit various type of parameters\n         License: MIT\n           Module creating PyQt4 form dialogs/layouts to edit various type of parameters\n         \n         \n           formlayout License Agreement (MIT License)\n           ------------------------------------------\n         \n           Copyright (c) 2009 Pierre Raybaut\n         \n           Permission is hereby granted, free of charge, to any person\n           obtaining a copy of this software and associated documentation\n           files (the \"Software\"), to deal in the Software without\n           restriction, including without limitation the rights to use,\n           copy, modify, merge, publish, distribute, sublicense, and/or sell\n           copies of the Software, and to permit persons to whom the\n           Software is furnished to do so, subject to the following\n           conditions:\n         \n           The above copyright notice and this permission notice shall be\n           included in all copies or substantial portions of the Software.\n         \n           THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n           EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n           OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n           NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n           HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n           WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n           FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n           OTHER DEALINGS IN THE SOFTWARE.\n           \"\"\"\n         \n         \n         Name: Solarized\n         Files: matplotlib/mpl-data/stylelib/Solarize_Light2.mplstyle\n         Description: Solarized color scheme/style\n         License: MIT\n           https://github.com/altercation/solarized/blob/master/LICENSE\n           Copyright (c) 2011 Ethan Schoonover\n         \n           Permission is hereby granted, free of charge, to any person obtaining a copy\n           of this software and associated documentation files (the \"Software\"), to deal\n           in the Software without restriction, including without limitation the rights\n           to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n           copies of the Software, and to permit persons to whom the Software is\n           furnished to do so, subject to the following conditions:\n         \n           The above copyright notice and this permission notice shall be included in\n           all copies or substantial portions of the Software.\n         \n           THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n           IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n           FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n           AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n           LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n           OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n           THE SOFTWARE.\n         \n         \n         Name: Stix fonts\n         Files: matplotlib/mpl-data/fonts/ttf/STIX*.ttf\n         Description: STIX fonts\n         License:\n           TERMS AND CONDITIONS\n         \n              1. Permission is hereby granted, free of charge, to any person \n           obtaining a copy of the STIX Fonts-TM set accompanying this license \n           (collectively, the \"Fonts\") and the associated documentation files \n           (collectively with the Fonts, the \"Font Software\"), to reproduce and \n           distribute the Font Software, including the rights to use, copy, merge \n           and publish copies of the Font Software, and to permit persons to whom \n           the Font Software is furnished to do so same, subject to the following \n           terms and conditions (the \"License\").\n         \n              2. The following copyright and trademark notice and these Terms and \n           Conditions shall be included in all copies of one or more of the Font \n           typefaces and any derivative work created as permitted under this \n           License:\n         \n             Copyright (c) 2001-2005 by the STI Pub Companies, consisting of \n           the American Institute of Physics, the American Chemical Society, the \n           American Mathematical Society, the American Physical Society, Elsevier, \n           Inc., and The Institute of Electrical and Electronic Engineers, Inc. \n           Portions copyright (c) 1998-2003 by MicroPress, Inc. Portions copyright \n           (c) 1990 by Elsevier, Inc. All rights reserved. STIX Fonts-TM is a \n           trademark of The Institute of Electrical and Electronics Engineers, Inc.\n         \n              3. You may (a) convert the Fonts from one format to another (e.g., \n           from TrueType to PostScript), in which case the normal and reasonable \n           distortion that occurs during such conversion shall be permitted and (b) \n           embed or include a subset of the Fonts in a document for the purposes of \n           allowing users to read text in the document that utilizes the Fonts. In \n           each case, you may use the STIX Fonts-TM mark to designate the resulting \n           Fonts or subset of the Fonts.\n         \n              4. You may also (a) add glyphs or characters to the Fonts, or modify \n           the shape of existing glyphs, so long as the base set of glyphs is not \n           removed and (b) delete glyphs or characters from the Fonts, provided \n           that the resulting font set is distributed with the following \n           disclaimer: \"This [name] font does not include all the Unicode points \n           covered in the STIX Fonts-TM set but may include others.\" In each case, \n           the name used to denote the resulting font set shall not include the \n           term \"STIX\" or any similar term.\n         \n              5. You may charge a fee in connection with the distribution of the \n           Font Software, provided that no copy of one or more of the individual \n           Font typefaces that form the STIX Fonts-TM set may be sold by itself.\n         \n              6. THE FONT SOFTWARE IS PROVIDED \"AS IS,\" WITHOUT WARRANTY OF ANY \n           KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTIES \n           OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT \n           OF COPYRIGHT, PATENT, TRADEMARK OR OTHER RIGHT. IN NO EVENT SHALL \n           MICROPRESS OR ANY OF THE STI PUB COMPANIES BE LIABLE FOR ANY CLAIM, \n           DAMAGES OR OTHER LIABILITY, INCLUDING, BUT NOT LIMITED TO, ANY GENERAL, \n           SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, WHETHER IN AN \n           ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM OR OUT OF THE USE OR \n           INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT \n           SOFTWARE.\n         \n              7. Except as contained in the notice set forth in Section 2, the \n           names MicroPress Inc. and STI Pub Companies, as well as the names of the \n           companies/organizations that compose the STI Pub Companies, shall not be \n           used in advertising or otherwise to promote the sale, use or other \n           dealings in the Font Software without the prior written consent of the \n           respective company or organization.\n         \n              8. This License shall become null and void in the event of any \n           material breach of the Terms and Conditions herein by licensee.\n         \n              9. A substantial portion of the STIX Fonts set was developed by \n           MicroPress Inc. for the STI Pub Companies. To obtain additional \n           mathematical fonts, please contact MicroPress, Inc., 68-30 Harrow \n           Street, Forest Hills, NY 11375, USA - Phone: (718) 575-1816.\n         \n         \n         Name: Yorick Colormaps\n         Files: lib/matplotlib/_cm.py\n         Description: Gist/Yorick colormaps\n         License:\n           BSD-style license for gist/yorick colormaps.\n         \n           Copyright:\n         \n             Copyright (c) 1996.  The Regents of the University of California.\n                  All rights reserved.\n         \n           Permission to use, copy, modify, and distribute this software for any\n           purpose without fee is hereby granted, provided that this entire\n           notice is included in all copies of any software which is or includes\n           a copy or modification of this software and in all copies of the\n           supporting documentation for such software.\n         \n           This work was produced at the University of California, Lawrence\n           Livermore National Laboratory under contract no. W-7405-ENG-48 between\n           the U.S. Department of Energy and The Regents of the University of\n           California for the operation of UC LLNL.\n         \n         \n                       DISCLAIMER\n         \n           This software was prepared as an account of work sponsored by an\n           agency of the United States Government.  Neither the United States\n           Government nor the University of California nor any of their\n           employees, makes any warranty, express or implied, or assumes any\n           liability or responsibility for the accuracy, completeness, or\n           usefulness of any information, apparatus, product, or process\n           disclosed, or represents that its use would not infringe\n           privately-owned rights.  Reference herein to any specific commercial\n           products, process, or service by trade name, trademark, manufacturer,\n           or otherwise, does not necessarily constitute or imply its\n           endorsement, recommendation, or favoring by the United States\n           Government or the University of California.  The views and opinions of\n           authors expressed herein do not necessarily state or reflect those of\n           the United States Government or the University of California, and\n           shall not be used for advertising or product endorsement purposes.\n         \n         \n                   AUTHOR\n         \n           David H. Munro wrote Yorick and Gist.  Berkeley Yacc (byacc) generated\n           the Yorick parser.  The routines in Math are from LAPACK and FFTPACK;\n           MathC contains C translations by David H. Munro.  The algorithms for\n           Yorick's random number generator and several special functions in\n           Yorick/include were taken from Numerical Recipes by Press, et. al.,\n           although the Yorick implementations are unrelated to those in\n           Numerical Recipes.  A small amount of code in Gist was adapted from\n           the X11R4 release, copyright M.I.T. -- the complete copyright notice\n           may be found in the (unused) file Gist/host.c.\n         "
+    },
+    {
+      "name": "nvidia-nvjitlink",
+      "version": "13.4.52",
+      "url": "https://files.pythonhosted.org/packages/7f/c1/091f198d7f87e31d67fa9680eec8f8e4c6f889881f729b759db36ff01612/nvidia_nvjitlink-13.4.52-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+      "sha256": "90401db7e5a580a5067a468b3086e0b65f3b96ab3c42524afd741efc8a0e150a",
+      "filename": "nvidia_nvjitlink-13.4.52-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "nvidia-cublas",
+      "version": "13.1.1.3",
+      "url": "https://files.pythonhosted.org/packages/3b/cd/154ca20c38269e05eff77c1464e6c1da89f50a6390b565e9d82e06bc11e1/nvidia_cublas-13.1.1.3-py3-none-manylinux_2_27_x86_64.whl",
+      "sha256": "37936a16db8fe4ac1f065c2139360608a543a09275cb1a1af612e08cfa065436",
+      "filename": "nvidia_cublas-13.1.1.3-py3-none-manylinux_2_27_x86_64.whl",
+      "license": "LicenseRef-NVIDIA-Proprietary"
+    },
+    {
+      "name": "multidict",
+      "version": "6.8.0",
+      "url": "https://files.pythonhosted.org/packages/f2/9d/6bb4f84fdd82acfa09dc312ac133e7f76cbf2370004447f2a90e65e5d63f/multidict-6.8.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "ab83fdd8cf307353edba9c427c17a3a021c2522d690f5633dd9f72d28b48ccca",
+      "filename": "multidict-6.8.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "Apache License 2.0"
+    },
+    {
+      "name": "nvidia-cuda-runtime",
+      "version": "13.0.96",
+      "url": "https://files.pythonhosted.org/packages/2e/24/d1558f3b68b1d26e706813b1d10aa1d785e4698c425af8db8edc3dced472/nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "7f82250d7782aa23b6cfe765ecc7db554bd3c2870c43f3d1821f1d18aebf0548",
+      "filename": "nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "license": null
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0",
+      "url": "https://files.pythonhosted.org/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "filename": "mpmath-1.3.0-py3-none-any.whl",
+      "license": "BSD"
+    },
+    {
+      "name": "nvidia-cusparselt-cu13",
+      "version": "0.8.1",
+      "url": "https://files.pythonhosted.org/packages/34/7d/2661f2fb3ac4302f3a246f5fc030213ac60c1fe0bce84f9783dbd831dbb7/nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "786ce87568c303fadb5afcc7102d454cd3040d75f6f8626f5db460d1871f4dd0",
+      "filename": "nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl",
+      "license": "NVIDIA Proprietary Software"
+    },
+    {
+      "name": "cuda-pathfinder",
+      "version": "1.8.1",
+      "url": "https://files.pythonhosted.org/packages/9d/e6/22df83f82f9bc26cb1c42265cf14d34d4908dba2a0f261bd7b28244acb00/cuda_pathfinder-1.8.1-py3-none-any.whl",
+      "sha256": "ae0137ff9e56ea97499bcbf54f5f2778ec25f3266715ac86da192a795af982a8",
+      "filename": "cuda_pathfinder-1.8.1-py3-none-any.whl",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "PySide6-Essentials",
+      "version": "6.8.3",
+      "url": "https://files.pythonhosted.org/packages/f0/b2/3205336262bf88d57f01503df81ede2a0b1eecbb2a7d58978a5e5625f7c1/PySide6_Essentials-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl",
+      "sha256": "fd57fa0c886ef99b3844173322c0023ec77cc946a0c9a0cdfbc2ac5c511053c1",
+      "filename": "PySide6_Essentials-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "shiboken6",
+      "version": "6.8.3",
+      "url": "https://files.pythonhosted.org/packages/76/a1/f1958c9d00176044ab00464cd89b6969ef3a7d2ed12d316ff1eda3dec88f/shiboken6-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl",
+      "sha256": "295a003466ca2cccf6660e2f2ceb5e6cef4af192a48a196a32d46b6f0c9ec5cb",
+      "filename": "shiboken6-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "conda-pack",
+      "version": "0.9.2",
+      "url": "https://files.pythonhosted.org/packages/ed/cb/d140fee7ed2d0d3f2c395b147cdefc562f1d7cfe259aace6fff3286b2bc4/conda_pack-0.9.2-py3-none-any.whl",
+      "sha256": "437c1acadcdfe3d4f44233513eb116129cde3911088f72ae00871802c7943e47",
+      "filename": "conda_pack-0.9.2-py3-none-any.whl",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "propcache",
+      "version": "0.5.4",
+      "url": "https://files.pythonhosted.org/packages/c7/06/519a5ebb48b6f94beb48396e55c905f12246a25c3a3608a7ec7bceabf50e/propcache-0.5.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "6e9368e87a3efc285e559131092c5db643eb8e56de4ee42064d5baec22ef2bb5",
+      "filename": "propcache-0.5.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "torch",
+      "version": "2.14.0+cu130",
+      "url": "https://download.pytorch.org/whl/cu130/torch-2.14.0%2Bcu130-cp311-cp311-manylinux_2_28_x86_64.whl",
+      "sha256": "07686af6e00801b04fe0feb9e9aa22ff7a58112fb60e0b29a4146f5ac553bf6b",
+      "filename": "torch-2.14.0+cu130-cp311-cp311-manylinux_2_28_x86_64.whl",
+      "license": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "url": "https://files.pythonhosted.org/packages/71/60/917329f640924b18ff085ab889a11c763e0b573da888e8404ff486657602/pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "b8bb0864c5a28024fac8a632c443c87c5aa6f215c0b126c449ae1a150412f31d",
+      "filename": "pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "license": "MIT"
+    }
+  ],
+  "windows": [
+    {
+      "name": "PySide6-Essentials",
+      "version": "6.8.3",
+      "url": "https://files.pythonhosted.org/packages/8e/0f/5d8c6da7586e57ee032643e0c0e62335ef1a1add1a980160ddd1654f1d8d/PySide6_Essentials-6.8.3-cp39-abi3-win_amd64.whl",
+      "sha256": "3c0fae5550aff69f2166f46476c36e0ef56ce73d84829eac4559770b0c034b07",
+      "filename": "PySide6_Essentials-6.8.3-cp39-abi3-win_amd64.whl",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "shiboken6",
+      "version": "6.8.3",
+      "url": "https://files.pythonhosted.org/packages/aa/29/e77f3fba5337f2d98f977eece0fd24cda6cf7d83be2699514d2ca1d34f6c/shiboken6-6.8.3-cp39-abi3-win_amd64.whl",
+      "sha256": "bca3a94513ce9242f7d4bbdca902072a1631888e0aa3a8711a52cc5dbe93588f",
+      "filename": "shiboken6-6.8.3-cp39-abi3-win_amd64.whl",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.2",
+      "url": "https://files.pythonhosted.org/packages/ed/23/8da0bbe2ab9dcdd11f4f4557ccaf95c10b9811b13ecced089d43ce59c3c8/PyYAML-6.0.2-cp311-cp311-win_amd64.whl",
+      "sha256": "e10ce637b18caea04431ce14fabcf5c64a1c61ec9c56b071a4b7ca131ca52d44",
+      "filename": "PyYAML-6.0.2-cp311-cp311-win_amd64.whl",
+      "license": "MIT"
+    }
+  ],
+  "windows_python": {
+    "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-embed-amd64.zip",
+    "sha256": "009d6bf7e3b2ddca3d784fa09f90fe54336d5b60f0e0f305c37f400bf83cfd3b",
+    "version": "3.11.9"
+  },
+  "ubuntu": {
+    "Url": "https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-wsl-amd64.wsl",
+    "Sha256": "bb415d824822c4b878125729af451a5d18fb13d1cf5cbed9a7393ad64ac6039e"
+  },
+  "fpocket": {
+    "url": "https://conda.anaconda.org/conda-forge/linux-64/fpocket-4.2.3-h5fd1fdb_2.conda",
+    "sha256": "0d77bf44c6342d32a78cd9bbde6e478539d02673877cb6c1d65fcb552cca0445",
+    "filename": "fpocket-4.2.3-h5fd1fdb_2.conda"
+  },
+  "smina": {
+    "url": "https://raw.githubusercontent.com/pineappleK/ED2Mol/9fa797c/utils/smina.static",
+    "sha256": "ffe5e1e78c947f76b0df8805e2c54383d0bbaf2e827a633b643a708cf682a958",
+    "filename": "smina.static"
+  }
+}

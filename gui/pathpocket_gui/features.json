@@ -1,0 +1,7 @@
+[
+  {"feature_id":"fast_screening","enabled":true,"backend_capability":"run","gui_component":"Window"},
+  {"feature_id":"research_mode","enabled":false,"backend_capability":null,"gui_component":null},
+  {"feature_id":"reporter_challenge","enabled":false,"backend_capability":null,"gui_component":null},
+  {"feature_id":"ed2probe_design","enabled":false,"backend_capability":null,"gui_component":null},
+  {"feature_id":"md_validation","enabled":false,"backend_capability":null,"gui_component":null}
+]
