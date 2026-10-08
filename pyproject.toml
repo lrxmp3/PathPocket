@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "pathpocket"
 version = "0.3.0"
 description = "Reproducible fast protein microregion chemical screening"
+license = {file = "LICENSE"}
 requires-python = ">=3.11"
 dependencies = ["PyYAML>=6", "numpy", "scipy", "pandas", "matplotlib", "scikit-learn", "rdkit", "biopython>=1.81"]
 

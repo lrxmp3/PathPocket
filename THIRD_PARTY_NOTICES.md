@@ -1,5 +1,9 @@
 # Third-party notices
 
+## Scope of the PathPocket license
+
+The root `LICENSE` applies only to PathPocket-owned source code and documentation. It does not grant rights in third-party software, model weights, runtime binaries, molecular viewers, or external structure/data assets. Those materials retain their own licenses, terms, and distribution requirements.
+
 PathPocket interoperates with third-party software and assets, including ED2Mol, fpocket, Python, PyTorch, RDKit, Biopython, NumPy, SciPy, pandas, matplotlib, scikit-learn, PyYAML, PySide6, and optional molecular viewers.
 
 This source repository does not bundle model weights, CUDA/PyTorch/RDKit binaries, fpocket binaries, molecular viewers, or a prebuilt runtime. Version and acquisition records used by the maintained distribution are listed under `third_party/`.

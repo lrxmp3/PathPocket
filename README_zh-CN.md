@@ -20,4 +20,4 @@
 `examples/HSA_MINIMAL_10` 提供公开 HSA 输入和 10-molecule 验收条件；`examples/fixtures` 提供 HSA、7KWZ 与 NO_TARGETS 示例。执行 `python -m pytest tests` 检查工程契约，不需要重新生成分子。完整论文数据与 replay 单独存放。输出包括 run_manifest、区域/target 表、SDF、QC/化学空间 CSV，以及保留原坐标的 PDB/SDF/JSON 导出。
 
 ## 引用与许可证
-见 `CITATION.cff`；作者信息和软件 DOI 待最终确认。源码许可证确定前不能公开本仓库。第三方组件保持各自许可条款，见 `THIRD_PARTY_NOTICES.md` 和 `third_party/README.md`。[English](README.md)。
+PathPocket 自有源码采用 [MIT License](LICENSE)。使用 PathPocket 时，请引用本软件；配套论文发表后，也请同时引用该论文。论文书目信息和软件 DOI 可用后将补入 `CITATION.cff`。MIT 许可证不改变第三方组件、模型权重或外部结构/数据资产的许可，见 `THIRD_PARTY_NOTICES.md` 和 `third_party/README.md`。[English](README.md)。

@@ -18,3 +18,7 @@ NO_TARGETS is an engineering test of zero selected targets. It is not evidence t
 ## Distribution status
 
 This repository is the source distribution. Model weights, scientific runtime binaries, fpocket binaries, CUDA/PyTorch binaries, and molecular viewers are not bundled. See `third_party/README.md` and the installation guides.
+
+## License and citation
+
+PathPocket-owned source code is released under the MIT License. This license does not alter the separate terms for third-party code, model weights, runtime binaries, or external structure/data assets. Please cite the PathPocket software and, after publication, the accompanying paper; the paper citation and software DOI will be added when available.
