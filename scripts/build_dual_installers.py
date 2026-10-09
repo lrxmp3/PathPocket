@@ -41,6 +41,14 @@ def copy_file(source: Path, target: Path) -> None:
     shutil.copy2(source, target)
 
 
+def copy_release_notices(target: Path) -> None:
+    copy_file(ROOT / "THIRD_PARTY_NOTICES.md", target / "THIRD_PARTY_NOTICES.md")
+    licenses = target / "LICENSES"
+    if licenses.exists():
+        shutil.rmtree(licenses)
+    shutil.copytree(ROOT / "LICENSES", licenses)
+
+
 def make_checksums(root: Path) -> None:
     output = root / "SHA256SUMS.txt"
     rows = []
@@ -100,6 +108,7 @@ def build(args: argparse.Namespace) -> None:
         copy_file(ROOT / "docs" / "INSTALL_LINUX_EN.md", linux / "docs" / "INSTALL_LINUX_EN.md")
         copy_file(ROOT / "docs" / "INSTALL_LINUX_ZH.md", linux / "docs" / "INSTALL_LINUX_ZH.md")
         copy_file(ROOT / "KNOWN_ISSUES.md", linux / "docs" / "KNOWN_ISSUES.md")
+        copy_release_notices(linux)
         copy_file(ROOT / "tests" / "test_wsl_windows_open.py", linux / "tests" / "test_wsl_windows_open.py")
         manifest_path = linux / "release_manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -123,6 +132,7 @@ def build(args: argparse.Namespace) -> None:
         copy_file(ROOT / "docs" / "INSTALL_WINDOWS_ZH.md", windows / "INSTALL_WINDOWS_CN.md")
         copy_file(ROOT / "docs" / "INSTALL_WINDOWS_EN.md", windows / "INSTALL_WINDOWS_EN.md")
         copy_file(ROOT / "KNOWN_ISSUES.md", windows / "KNOWN_ISSUES.md")
+        copy_release_notices(windows)
         runtime = windows / "linux-runtime.tar.gz"
         shutil.copy2(linux_archive, runtime)
         setup = windows / "Setup_First_Run.ps1"
@@ -164,6 +174,7 @@ def build(args: argparse.Namespace) -> None:
     ):
         copy_file(ROOT / "docs" / document, output / document)
     copy_file(ROOT / "KNOWN_ISSUES.md", output / "KNOWN_ISSUES.md")
+    copy_release_notices(output)
 
 
 def main() -> int:

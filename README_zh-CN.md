@@ -26,6 +26,6 @@ PathPocket 只有一套 Linux 科学计算核心，提供两种安装方式：Li
 
 当前候选版保持论文基线 v1.0.6 的 GUI、流程、报告模板和科学参数。历史 Ubuntu 22.04/RTX 3080 Ti 证据属于旧 Linux 包，并明确记录了当时 NO_TARGETS 未修复，不能作为新候选包的通过证据。Windows 11/WSL2 R1 证据验证了安装与 HSA、7KWZ、NO_TARGETS 主流程，但直接打开报告按钮失败。当前源码含针对该问题的最小修复，仍待新一轮外部实机验证。详见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md) 和分平台验证记录。
 
-## 引用与许可状态
+## 引用与许可
 
-仓库当前含有发布筹备期间后加的 [MIT License](LICENSE)。公开前仍需老师/实际权利人确认该许可证和版权人写法已获授权。使用 PathPocket 时请引用软件；配套论文发表后再补入真实书目信息和 DOI，不预造。根许可证不重新许可第三方组件或 ED2Mol 模型权重。见 `THIRD_PARTY_NOTICES.md`、`third_party/README.md` 和 [发布审计](docs/THIRD_PARTY_RELEASE_AUDIT.md)。[English](README.md)。
+PathPocket 自有源码与文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据和模型资产继续适用各自条款；根许可证不会重新许可这些内容。使用 PathPocket 时请引用本软件；配套论文发表后再补入真实书目信息和 DOI，不预造尚未确定的信息。见[第三方声明](THIRD_PARTY_NOTICES.md)、`LICENSES/` 中保留的许可原文和 `third_party/README.md`。[English](README.md)。
