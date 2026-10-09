@@ -1,31 +1,70 @@
 # PathPocket
 
-比较蛋白不同构象或重复单元中的对应局部区域，用预训练 ED2Mol 生成候选分子，再查看化学空间、原始结构位置和可追溯导出。
+PathPocket 是一套桌面工作流，用于比较蛋白不同构象或重复单元中的对应局部区域、选择代表性计算目标、调用预训练 ED2Mol 生成候选分子，并查看相关化学空间和结构位置。
 
-## 能做什么
-结合几何和规范残基身份建立区域对应，保留 state/repeat 信息，记录 target、分子与源文件。PathPocket 不重新训练 ED2Mol；生成分子不是已验证 binder，Qnorm 不是亲和力。
+本仓库提供 PathPocket 的首次公开发布版本 v1.0.6。
 
-## 从哪里开始
-- 没有 GPU：使用预计算 HSA replay，浏览分子、化学空间、结构并导出 complex。
-- 有兼容 NVIDIA GPU：安装 scientific runtime 后运行单 target、10-molecule HSA 最小示例。
-- 第一次使用：按 Windows/Linux portable 安装指南操作；源码 ZIP 不等于二进制安装包。
+[English](README.md)
 
-## 运行架构与安装
+## 主要功能
 
-PathPocket 只有一套 Linux 科学计算核心，提供两种安装方式：Linux 直接安装，以及 Windows 11 上通过 Ubuntu 24.04 + WSL2/WSLg 安装。Windows 包**不是 Windows 原生科学计算程序**；Windows 脚本负责部署、启动同一 Linux 核心，并在需要时将文件打开请求交给 Windows。
+- 结合几何和规范残基身份匹配蛋白局部区域，同时保留构象、状态与重复单元信息。
+- 通过封装的科学计算流程生成候选分子，并记录目标、分子、源文件和参数来源。
+- 查看生成分子的二维结构及化学空间关系。
+- 在来源蛋白结构中定位候选分子，并导出保留坐标的 PDB、SDF、JSON、CSV 和报告文件。
+- 重新打开已经完成的运行，便于检查和复现。
 
-源码使用 Python ≥3.11，GUI 使用 PySide6 6.8.3。新生成还需要兼容的 NVIDIA 驱动、锁定的 CUDA/PyTorch 环境、fpocket 和官方 ED2Mol weights。portable 安装使用隔离 runtime，不修改用户 Conda base。[Windows 11 + WSL2 指南](docs/INSTALL_WINDOWS_ZH.md) · [Linux 直接安装指南](docs/INSTALL_LINUX_ZH.md)。
+PathPocket 不重新训练 ED2Mol。生成的候选分子不能视为已获得实验验证的结合分子，Qnorm 也不是结合亲和力测量值。
 
-## 快速上手
-阅读[中英文图文教程](docs/PathPocket_Tutorial_ZH.md)。GUI 打开历史 replay run，选择 RF_0011_state_B → Molecules → 分子 → Structure Location → Export。源码用户可运行 `python scripts/replay.py <run-directory>`。
+## 支持的安装方式
 
-## 示例、测试与输出
-`examples/HSA_MINIMAL_10` 提供公开 HSA 输入和 10-molecule 验收条件；`examples/fixtures` 提供 HSA、7KWZ 与 NO_TARGETS 示例。执行 `python -m pytest tests` 检查工程契约，不需要重新生成分子。完整论文数据与 replay 单独存放。输出包括 run_manifest、区域/target 表、SDF、QC/化学空间 CSV，以及保留原坐标的 PDB/SDF/JSON 导出。
+PathPocket 支持：
 
-## 验证状态与已知边界
+- **Linux 直接安装**：使用 Linux 发行包安装和运行。
+- **Windows 11 通过 WSL2 安装和运行**：使用 Ubuntu 24.04 与 WSLg。Windows 与 Linux 共用同一套 Linux 科学计算核心；Windows 包提供 WSL2 安装、启动、快捷方式和文件打开集成。
 
-当前候选版保持论文基线 v1.0.6 的 GUI、流程、报告模板和科学参数。历史 Ubuntu 22.04/RTX 3080 Ti 证据属于旧 Linux 包，并明确记录了当时 NO_TARGETS 未修复，不能作为新候选包的通过证据。Windows 11/WSL2 R1 证据验证了安装与 HSA、7KWZ、NO_TARGETS 主流程，但直接打开报告按钮失败。当前源码含针对该问题的最小修复，仍待新一轮外部实机验证。详见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md) 和分平台验证记录。
+新分子生成需要兼容的 NVIDIA GPU 与驱动，以及锁定的 CUDA/PyTorch 环境、fpocket 和官方 ED2Mol 资源。发行安装器使用隔离运行环境，不修改用户的 Conda base 环境。
 
-## 引用与许可
+请从 [v1.0.6 Release](https://github.com/lrxmp3/PathPocket/releases/tag/v1.0.6) 下载对应安装包，使用 `SHA256SUMS.txt` 校验后阅读平台指南：
 
-PathPocket 自有源码与文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据和模型资产继续适用各自条款；根许可证不会重新许可这些内容。使用 PathPocket 时请引用本软件；配套论文发表后再补入真实书目信息和 DOI，不预造尚未确定的信息。见[贡献者](AUTHORS.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、`LICENSES/` 中保留的许可原文和 `third_party/README.md`。[English](README.md)。
+- [Linux 安装指南](docs/INSTALL_LINUX_ZH.md)
+- [Windows 11 / WSL2 安装指南](docs/INSTALL_WINDOWS_ZH.md)
+- [Linux installation guide](docs/INSTALL_LINUX_EN.md)
+- [Windows 11 / WSL2 installation guide](docs/INSTALL_WINDOWS_EN.md)
+
+若要从源码检查或开发，需要 Python 3.11 或更高版本。可用 `python -m pip install .` 安装 Python 包；可选查看器依赖见 `requirements-viewer.txt`。
+
+## 快速入门
+
+1. 按相应平台指南安装 PathPocket，并运行包内安装验证程序。
+2. 从正式启动器或桌面快捷方式启动 v1.0.6 GUI。
+3. 选择位于软件安装目录之外、可写的项目保存位置。
+4. 打开随包示例，确认其预设参数后开始运行。
+5. 在“结果”页面查看区域、目标、分子、化学空间、报告和导出文件。
+
+完整操作流程见[中文图文教程](docs/PathPocket_Tutorial_ZH.md)和 [English tutorial](docs/PathPocket_Tutorial_EN.md)。
+
+## 示例
+
+- **Conventional HSA**：标准蛋白区域分析与候选分子生成流程。
+- **Repeat Aggregate 7KWZ**：重复或聚集结构的区域对应与分子空间定位。
+- **NO_TARGETS**：选中目标为空时的正常工程测试用例；该运行不会调用 ED2Mol，也不会生成分子。
+- `examples/HSA_MINIMAL_10`：供 GPU 环境检查使用的精简 HSA 输入和 10 分子预期契约。
+
+可运行 `python -m pytest tests` 检查仓库的单元与流程契约。不同受支持 GPU 环境的生成结果可能有差异，应按文档中的结果契约判断，不要求分子文件哈希完全相同。
+
+## 验证状态
+
+发布验收覆盖了 Linux 直接安装和 Windows 11/WSL2 安装，以及主要 HSA、7KWZ 与 NO_TARGETS 示例流程。各项检查的实际环境和范围见 [Linux 验证记录](docs/VALIDATION_LINUX.md)、[Windows/WSL2 验证记录](docs/VALIDATION_WINDOWS_WSL2.md)和[验证摘要](docs/VALIDATION_STATUS_2026-10-08.md)。这些结果仅适用于记录的配置，不代表所有 Linux 发行版、Windows 配置、GPU 或外部查看软件均已验证。
+
+报告打开限制和仍需外部复测的项目见 [Known issues](KNOWN_ISSUES.md)。
+
+## 引用
+
+使用 PathPocket 时请引用本软件版本；配套论文书目信息公布后，也请引用论文。机器可读的引用信息位于 [`CITATION.cff`](CITATION.cff)。尚未确定的 DOI 与论文信息保持为空，不做推测。
+
+## 许可证与第三方软件
+
+PathPocket 自有源码和文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据、模型资源和下载的运行组件继续适用各自条款，不因 PathPocket 的许可证而被重新许可。
+
+详见[贡献者](AUTHORS.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[`LICENSES/`](LICENSES/) 中的许可原文及 [`third_party/README.md`](third_party/README.md)。
