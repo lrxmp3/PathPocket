@@ -59,6 +59,12 @@ def test_gpu_probe_uses_safe_official_wsl_fallback():
     assert 'apt-get' not in text and 'ln -s' not in text
 
 
+def test_wsl_installer_root_matches_public_linux_archive_root():
+    text=(WINDOWS/'wsl_setup.sh').read_text(encoding='utf-8')
+    assert 'INSTALL_ROOT="$INSTALL_PARENT/PathPocket_v1.0.6_Linux"' in text
+    assert 'PathPocket_Linux_v1.0.6_NO_TARGETS_HF5' not in text
+
+
 def test_paths_logs_and_hash_guard_are_portable():
     ps=(WINDOWS/'Setup_First_Run.ps1').read_text(encoding='utf-8-sig')
     assert 'System.Security.Cryptography.SHA256' in ps
