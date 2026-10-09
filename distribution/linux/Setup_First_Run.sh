@@ -31,7 +31,13 @@ mkdir -p "$B/runtime/tools"
 if test ! -x "$B/runtime/tools/bin/micromamba"; then
   curl --fail --location --retry 3 --connect-timeout 30 --max-time 600 'https://conda.anaconda.org/conda-forge/linux-64/micromamba-2.9.0-0.tar.bz2' -o "$B/runtime/micromamba.tar.bz2"
   echo "8761c382127e6363bd9e0a2451aa3ef90d071a79133f736e2f759a3bf13040dd  $B/runtime/micromamba.tar.bz2" | sha256sum -c -
-  tar -xjf "$B/runtime/micromamba.tar.bz2" -C "$B/runtime/tools"
+  if command -v bzip2 >/dev/null 2>&1; then
+    tar -xjf "$B/runtime/micromamba.tar.bz2" -C "$B/runtime/tools"
+  else
+    command -v python3 >/dev/null 2>&1 || { echo '缺少 bzip2，且系统 Python3 不可用，无法解压已校验的 micromamba 包。请联系系统管理员。'; exit 1; }
+    echo '未找到 bzip2；使用 Ubuntu 自带 Python3 安全解压已校验的 micromamba 包，不修改系统软件。'
+    python3 "$B/runtime/safe_bz2_extract.py" "$B/runtime/micromamba.tar.bz2" "$B/runtime/tools"
+  fi
 fi
 if test ! -f "$B/runtime/.conda-complete"; then
   MODE=create

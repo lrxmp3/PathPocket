@@ -23,6 +23,27 @@ def test_zero_report_preserves_old_required_fields(tmp_path):
     assert s['status']=='COMPLETE' and s['target_count']==0;assert s['generation_status']=='SKIPPED';assert s['key_metrics']['generated']==0;assert s['result_class']=='NO_TARGETS'
     assert 'No region family met the current target-selection criteria.' in (out/'report.html').read_text();assert not list(tmp_path.rglob('*.png'))
 
+def test_trusted_engineering_fixture_report_is_not_described_as_natural_zero_target(tmp_path):
+    out=tmp_path/'08_REPORT';out.mkdir()
+    config=SimpleNamespace(name='engineering_fixture',states={'a':dict(label='A',structures=['a.pdb'],metadata={})},data=dict(generation=dict(iteration=2),region_discovery=dict(imported_manifest=None)))
+    fixture=dict(fixture_id='builtin_no_targets_v1',source='bundled:examples/fixtures/DEMO_NO_TARGETS',semantics='engineering negative control; selected targets forced empty after normal discovery/matching',marker_sha256='a'*64,selection_policy='FORCE_EMPTY_AT_TARGET_SELECTION')
+    ctx=SimpleNamespace(config=config,root=tmp_path,manifest={'engineering_fixture':fixture},path=lambda p:tmp_path/p)
+    summary=report(ctx,[],[],[],dict(comparisons=[]),[])
+    text=(out/'report.html').read_text()
+    assert summary['engineering_fixture']['fixture_id']=='builtin_no_targets_v1'
+    assert 'after normal candidate discovery and matching' in text
+    assert 'does not establish that the input protein lacks pockets' in text
+    assert 'No region family met the current target-selection criteria.' not in text
+
+def test_forged_engineering_fixture_keeps_natural_zero_target_report(tmp_path):
+    out=tmp_path/'08_REPORT';out.mkdir()
+    config=SimpleNamespace(name='forged_fixture',states={'a':dict(label='A',structures=['a.pdb'],metadata={})},data=dict(generation=dict(iteration=2),region_discovery=dict(imported_manifest=None)))
+    fixture=dict(fixture_id='builtin_no_targets_v1',source='bundled:examples/fixtures/DEMO_NO_TARGETS',semantics='engineering negative control',marker_sha256='a'*64,selection_policy='FORGED')
+    ctx=SimpleNamespace(config=config,root=tmp_path,manifest={'engineering_fixture':fixture},path=lambda p:tmp_path/p)
+    summary=report(ctx,[],[],[],dict(comparisons=[]),[])
+    assert 'engineering_fixture' not in summary
+    assert 'No region family met the current target-selection criteria.' in (out/'report.html').read_text()
+
 def test_mapping_gaps_have_no_coordinates(tmp_path):
     a=write_fixture(tmp_path/'a.pdb',[('A',SEQ,0)]);b=write_fixture(tmp_path/'b.pdb',[('X',SEQ[:7]+SEQ[8:],1000)]);before=len(atoms(b))
     normalize([dict(receptor_id='a',state_id='a',path=str(a)),dict(receptor_id='b',state_id='b',path=str(b))],tmp_path)

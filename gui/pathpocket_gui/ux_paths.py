@@ -1,5 +1,5 @@
 """One path resolver for native Linux and Windows/WSL; no shell string execution."""
-import os,sys,json,tempfile,shutil,uuid,subprocess,base64
+import os,sys,json,tempfile,shutil,uuid,subprocess
 from pathlib import Path
 from .portable_projects import windows_path,wsl_path,infer_workspace
 
@@ -66,20 +66,20 @@ class ProjectPathResolver:
         target=self.windows_target(p)
         subprocess.Popen([self._windows_executable('rundll32.exe'),'shell32.dll,OpenAs_RunDLL',target],close_fds=True)
         return target
-    def _windows_shell_open(self,target):
-        encoded_target=base64.b64encode(target.encode('utf-8')).decode('ascii')
-        script="$p=[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('%s'));Start-Process -FilePath $p" % encoded_target
-        encoded_script=base64.b64encode(script.encode('utf-16le')).decode('ascii')
-        powershell='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe'
-        if not Path(powershell).exists():raise OSError('Windows PowerShell bridge is unavailable')
-        done=subprocess.run([powershell,'-NoProfile','-NonInteractive','-EncodedCommand',encoded_script],capture_output=True,timeout=15,check=False)
+    def _windows_shell_open(self,target,directory=False):
+        if directory:
+            command=[self._windows_executable('explorer.exe'),target]
+        else:
+            command=[self._windows_executable('rundll32.exe'),'url.dll,FileProtocolHandler',target]
+        try:done=subprocess.run(command,capture_output=True,timeout=15,check=False)
+        except (OSError,subprocess.TimeoutExpired) as exc:raise OSError('Windows open request failed: '+target) from exc
         if done.returncode:raise OSError('Windows open request failed with exit code '+str(done.returncode))
     def open(self,path):
         p=Path(path).expanduser().resolve() if self.is_wsl() else self.native(path)
         if not p.exists():raise FileNotFoundError(str(p))
         if self.is_wsl():
             target=self.windows_target(p)
-            self._windows_shell_open(target)
+            self._windows_shell_open(target,p.is_dir())
             return target
         from PySide6.QtCore import QUrl
         from PySide6.QtGui import QDesktopServices
