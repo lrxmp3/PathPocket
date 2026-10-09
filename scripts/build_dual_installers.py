@@ -85,7 +85,11 @@ def build(args: argparse.Namespace) -> None:
         assert_clean_template(linux)
 
         shutil.rmtree(linux / "gui" / "pathpocket_gui")
-        shutil.copytree(ROOT / "gui" / "pathpocket_gui", linux / "gui" / "pathpocket_gui")
+        shutil.copytree(
+            ROOT / "gui" / "pathpocket_gui",
+            linux / "gui" / "pathpocket_gui",
+            ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo"),
+        )
         wheel = build_wheel(temp / "wheel")
         for old in (linux / "payload" / "backend").glob("pathpocket-*.whl"):
             old.unlink()
