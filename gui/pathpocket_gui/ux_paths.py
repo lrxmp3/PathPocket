@@ -66,17 +66,20 @@ class ProjectPathResolver:
         target=self.windows_target(p)
         subprocess.Popen([self._windows_executable('rundll32.exe'),'shell32.dll,OpenAs_RunDLL',target],close_fds=True)
         return target
-    def _windows_shell_open(self,target):
-        explorer=self._windows_executable('explorer.exe')
-        try:done=subprocess.run([explorer,target],capture_output=True,timeout=15,check=False)
-        except (OSError,subprocess.TimeoutExpired) as exc:raise OSError('Windows Explorer open request failed: '+target) from exc
+    def _windows_shell_open(self,target,directory=False):
+        if directory:
+            command=[self._windows_executable('explorer.exe'),target]
+        else:
+            command=[self._windows_executable('rundll32.exe'),'url.dll,FileProtocolHandler',target]
+        try:done=subprocess.run(command,capture_output=True,timeout=15,check=False)
+        except (OSError,subprocess.TimeoutExpired) as exc:raise OSError('Windows open request failed: '+target) from exc
         if done.returncode:raise OSError('Windows open request failed with exit code '+str(done.returncode))
     def open(self,path):
         p=Path(path).expanduser().resolve() if self.is_wsl() else self.native(path)
         if not p.exists():raise FileNotFoundError(str(p))
         if self.is_wsl():
             target=self.windows_target(p)
-            self._windows_shell_open(target)
+            self._windows_shell_open(target,p.is_dir())
             return target
         from PySide6.QtCore import QUrl
         from PySide6.QtGui import QDesktopServices

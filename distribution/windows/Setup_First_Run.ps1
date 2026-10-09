@@ -48,12 +48,117 @@ function Get-Sha256Hex([string]$LiteralPath) {
     }
 }
 
+function ConvertTo-NativeCommandLine([string[]]$Arguments) {
+    # Follow CommandLineToArgvW quoting rules without passing values through cmd.exe.
+    $parts = New-Object System.Collections.Generic.List[string]
+    foreach ($a in $Arguments) {
+        if (($a.Length -eq 0) -or ($a -match '[ \t"]')) {
+            $sb = New-Object System.Text.StringBuilder
+            [void]$sb.Append('"')
+            $slashes = 0
+            foreach ($ch in $a.ToCharArray()) {
+                if ($ch -eq [char]'\') { $slashes++; continue }
+                if ($ch -eq [char]'"') {
+                    [void]$sb.Append(('\' * (($slashes * 2) + 1)))
+                    [void]$sb.Append('"')
+                    $slashes = 0
+                    continue
+                }
+                [void]$sb.Append(('\' * $slashes))
+                [void]$sb.Append($ch)
+                $slashes = 0
+            }
+            [void]$sb.Append(('\' * ($slashes * 2)))
+            [void]$sb.Append('"')
+            $parts.Add($sb.ToString())
+        }
+        else {
+            $parts.Add($a)
+        }
+    }
+    return ($parts -join ' ')
+}
+
+function Decode-NativeBytes([byte[]]$Stdout, [byte[]]$Stderr) {
+    # wsl.exe can emit UTF-16LE when redirected under Windows PowerShell 5.1.
+    $combined = New-Object System.Collections.Generic.List[byte]
+    if ($null -ne $Stdout) { foreach ($b in $Stdout) { $combined.Add($b) } }
+    if ($null -ne $Stderr) { foreach ($b in $Stderr) { $combined.Add($b) } }
+    $bytes = $combined.ToArray()
+    if ($bytes.Length -eq 0) { return "" }
+
+    $text = $null
+    if ($bytes.Length -ge 2 -and $bytes[0] -eq 0xFF -and $bytes[1] -eq 0xFE) {
+        $text = [System.Text.Encoding]::Unicode.GetString($bytes, 2, $bytes.Length - 2)
+    }
+    elseif ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+        $text = [System.Text.Encoding]::UTF8.GetString($bytes, 3, $bytes.Length - 3)
+    }
+    else {
+        $pairs = [Math]::Min(512, [int]($bytes.Length / 2))
+        $nullSecond = 0
+        for ($i = 0; $i -lt ($pairs * 2); $i += 2) {
+            if ($bytes[$i + 1] -eq 0) { $nullSecond++ }
+        }
+        if ($pairs -gt 0 -and (($nullSecond * 100) / $pairs) -gt 50) {
+            $text = [System.Text.Encoding]::Unicode.GetString($bytes)
+        }
+        else {
+            try {
+                $strictUtf8 = New-Object System.Text.UTF8Encoding($false, $true)
+                $text = $strictUtf8.GetString($bytes)
+            }
+            catch {
+                $oem = [System.Text.Encoding]::GetEncoding([System.Globalization.CultureInfo]::CurrentCulture.TextInfo.OEMCodePage)
+                $text = $oem.GetString($bytes)
+            }
+        }
+    }
+    if ($null -eq $text) { $text = "" }
+    return ($text -replace [char]0, '')
+}
+
+function Invoke-WslNative([string[]]$Arguments) {
+    $result = [pscustomobject]@{ ExitCode = 1; Output = ""; Lines = @() }
+    if (-not $script:WslExe -or -not (Test-Path -LiteralPath $script:WslExe)) { return $result }
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = $script:WslExe
+    $psi.Arguments = ConvertTo-NativeCommandLine $Arguments
+    $psi.UseShellExecute = $false
+    $psi.RedirectStandardOutput = $true
+    $psi.RedirectStandardError = $true
+    $psi.CreateNoWindow = $true
+    $proc = $null
+    try {
+        $proc = [System.Diagnostics.Process]::Start($psi)
+    }
+    catch {
+        return $result
+    }
+    try {
+        $outStream = New-Object System.IO.MemoryStream
+        $errStream = New-Object System.IO.MemoryStream
+        $outTask = $proc.StandardOutput.BaseStream.CopyToAsync($outStream)
+        $errTask = $proc.StandardError.BaseStream.CopyToAsync($errStream)
+        $proc.WaitForExit()
+        $outTask.Wait()
+        $errTask.Wait()
+        $text = Decode-NativeBytes $outStream.ToArray() $errStream.ToArray()
+        $lines = @($text -split "`r?`n" | ForEach-Object { $_.TrimEnd() } | Where-Object { $_ -ne "" })
+        $result = [pscustomobject]@{ ExitCode = $proc.ExitCode; Output = $text.Trim(); Lines = $lines }
+    }
+    finally {
+        if ($null -ne $proc) { $proc.Dispose() }
+    }
+    return $result
+}
+
 function Invoke-WslSilent([string[]]$Arguments) {
     $previous = $ErrorActionPreference
     $ErrorActionPreference = "Continue"
     try {
-        & $script:WslExe @Arguments *> $null
-        return $LASTEXITCODE
+        $r = Invoke-WslNative $Arguments
+        return $r.ExitCode
     }
     finally {
         $ErrorActionPreference = $previous
@@ -64,10 +169,8 @@ function Invoke-WslCapture([string[]]$Arguments) {
     $previous = $ErrorActionPreference
     $ErrorActionPreference = "Continue"
     try {
-        $output = @(& $script:WslExe @Arguments 2>&1)
-        $exitCode = $LASTEXITCODE
-        $text = (($output | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine).Trim()
-        return [pscustomobject]@{ ExitCode = $exitCode; Output = $text }
+        $r = Invoke-WslNative $Arguments
+        return [pscustomobject]@{ ExitCode = $r.ExitCode; Output = $r.Output; Lines = $r.Lines }
     }
     finally {
         $ErrorActionPreference = $previous
@@ -78,17 +181,11 @@ function Invoke-WslLogged([string[]]$Arguments) {
     $previous = $ErrorActionPreference
     $ErrorActionPreference = "Continue"
     try {
-        $output = @(& $script:WslExe @Arguments 2>&1)
-        $exitCode = $LASTEXITCODE
-        foreach ($entry in $output) {
-            $rendered = $entry.ToString().TrimEnd()
-            if (-not [string]::IsNullOrWhiteSpace($rendered)) {
-                foreach ($line in ($rendered -split "`r?`n")) {
-                    Log "WSL" $line
-                }
-            }
+        $r = Invoke-WslNative $Arguments
+        foreach ($line in $r.Lines) {
+            if (-not [string]::IsNullOrWhiteSpace($line)) { Log "WSL" $line }
         }
-        return $exitCode
+        return $r.ExitCode
     }
     finally {
         $ErrorActionPreference = $previous
@@ -101,17 +198,28 @@ function Test-Administrator {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+function Test-WslWsl2Line([string]$Line) {
+    $tokens = @($Line -split '\s+' | Where-Object { $_ })
+    if ($tokens.Count -lt 2) { return $false }
+    $hasDistro = $false
+    foreach ($token in $tokens) {
+        if (($token -replace '^\*', '') -eq $Distro) { $hasDistro = $true; break }
+    }
+    if (-not $hasDistro) { return $false }
+    return ($tokens[$tokens.Count - 1] -eq "2")
+}
+
 function Get-WslState {
     $status = Invoke-WslCapture @("--status")
     $installed = Invoke-WslCapture @("--list", "--quiet")
-    $names = @($installed.Output -split "`r?`n" | ForEach-Object { $_.Trim().Trim([char]0) } | Where-Object { $_ })
+    $names = @($installed.Lines | Where-Object { $_ })
     if ($names -notcontains $Distro) {
         if ($status.ExitCode -ne 0) { return "A_NO_WSL" }
         return "B_NO_DISTRO"
     }
 
     $verbose = Invoke-WslCapture @("--list", "--verbose")
-    $distroLine = @($verbose.Output -split "`r?`n" | Where-Object { $_ -match ("^\\s*\\*?\\s*" + [regex]::Escape($Distro) + ".*\\s2\\s*$") }) | Select-Object -First 1
+    $distroLine = @($verbose.Lines | Where-Object { Test-WslWsl2Line $_ }) | Select-Object -First 1
     if (-not $distroLine) { return "C_DISTRO_NOT_WSL2" }
 
     $initialized = Invoke-WslCapture @("-d", $Distro, "-u", "root", "--exec", "/bin/sh", "-lc", "getent passwd 1000 >/dev/null 2>&1")
@@ -131,7 +239,7 @@ function Invoke-ElevatedSelf {
 }
 
 try {
-    Log "INFO" "PathPocket v1.0.6 Windows/WSL2 installer repair build 20261009 started."
+    Log "INFO" "PathPocket v1.0.6 Windows/WSL2 installer repair build 20261009_R1 (WIN-INSTALLER-REPAIR-20261009-R1) started."
     Log "INFO" "Package directory: $PackageRoot"
     Log "INFO" "PowerShell version: $($PSVersionTable.PSVersion); edition: $($PSVersionTable.PSEdition); bitness: $([IntPtr]::Size * 8); PSHOME: $PSHOME"
 
@@ -246,7 +354,7 @@ try {
     else {
         Log "GPU_AVAILABLE" "WSL can access the NVIDIA GPU. PyTorch/CUDA Python packages may still be pending and will be checked by the Linux installer."
     }
-    Log "INFO" "Starting the nested installer through official WSL --cd path handling; Unicode and spaces are passed directly by PowerShell."
+    Log "INFO" "Starting the nested installer through official WSL --cd path handling; Unicode, spaces and Chinese are passed by byte-preserving native capture."
     Log "INFO" "Linux installation parent: $LinuxInstallParent"
     Log "INFO" "Linux project root: $LinuxProjectRoot"
     Log "COMMAND" "wsl.exe --distribution $Distro --cd <package-directory> --exec env PATHPOCKET_INSTALL_PARENT=<selected> PATHPOCKET_PROJECT_ROOT=<selected> bash ./wsl_setup.sh"

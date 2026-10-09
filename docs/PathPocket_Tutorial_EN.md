@@ -12,7 +12,7 @@ Follow the sequence: import structures → compare local regions → select targ
 
 ## 2. Install and open
 
-**Windows 11.** Obtain the approved Windows GPU EasyDeploy package from the project maintainer. Extract the entire ZIP to a writable folder. Double-click `Setup_First_Run.bat`. Allow the documented administrator step when Windows needs to enable WSL2. If it requests a restart, restart and run the same setup again. The installer obtains the scientific runtime and pinned third-party downloads. Keep the computer online until verification finishes. Thereafter, double-click `PathPocket_GUI.exe`. The source ZIP is not an EasyDeploy binary installer.
+**Windows 11 through WSL2.** Obtain the approved Windows/WSL2 package from the project maintainer. Extract the entire ZIP to a writable folder, run `Test_Package_Preflight.bat`, then `Setup_First_Run.bat`. Allow the documented administrator step when Windows needs to enable WSL2. If it requests a restart, restart, initialize Ubuntu once, and run the same setup again. The installer obtains the Linux scientific runtime and pinned third-party downloads. Keep the computer online until verification finishes. Thereafter use the created desktop shortcut or `Launch_PathPocket.bat`. This is not a native Windows scientific program, and the source ZIP is not the installer.
 
 **Native Ubuntu.** Extract the approved Linux portable archive. In that folder, run `bash Setup_First_Run.sh`; subsequent launches use `bash PathPocket.sh`. The scientific application uses the package's private runtime. System Conda/Python is not the scientific runtime. Install a compatible NVIDIA driver first. See [Linux installation](INSTALL_LINUX_EN.md) and [Windows installation](INSTALL_WINDOWS_EN.md).
 

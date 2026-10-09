@@ -26,7 +26,7 @@
       "gui/pathpocket_gui/ux_export.py": "3994b8ea1fb1587765a0b789f9d9ad37ee40513787d6fe7fe5b2240df3e20bce",
       "gui/pathpocket_gui/ux_guidance.py": "a64906eb892ffb265f4f0ccfe50fa88f5e6cdbc2721f190e1b6a23c1a3dc9d77",
       "gui/pathpocket_gui/ux_i18n.py": "90e5cc0899e034bbe5fac85f0520da36b64b0d9e159d89c8f9ce4fad2a024446",
-      "gui/pathpocket_gui/ux_paths.py": "4f419762df1c918bcf4c01532c9e1eff29e75a72491beaf07969e09be7d09e31",
+      "gui/pathpocket_gui/ux_paths.py": "eabf111e90bd7a36d26c300b421777200c07110935e9d68fd16ae7fb806d5846",
       "gui/pathpocket_gui/ux_plots.py": "e3f4422fa6905b905b13e9c3686709ed76d8477cc5809f9f4c124e840c196f22",
       "gui/pathpocket_gui/ux_progress.py": "9d5261bffe17472568ed9b7e81ba84d04b03f1a7d09704e4f39dbc291a9526a9",
       "gui/pathpocket_gui/ux_reports.py": "82711b1daff002c9f3dca071cfbe0f1d903f141b7f20b8f5781a6afce5f2c693",
@@ -102,11 +102,16 @@
   },
     "hotfix": "V1.0.6-NO_TARGETS-HF5: HF4 plus portable desktop/application-menu shortcut creation; scientific backend identity, GUI design, and defaults unchanged",
   "remediation_20261009": {
-    "build_identifier": "WIN-INSTALLER-REPAIR-20261009",
+    "build_identifier": "WIN-INSTALLER-REPAIR-20261009-R1",
+    "source_provenance": {
+      "upstream_windows_build_commit": "d616f58b4b7c698e03b627a67e7923ef0c93ef2b",
+      "integration_method": "verified source diff and final-package hash; original Git object unavailable on this host"
+    },
     "scope": [
       "Windows/WSL2 installation continuation and GPU shim probe",
+      "UTF-16LE/UTF-8 native WSL output decoding and clean UTF-8 diagnostics",
       "safe bzip2-free micromamba extraction fallback",
-      "WSL-to-Windows Explorer result opening",
+      "WSL-to-Windows folder and file-association result opening",
       "trusted builtin NO_TARGETS report wording"
     ],
     "scientific_algorithms_modified": false,

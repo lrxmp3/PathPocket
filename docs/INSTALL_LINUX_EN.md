@@ -1,8 +1,10 @@
-# Native Linux installation
+# Direct Linux installation
 
-1. Obtain the approved Linux portable archive and verify SHA256.
-2. Install a compatible NVIDIA driver on Ubuntu and extract the archive to a writable folder.
-3. Run bash Setup_First_Run.sh in that folder; subsequently run bash PathPocket.sh.
-4. Backend doctor must pass before new generation. Preserve logs and retry a failed download; complete any requested restart. Keep scientific defaults unchanged.
+1. Obtain the approved `.tar.gz` asset and verify the SHA256 of the archive against `SHA256SUMS.txt`.
+2. Install a compatible host NVIDIA driver. Do not let PathPocket replace the driver or an existing Conda/GROMACS environment.
+3. Extract the archive to a writable folder. A path containing spaces is supported. Preserve executable bits and symlinks; if a transfer tool removed them, run `chmod +x Setup_First_Run.sh PathPocket.sh Verify_Installation.sh Verify_Package.sh Create_Shortcuts.sh`.
+4. From the extracted package root run `./Verify_Package.sh`, then `./Setup_First_Run.sh`. Internet access is required for the locked runtime dependencies, fpocket and official ED2Mol weights.
+5. Run `./Verify_Installation.sh`. Continue to new generation only after all required doctor checks pass.
+6. Launch with `./PathPocket.sh`; optionally run `./Create_Shortcuts.sh`. Keep projects outside the installation directory.
 
-This staging snapshot contains no unapproved binaries or weights. Official sources, versions and hashes are recorded in third_party lock files. ED2Mol weights must be acquired from the official source under applicable terms. The public installer download URL is pending approval. Local source/replay QA does not substitute for first-time installer validation.
+The GUI must display v1.0.6. Preserve install/doctor logs and exit codes after any failure. The source repository is not the portable installer. The current candidate still needs a fresh native-Linux install and GUI workflow acceptance; older Linux evidence cannot substitute for it. See `KNOWN_ISSUES.md`.

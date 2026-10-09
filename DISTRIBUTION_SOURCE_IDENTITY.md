@@ -1,6 +1,6 @@
 # Distribution source identity
 
-This source snapshot corresponds to the PathPocket v1.0.6 dual-platform repair build dated 2026-10-06.
+This source snapshot is the PathPocket v1.0.6 Linux / Windows (WSL2) repair candidate prepared on 2026-10-09. Both installation routes use the same Linux scientific core; Windows is not a native scientific implementation.
 
 ## Frozen scientific identities
 
@@ -10,7 +10,7 @@ This source snapshot corresponds to the PathPocket v1.0.6 dual-platform repair b
 - ED2Mol: commit `09f133da913179f82b285dbb046f1ecb81d1da37`
 - Publication helper: commit `40c5b2fa79254227d7f4ca28cb09298f31d784b5`
 
-The maintained v1.0.6 source history is based on commit `3de45d20e7ca7952a968a0ba709309a134a452d0`. The later report/SDF cross-platform opening repair was reconstructed and verified by file hash from the shared runtime; no trustworthy additional Git commit was available, so the exact GUI file hashes in `distribution/linux/release_manifest.json` are authoritative for this repair build.
+The maintained v1.0.6 source history is based on commit `3de45d20e7ca7952a968a0ba709309a134a452d0`. Windows installer build `d616f58b4b7c698e03b627a67e7923ef0c93ef2b` was supplied as a hash-recorded source diff and final package, but its Git object is not present in this repository. Its WSL UTF-16LE/native-output fix was therefore integrated from that preserved evidence rather than represented as a cherry-pick. The integration commit and both rebuilt installer hashes are recorded separately after the private-branch commit.
 
 ## Layout
 
@@ -18,9 +18,9 @@ The maintained v1.0.6 source history is based on commit `3de45d20e7ca7952a968a0b
 - `gui/`: GUI source matching the shared Linux/WSL runtime.
 - `tests/`: backend, NO_TARGETS GUI, molecule-rendering, shortcut, report and SDF path tests.
 - `distribution/linux/`: Linux installer/build scripts and locked acquisition metadata.
-- `distribution/windows/`: Windows 11/WSL2 installer and launcher sources.
+- `distribution/windows/`: Windows 11/WSL2 provisioning, launcher and shortcut sources.
 
-The installable Linux and Windows archives are separate release assets. This source archive is not itself an installer and does not bundle a runtime or model weights.
+The installable Linux and Windows/WSL2 archives are separate release assets. This source archive is not itself an installer and does not bundle a preinstalled runtime or model weights.
 
 ## Scope
 

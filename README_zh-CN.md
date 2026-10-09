@@ -10,8 +10,11 @@
 - 有兼容 NVIDIA GPU：安装 scientific runtime 后运行单 target、10-molecule HSA 最小示例。
 - 第一次使用：按 Windows/Linux portable 安装指南操作；源码 ZIP 不等于二进制安装包。
 
-## 系统与安装
-源码使用 Python ≥3.11，界面使用 PySide6 6.8.3；新的生成需要测试过的 CUDA/NVIDIA runtime、官方 ED2Mol weights 和 fpocket。源码安装 `python -m pip install .`，界面依赖 `python -m pip install -r requirements-viewer.txt`。普通用户 portable 安装使用私有 runtime。[Windows](docs/INSTALL_WINDOWS_ZH.md) · [Linux](docs/INSTALL_LINUX_ZH.md)。
+## 运行架构与安装
+
+PathPocket 只有一套 Linux 科学计算核心，提供两种安装方式：Linux 直接安装，以及 Windows 11 上通过 Ubuntu 24.04 + WSL2/WSLg 安装。Windows 包**不是 Windows 原生科学计算程序**；Windows 脚本负责部署、启动同一 Linux 核心，并在需要时将文件打开请求交给 Windows。
+
+源码使用 Python ≥3.11，GUI 使用 PySide6 6.8.3。新生成还需要兼容的 NVIDIA 驱动、锁定的 CUDA/PyTorch 环境、fpocket 和官方 ED2Mol weights。portable 安装使用隔离 runtime，不修改用户 Conda base。[Windows 11 + WSL2 指南](docs/INSTALL_WINDOWS_ZH.md) · [Linux 直接安装指南](docs/INSTALL_LINUX_ZH.md)。
 
 ## 快速上手
 阅读[中英文图文教程](docs/PathPocket_Tutorial_ZH.md)。GUI 打开历史 replay run，选择 RF_0011_state_B → Molecules → 分子 → Structure Location → Export。源码用户可运行 `python scripts/replay.py <run-directory>`。
@@ -19,5 +22,10 @@
 ## 示例、测试与输出
 `examples/HSA_MINIMAL_10` 提供公开 HSA 输入和 10-molecule 验收条件；`examples/fixtures` 提供 HSA、7KWZ 与 NO_TARGETS 示例。执行 `python -m pytest tests` 检查工程契约，不需要重新生成分子。完整论文数据与 replay 单独存放。输出包括 run_manifest、区域/target 表、SDF、QC/化学空间 CSV，以及保留原坐标的 PDB/SDF/JSON 导出。
 
-## 引用与许可证
-PathPocket 自有源码采用 [MIT License](LICENSE)。使用 PathPocket 时，请引用本软件；配套论文发表后，也请同时引用该论文。论文书目信息和软件 DOI 可用后将补入 `CITATION.cff`。MIT 许可证不改变第三方组件、模型权重或外部结构/数据资产的许可，见 `THIRD_PARTY_NOTICES.md` 和 `third_party/README.md`。[English](README.md)。
+## 验证状态与已知边界
+
+当前候选版保持论文基线 v1.0.6 的 GUI、流程、报告模板和科学参数。历史 Ubuntu 22.04/RTX 3080 Ti 证据属于旧 Linux 包，并明确记录了当时 NO_TARGETS 未修复，不能作为新候选包的通过证据。Windows 11/WSL2 R1 证据验证了安装与 HSA、7KWZ、NO_TARGETS 主流程，但直接打开报告按钮失败。当前源码含针对该问题的最小修复，仍待新一轮外部实机验证。详见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md) 和分平台验证记录。
+
+## 引用与许可状态
+
+仓库当前含有发布筹备期间后加的 [MIT License](LICENSE)。公开前仍需老师/实际权利人确认该许可证和版权人写法已获授权。使用 PathPocket 时请引用软件；配套论文发表后再补入真实书目信息和 DOI，不预造。根许可证不重新许可第三方组件或 ED2Mol 模型权重。见 `THIRD_PARTY_NOTICES.md`、`third_party/README.md` 和 [发布审计](docs/THIRD_PARTY_RELEASE_AUDIT.md)。[English](README.md)。

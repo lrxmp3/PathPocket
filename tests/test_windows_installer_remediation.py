@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 WINDOWS=ROOT/'distribution'/'windows'
 LINUX=ROOT/'distribution'/'linux'
+FIXTURES=ROOT/'tests'/'fixtures'
 
 
 def test_wsl_state_transitions_are_visible_and_resumable():
@@ -22,6 +23,31 @@ def test_wsl_state_transitions_are_visible_and_resumable():
     assert 'INSTALL_IN_PROGRESS' in text
     assert 'RESTART_REQUIRED' in text and 'INITIALIZATION_REQUIRED' in text and 'exit 20' in text
     assert 'getent passwd 1000' in text
+
+
+def test_wsl_native_output_is_decoded_before_state_detection():
+    text=(WINDOWS/'Setup_First_Run.ps1').read_text(encoding='utf-8-sig')
+    for contract in [
+        'ConvertTo-NativeCommandLine',
+        'Decode-NativeBytes',
+        'Invoke-WslNative',
+        'Test-WslWsl2Line',
+        'System.Diagnostics.ProcessStartInfo',
+    ]:
+        assert contract in text
+    assert '$names = @($installed.Lines' in text
+    assert '$verbose.Lines | Where-Object { Test-WslWsl2Line $_ }' in text
+    assert '@(& $script:WslExe @Arguments 2>&1)' not in text
+    assert "-replace [char]0, ''" in text
+
+
+def test_utf16le_regression_fixture_represents_ready_ubuntu_wsl2():
+    raw=bytes.fromhex((FIXTURES/'wsl_verbose_utf16le.hex').read_text(encoding='ascii'))
+    decoded=raw.decode('utf-16le')
+    assert '\x00' not in decoded
+    lines=[line.rstrip() for line in decoded.splitlines() if line.strip()]
+    assert lines[0].split()==['NAME','STATE','VERSION']
+    assert lines[1].split()==['*','Ubuntu-24.04','Stopped','2']
 
 
 def test_gpu_probe_uses_safe_official_wsl_fallback():
