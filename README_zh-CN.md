@@ -28,4 +28,4 @@ PathPocket 只有一套 Linux 科学计算核心，提供两种安装方式：Li
 
 ## 引用与许可
 
-PathPocket 自有源码与文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据和模型资产继续适用各自条款；根许可证不会重新许可这些内容。使用 PathPocket 时请引用本软件；配套论文发表后再补入真实书目信息和 DOI，不预造尚未确定的信息。见[第三方声明](THIRD_PARTY_NOTICES.md)、`LICENSES/` 中保留的许可原文和 `third_party/README.md`。[English](README.md)。
+PathPocket 自有源码与文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据和模型资产继续适用各自条款；根许可证不会重新许可这些内容。使用 PathPocket 时请引用本软件；配套论文发表后再补入真实书目信息和 DOI，不预造尚未确定的信息。见[贡献者](AUTHORS.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、`LICENSES/` 中保留的许可原文和 `third_party/README.md`。[English](README.md)。
