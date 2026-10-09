@@ -56,6 +56,9 @@ def main() -> int:
             continue
         data = git(repo, "cat-file", "blob", oid)
         for name, pattern in PATTERNS.items():
+            # The scanner source necessarily contains its own detection regexes.
+            if display == "scripts/audit_git_history.py":
+                continue
             if pattern.search(data):
                 findings.append((name, display, f"blob {oid[:12]}"))
 
