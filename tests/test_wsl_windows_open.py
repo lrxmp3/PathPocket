@@ -1,5 +1,4 @@
 import os
-import base64
 import subprocess
 import tempfile
 import unittest
@@ -31,15 +30,20 @@ class WslWindowsOpenTests(unittest.TestCase):
         self.assertEqual(result, target.return_value)
         shell_open.assert_called_once_with(target.return_value)
 
-    @patch('gui.pathpocket_gui.ux_paths.Path.exists', return_value=True)
+    @patch.object(ProjectPathResolver, '_windows_executable', return_value='/mnt/c/Windows/explorer.exe')
     @patch('gui.pathpocket_gui.ux_paths.subprocess.run')
-    def test_windows_shell_encodes_target(self, run, exists):
+    def test_windows_shell_opens_unicode_target_with_direct_explorer(self, run, executable):
+        target=r'\\wsl.localhost\Ubuntu-24.04\home\user\中文 (1)\report.html'
         run.return_value=subprocess.CompletedProcess([],0,b'',b'')
-        self.resolver._windows_shell_open(r'\\wsl.localhost\Ubuntu-24.04\home\user\中文 (1)\report.html')
-        args=run.call_args.args[0]
-        self.assertEqual(args[1:4],['-NoProfile','-NonInteractive','-EncodedCommand'])
-        script=base64.b64decode(args[4]).decode('utf-16le')
-        self.assertNotIn('中文 (1)',script)
+        self.resolver._windows_shell_open(target)
+        self.assertEqual(run.call_args.args[0],['/mnt/c/Windows/explorer.exe',target])
+        self.assertNotIn('shell',run.call_args.kwargs)
+
+    @patch.object(ProjectPathResolver, '_windows_executable', return_value='/mnt/c/Windows/explorer.exe')
+    @patch('gui.pathpocket_gui.ux_paths.subprocess.run')
+    def test_windows_shell_reports_explorer_failure(self, run, executable):
+        run.return_value=subprocess.CompletedProcess([],1,b'',b'')
+        with self.assertRaises(OSError):self.resolver._windows_shell_open(r'\\wsl.localhost\Ubuntu-24.04\home\user\report.html')
 
     @patch.dict(os.environ, {}, clear=True)
     @patch.object(ProjectPathResolver, 'is_wsl', return_value=False)

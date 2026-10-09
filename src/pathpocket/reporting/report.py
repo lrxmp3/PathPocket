@@ -15,6 +15,16 @@ LIMITATIONS=[
 ]
 HEADINGS=['Project','Inputs','QC','Region discovery','Region families','Selected targets','ED2Mol generation','Chemical-space comparison','Key observations','Limitations','Recommended next step','Reproducibility']
 
+def trusted_engineering_fixture(ctx):
+    fixture=getattr(ctx,'manifest',{}).get('engineering_fixture')
+    required={'fixture_id','source','semantics','marker_sha256','selection_policy'}
+    if not isinstance(fixture,dict) or set(fixture)!=required:return None
+    if fixture.get('fixture_id')!='builtin_no_targets_v1':return None
+    if fixture.get('selection_policy')!='FORCE_EMPTY_AT_TARGET_SELECTION':return None
+    if not isinstance(fixture.get('source'),str) or not isinstance(fixture.get('semantics'),str):return None
+    if not isinstance(fixture.get('marker_sha256'),str):return None
+    return {key:fixture[key] for key in sorted(required)}
+
 def make_summary(ctx,families,targets,summaries,analysis,figures):
     limitations=list(LIMITATIONS);warnings=[]
     if not any(f.get('strict_state_stable_control',False) for f in families):limitations.append('No strict state-stable control; persistent/remodeling comparators must not be called proven stable controls.')
@@ -23,7 +33,10 @@ def make_summary(ctx,families,targets,summaries,analysis,figures):
     if any(x['unique']==0 for x in summaries):warnings.append('One or more targets have zero valid unique molecules; chemical comparisons involving those targets are unavailable, not zero-distance evidence.')
     mapping=getattr(ctx,'manifest',{}).get('residue_mapping')
     if mapping:warnings.extend('Residue mapping: '+w for w in mapping.get('warnings',[]))
-    return dict(schema_version='0.1.0',project=ctx.config.name,run_id=ctx.root.name,status='COMPLETE',result_class='TARGETS_GENERATED' if targets else 'NO_TARGETS',target_count=len(targets),generation_status='COMPLETE' if targets else 'SKIPPED',residue_mapping=mapping,aggregate=getattr(ctx,'manifest',{}).get('aggregate'),states=ctx.config.states,selected_region_families=families,targets=targets,generation_summary=summaries,key_metrics=dict(generated=sum(x['generated'] for x in summaries),valid_unique_within_targets=sum(x['unique'] for x in summaries),physical_compatible_unique=sum(x['physical_compatible'] for x in summaries),generation_depth_confounded=ctx.config.data['generation']['iteration']=='auto',state_comparisons=analysis['comparisons']),figures=figures,warnings=warnings,limitations=limitations,next_step='Review Fast Screening outputs; further work requires separate authorization.')
+    summary=dict(schema_version='0.1.0',project=ctx.config.name,run_id=ctx.root.name,status='COMPLETE',result_class='TARGETS_GENERATED' if targets else 'NO_TARGETS',target_count=len(targets),generation_status='COMPLETE' if targets else 'SKIPPED',residue_mapping=mapping,aggregate=getattr(ctx,'manifest',{}).get('aggregate'),states=ctx.config.states,selected_region_families=families,targets=targets,generation_summary=summaries,key_metrics=dict(generated=sum(x['generated'] for x in summaries),valid_unique_within_targets=sum(x['unique'] for x in summaries),physical_compatible_unique=sum(x['physical_compatible'] for x in summaries),generation_depth_confounded=ctx.config.data['generation']['iteration']=='auto',state_comparisons=analysis['comparisons']),figures=figures,warnings=warnings,limitations=limitations,next_step='Review Fast Screening outputs; further work requires separate authorization.')
+    fixture=trusted_engineering_fixture(ctx)
+    if fixture:summary['engineering_fixture']=fixture
+    return summary
 
 def report(ctx,families,targets,summaries,analysis,figures):
     summary=make_summary(ctx,families,targets,summaries,analysis,figures);out=ctx.path('08_REPORT');write_json(out/'summary.json',summary)
@@ -43,7 +56,10 @@ def report(ctx,families,targets,summaries,analysis,figures):
     if summary.get('aggregate'):
         blocks[2]+='\nStructure adaptation: '+json.dumps(summary['aggregate'],ensure_ascii=False,indent=2)
     if not targets:
-        message='Run complete — No targets selected. No region family met the current target-selection criteria.'
+        if summary.get('engineering_fixture'):
+            message='Run complete — Engineering NO_TARGETS fixture selected zero targets after normal candidate discovery and matching. This is an engineering control and does not establish that the input protein lacks pockets.'
+        else:
+            message='Run complete — No targets selected. No region family met the current target-selection criteria.'
         blocks[5]=message;blocks[6]='ED2Mol SKIPPED / NOT_APPLICABLE; engine invocations = 0.';blocks[7]='No chemical-space analysis or molecular figures: no targets.';blocks[8]=message
     md=f'# {ctx.config.name}: Fast Screening\n';body=''
     for i,(heading,block) in enumerate(zip(HEADINGS,blocks),1):
