@@ -100,6 +100,7 @@ def build(args: argparse.Namespace) -> None:
         copy_file(ROOT / "docs" / "INSTALL_LINUX_EN.md", linux / "docs" / "INSTALL_LINUX_EN.md")
         copy_file(ROOT / "docs" / "INSTALL_LINUX_ZH.md", linux / "docs" / "INSTALL_LINUX_ZH.md")
         copy_file(ROOT / "KNOWN_ISSUES.md", linux / "docs" / "KNOWN_ISSUES.md")
+        copy_file(ROOT / "tests" / "test_wsl_windows_open.py", linux / "tests" / "test_wsl_windows_open.py")
         manifest_path = linux / "release_manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         manifest["candidate_source_commit"] = source_sha
