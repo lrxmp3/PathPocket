@@ -1,24 +1,51 @@
-# PathPocket v1.0.6
+# PathPocket v1.0.6 — First Public Release
 
-This release preserves the PathPocket v1.0.6 interface, workflow, report templates, and scientific settings used for the paper baseline.
+PathPocket v1.0.6 is the first public release of the PathPocket protein-microregion chemical-space workflow. It provides one Linux scientific core through two supported installation routes: direct Linux installation and Windows 11 installation and operation through Ubuntu 24.04 on WSL2/WSLg.
 
-## Maintenance fixes included
+This release remains a **Pre-release** while the remaining external file-opening retest and documented unverified configurations are completed.
 
-- The trusted built-in NO_TARGETS engineering example now produces an empty selected-target set at the target-selection boundary, skips ED2Mol, generates zero molecules, and completes through the normal zero-target result path.
-- The engineering fixture remains isolated from ordinary HSA and 7KWZ projects and records its identity and origin in run evidence.
-- Paths containing spaces are handled by the existing packaged path-transport layer.
-- Existing completed results with molecule records automatically render their saved two-dimensional molecular structures; empty NO_TARGETS results do not start molecule drawing.
+## Feature overview
 
-## Scientific boundary
+- Compare corresponding protein microregions across conformations, states, or repeated units.
+- Select representative targets and generate candidate molecules with pretrained ED2Mol.
+- Preserve target, molecule, input-file, coordinate, and parameter provenance.
+- Browse two-dimensional molecular structures, chemical-space plots, protein context, bilingual reports, and exported result files.
+- Reopen completed runs and export coordinate-preserving PDB, SDF, JSON, and CSV records.
+- Use the supplied HSA, 7KWZ, and NO_TARGETS examples to exercise standard, repeat/aggregate, and zero-selected-target workflows.
 
-No fpocket or ED2Mol algorithms, model weights, target-selection thresholds, generation parameters, random seeds, molecular descriptors, quality-control rules, ranking rules, or statistical definitions were changed. No v1.0.7 interface redesign or FLAME functionality is included.
+Generated candidates are not experimental evidence of binding, and Qnorm is not a binding-affinity measurement.
 
-NO_TARGETS is an engineering test of zero selected targets. It is not evidence that the input protein has no pockets.
+## Download and installation
 
-## Distribution status
+Release assets include:
 
-This repository is the source distribution. Model weights, scientific runtime binaries, fpocket binaries, CUDA/PyTorch binaries, and molecular viewers are not bundled. See `third_party/README.md` and the installation guides.
+- `PathPocket_v1.0.6_Linux.tar.gz` — direct Linux installer.
+- `PathPocket_v1.0.6_Windows.zip` — Windows 11 installer for the WSL2-hosted Linux core.
+- `PathPocket-v1.0.6-source.tar.gz` — corresponding source archive.
+- `SHA256SUMS.txt` — checksums for release files.
+- English and Chinese installation guides for both installation routes.
+
+Verify the downloaded package before extraction, then follow the corresponding guide:
+
+- [Direct Linux installation](docs/INSTALL_LINUX_EN.md)
+- [Windows 11 / WSL2 installation](docs/INSTALL_WINDOWS_EN.md)
+
+Windows uses WSL2 and WSLg; this is not a native Windows scientific executable. New molecule generation requires a compatible NVIDIA GPU environment and the scientific dependencies described in the installation guides.
+
+## Validation summary
+
+Release evidence covers installation and the principal HSA, 7KWZ, and NO_TARGETS workflows on direct Linux and on Windows 11 through WSL2. The Windows/WSL2 evidence also covers shortcut launch, GPU visibility, and a normal HSA run after NO_TARGETS. Automated package and source checks cover installer contracts, path handling, report/SDF routing, molecule rendering, and the zero-target completion path.
+
+Validation applies to the recorded systems and checks only; it does not claim coverage of every Linux distribution, Windows/WSL2 state, GPU, viewer, or desktop configuration. See the platform validation records for the exact scope.
+
+## Known issues
+
+An external Windows/WSL2 run produced valid Chinese and English report files, but the direct GUI report-open action failed for the Linux path. The current package contains a focused file-opening repair that passed unit and package-preflight checks; fresh external retesting of that repaired button remains pending. Until confirmed, reports can be opened from Windows Explorer through `\\wsl.localhost\Ubuntu-24.04\...`.
+
+Additional unverified configurations are listed in [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
 
 ## License and citation
 
-PathPocket-owned source code is released under the MIT License. This license does not alter the separate terms for third-party code, model weights, runtime binaries, or external structure/data assets. Please cite the PathPocket software and, after publication, the accompanying paper; the paper citation and software DOI will be added when available.
+PathPocket-owned source code and documentation are released under the [MIT License](LICENSE), copyright 李瑞熙. Third-party software, data, model assets, and runtime components retain their own licenses and notices; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`LICENSES/`](LICENSES/).
+
+Please cite this software release when using PathPocket. The paper citation and software DOI will be added when their final bibliographic information is available; no provisional DOI or unpublished citation is asserted here.

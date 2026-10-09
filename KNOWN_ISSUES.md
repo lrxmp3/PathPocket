@@ -1,21 +1,20 @@
 # Known issues and unverified areas
 
-This is a private pre-release preparation record for PathPocket v1.0.6.
+This document records the known limitations of the PathPocket v1.0.6 Pre-release. It does not change the scientific workflow or the generated result files.
 
-## Windows 11 / WSL2
+## Windows 11 / WSL2 report opening
 
-- The R1 external run completed installation, verification, shortcut launch, HSA (20 molecules), 7KWZ (20 molecules), and the GUI NO_TARGETS control (0 selected targets, 0 ED2Mol calls, 0 molecules); HSA also ran normally afterward.
-- In that same R1 run, the GUI buttons for opening Chinese/English reports returned exit code 1 when `explorer.exe` was asked to open a Linux file path. The report files themselves were valid and accessible through the `\\wsl.localhost\Ubuntu-24.04\...` path.
-- The current source changes file opening to `rundll32.exe url.dll,FileProtocolHandler` for files while retaining `explorer.exe` for directories. File-opening unit tests and final-package preflight pass, but a new Windows external run of the rebuilt package is **not tested**. If a report button still fails, open the generated report through `\\wsl.localhost\Ubuntu-24.04\...` in Windows Explorer.
-- Fresh-machine WSL branches A/B/C/E, clean Ubuntu without preinstalled bzip2, restart/reopen of historical projects, and complex-export inspection remain **not tested** for the rebuilt candidate.
+- In an external Windows 11/Ubuntu 24.04 WSL2 run, PathPocket generated valid Chinese and English report files, but the GUI report-open buttons returned exit code 1 when the Windows opener received a Linux path.
+- The current package routes file opening through the Windows file protocol handler. Unit tests and final-package preflight checks pass, but the repaired GUI action has **not yet received a fresh external-machine retest**.
+- If the button does not open a report, open Windows Explorer and enter the report's WSL network path, for example `\\wsl.localhost\Ubuntu-24.04\...`. This is a workaround for opening an existing report; it does not repair a missing report file.
+- If an SDF file exists but does not open, confirm that Windows has an SDF-compatible viewer associated with the file type. A missing association is different from an export failure.
 
-## Direct Linux
+## Unverified configurations
 
-- Historical Ubuntu 22.04.5/RTX 3080 Ti evidence validated installation, doctor, HSA, 7KWZ and complex export for an older v1.0.6 package. Its NO_TARGETS run failed (3 targets and 60 molecules), so it is not candidate acceptance evidence.
-- A later repair record reports automated final-package Linux checks, but the package predates the current Windows native-output integration and file-opening change. Fresh direct-Linux installation and complete GUI acceptance of the rebuilt candidate remain **not tested**.
-- Ubuntu 24.04 direct installation, manual report/SDF opening, SDF association behavior, and third-party viewer inspection remain **not tested**.
+- Fresh-machine WSL setup branches involving initial Windows restart and Ubuntu first-user initialization have not all been retested with the current package.
+- Restart-and-reopen of historical projects and manual inspection of every complex-export field remain unverified on the current Windows/WSL2 package.
+- Validation does not cover every Linux distribution, desktop environment, GPU/driver combination, WSL configuration, or third-party molecular viewer.
 
-## Release/legal boundary
+## External assets
 
-- PathPocket-owned source is recorded as MIT, copyright 李瑞熙.
-- ED2Mol v1.1 weights and the locked `smina.static` are downloaded from upstream rather than redistributed inside the installer. Their external-asset license scope still needs explicit rightsholder confirmation; download-on-install does not itself settle that question.
+- ED2Mol model assets and the locked `smina.static` binary are obtained from their upstream sources during installation rather than redistributed in the release package. Their terms remain separate from the PathPocket MIT license; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`third_party/README.md`](third_party/README.md).
