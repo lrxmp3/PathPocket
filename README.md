@@ -61,10 +61,10 @@ For the report-opening limitation and checks that still require external retesti
 
 ## Citation
 
-If you use PathPocket, cite the software release. Please also cite the accompanying paper after its bibliographic information becomes available. The repository's machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff); unknown DOI and paper fields are intentionally left unset rather than inferred.
+If you use PathPocket, cite the software release: [10.5281/zenodo.23272803](https://doi.org/10.5281/zenodo.23272803). Please also cite the accompanying paper after its bibliographic information becomes available. Machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff).
 
 ## License and third-party software
 
 PathPocket-owned source code and documentation are released under the [MIT License](LICENSE), copyright 李瑞熙. Third-party software, fonts, data, model assets, and downloaded runtime components remain under their respective terms and are not relicensed by the PathPocket license.
 
-See [contributors](AUTHORS.md), [third-party notices](THIRD_PARTY_NOTICES.md), the original license texts under [`LICENSES/`](LICENSES/), and [`third_party/README.md`](third_party/README.md).
+See [third-party notices](THIRD_PARTY_NOTICES.md), the original license texts under [`LICENSES/`](LICENSES/), and [`third_party/README.md`](third_party/README.md).
