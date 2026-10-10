@@ -61,10 +61,10 @@ PathPocket 支持：
 
 ## 引用
 
-使用 PathPocket 时请引用本软件版本；配套论文书目信息公布后，也请引用论文。机器可读的引用信息位于 [`CITATION.cff`](CITATION.cff)。尚未确定的 DOI 与论文信息保持为空，不做推测。
+使用 PathPocket 时请引用本软件版本：[10.5281/zenodo.23272803](https://doi.org/10.5281/zenodo.23272803)。配套论文书目信息公布后，也请引用论文。机器可读的引用信息位于 [`CITATION.cff`](CITATION.cff)。
 
 ## 许可证与第三方软件
 
 PathPocket 自有源码和文档采用 [MIT License](LICENSE)，版权人为李瑞熙。第三方软件、字体、数据、模型资源和下载的运行组件继续适用各自条款，不因 PathPocket 的许可证而被重新许可。
 
-详见[贡献者](AUTHORS.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[`LICENSES/`](LICENSES/) 中的许可原文及 [`third_party/README.md`](third_party/README.md)。
+详见[第三方声明](THIRD_PARTY_NOTICES.md)、[`LICENSES/`](LICENSES/) 中的许可原文及 [`third_party/README.md`](third_party/README.md)。

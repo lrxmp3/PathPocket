@@ -3,6 +3,7 @@ message: "If you use PathPocket, please cite this software and, after publicatio
 title: "PathPocket: a state-aware, repeat-aware protein microregion chemical-space workflow"
 type: software
 version: "1.0.6"
+doi: "10.5281/zenodo.23272803"
 authors:
   - family-names: "李"
     given-names: "瑞熙"
