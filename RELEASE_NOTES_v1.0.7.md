@@ -4,6 +4,8 @@ This development candidate is based on the published v1.0.6 source. The run page
 
 The results page provides a separate current-run folder path with open and copy actions. If that folder no longer exists, the interface reports the missing path in the selected language. When replaying a result, the interface reports completion only if both the run manifest and the summary say `COMPLETE`; otherwise it displays both recorded statuses for review.
 
+The GUI distinguishes a completed run with no generated molecules from a run with no selected targets. Where a matching GUI session records an interruption, history displays that interruption alongside the original manifest state. The generation settings explain that the frozen de novo engine needs at least two iterations to write grown molecules. On Linux, when Noto Sans CJK SC is available, the interface uses it for simplified Chinese text; otherwise it retains the system font.
+
 Scientific backend version 0.3.0 and the existing fpocket implementation are unchanged. FLAME is not included. Installation and distribution assets remain under preparation; this document does not announce a released package.
 
 The candidate installer does not bundle or automatically download the ED2Mol weights or smina binary. New generation requires user-supplied local files matching the locked hashes; the scope of authorization for those assets still needs confirmation. See the installation guide and third-party notices.
