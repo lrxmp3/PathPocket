@@ -4,7 +4,7 @@ This is the publishable delivery summary, not the internal license audit. Comple
 
 | Component | Actual delivery | Retained notice | Status |
 | --- | --- | --- | --- |
-| ED2Mol source | frozen source subset included | `LICENSES/ED2Mol-MIT.txt` | evidence retained |
+| ED2Mol source | historical frozen subset under review | `LICENSES/ED2Mol-MIT.txt` | exact upstream relationship and file provenance pending |
 | ED2Mol v1.1 weights | user-supplied local archive; SHA256 locked | upstream project notice | external-asset scope awaiting rightsholder confirmation |
 | `smina.static` | user-supplied local binary; SHA256 locked | upstream provenance recorded internally | binary-asset scope awaiting rightsholder confirmation |
 | Noto Sans CJK | font included | `LICENSES/Noto-CJK-OFL-1.1.txt` | evidence retained |

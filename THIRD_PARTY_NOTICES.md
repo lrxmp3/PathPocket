@@ -4,7 +4,7 @@ PathPocket v1.0.7 uses third-party software and data. The root MIT license appli
 
 ## Included in the installers
 
-- **ED2Mol source**: frozen source subset from commit `09f133da913179f82b285dbb046f1ecb81d1da37`, identified upstream as MIT licensed. The original text is retained at `LICENSES/ED2Mol-MIT.txt`. Model weights are not bundled or automatically downloaded; the user must supply a local archive matching the locked SHA256.
+- **ED2Mol source**: the v1.0.6 distribution records frozen source identity `09f133da913179f82b285dbb046f1ecb81d1da37`. Its exact relationship to the public upstream repository and the provenance of each distributed file remain to be verified. The upstream project provides an MIT license text retained at `LICENSES/ED2Mol-MIT.txt`; that text alone does not establish the provenance of every file in the frozen subset. Model weights are not bundled or automatically downloaded; the user must supply a local archive matching the locked SHA256.
 - **Noto Sans CJK**: `NotoSansCJK-Regular.ttc`, under SIL Open Font License 1.1. The retained text is at `LICENSES/Noto-CJK-OFL-1.1.txt`.
 - **PDB demo coordinates**: demo inputs reference PDB entries 1AO6, 1N5U, 1E78 and 7KWZ. RCSB PDB identifies archive data as CC0 1.0; users should cite the PDB and the relevant structure publications.
 - **Qt translation material**: the installer carries `qtbase_zh_CN.qm`. Applicable GPL/LGPL texts are retained under `LICENSES/Qt/`.
