@@ -53,6 +53,10 @@ def language(mode):
     try:return 'zh' if str(locale.getlocale()[0]).lower().startswith(('zh','chinese')) else 'en'
     except ValueError:return 'en'
 def tr(key,mode='system',**values):return TEXT.get(key,(key,key))[0 if language(mode)=='zh' else 1].format(**values)
+def result_status(manifest,summary,mode):
+    manifest_status=str(manifest.get('status') or 'UNKNOWN');summary_status=str(summary.get('status') or 'UNKNOWN')
+    if manifest_status=='COMPLETE' and summary_status=='COMPLETE':return tr('zero' if not summary.get('targets') else 'complete',mode)
+    return tr('result_incomplete',mode,manifest=manifest_status,summary=summary_status)
 def display(value,mode):
     if value is None or value=='':return 'NA'
     if str(value).lower()=='true':return tr('true',mode)

@@ -9,7 +9,7 @@ from PySide6.QtSvgWidgets import QSvgWidget
 from . import storage
 from .bridge import Bridge
 from .portable_projects import hydrate,unresolved,copy_demo,failure_stage,verified_no_targets_fixture,ENGINEERING_FIXTURE_FILE
-from .ux_i18n import tr,language,display,limitations,figure_title,install_qt_language
+from .ux_i18n import tr,language,display,limitations,figure_title,install_qt_language,result_status
 from .ux_paths import ProjectPathResolver,read_preferences,save_preferences,preferred_workspace,default_workspace
 from .ux_results import ResultIndex,FIELDS,write_index,truth,rows
 from .ux_reports import reports
@@ -45,10 +45,7 @@ class Window(QMainWindow):
         self.timer=QTimer(self);self.timer.timeout.connect(self.tick);self.timer.start(700)
         self.setStyleSheet('QMainWindow{background:#f3f7f8} QLabel{color:#203b43} QPushButton{padding:7px 12px} QTabBar::tab{padding:9px 14px} QTableWidget{background:white} QListWidget{background:#e6f0f2;border:0} QListWidget::item{padding:14px} QListWidget::item:selected{background:#b9dbe1;color:#163941} QGroupBox{font-weight:600}');QTimer.singleShot(150,self.discover)
     def t(self,key,**kw):return tr(key,self.mode,**kw)
-    def result_status(self):
-        manifest=str(self.index.manifest.get('status') or 'UNKNOWN');summary=str(self.index.summary.get('status') or 'UNKNOWN')
-        if manifest=='COMPLETE' and summary=='COMPLETE':return self.t('zero' if not self.index.summary.get('targets') else 'complete')
-        return self.t('result_incomplete',manifest=manifest,summary=summary)
+    def result_status(self):return result_status(self.index.manifest,self.index.summary,self.mode)
     def label(self,key):
         w=QLabel(self.t(key));w.setWordWrap(True);w.setTextInteractionFlags(Qt.TextSelectableByMouse);self.bound.append((w,key,'setText'));return w
     def button(self,key,fn):
