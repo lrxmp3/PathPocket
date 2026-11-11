@@ -6,7 +6,6 @@ This guide is for a researcher opening PathPocket for the first time. Start with
 
 PathPocket compares local regions across protein structures. A **state** is a group of input conformations; a **region family** connects corresponding local positions; a **target** is a saved receptor and center passed to pretrained ED2Mol. Generated candidates are organized into chemical space and can be viewed in their original spatial context.
 
-![Real-structure conceptual overview](assets/tutorial/00_concept.png)
 
 Follow the sequence: import structures → compare local regions → select targets → generate candidates → inspect chemical space → locate a molecule → export its coordinates. A candidate region is a starting point for investigation; generated molecules require subsequent experimental assessment.
 
@@ -16,13 +15,9 @@ Follow the sequence: import structures → compare local regions → select targ
 
 **Native Ubuntu.** Extract the approved Linux portable archive. In that folder, run `bash Setup_First_Run.sh`; subsequent launches use `bash PathPocket.sh`. The scientific application uses the package's private runtime. System Conda/Python is not the scientific runtime. Install a compatible NVIDIA driver first. See [Linux installation](INSTALL_LINUX_EN.md) and [Windows installation](INSTALL_WINDOWS_EN.md).
 
-![Historical native Linux download progress, cropped to remove identity](assets/tutorial/11_linux_install.png)
-![Historical native Linux installation success](assets/tutorial/12_linux_success.png)
-![Historical native Linux doctor verification](assets/tutorial/13_linux_doctor.png)
 
-**Expected result:** the installation verifier reports PASS and the GUI opens. These three images are actual native Linux evidence. On Windows the setup window differs. If setup requests restart or reports a missing download, keep the log and retry the same setup; do not change scientific configuration to work around a hardware error. A doctor failure must be resolved before new generation; replay remains available without GPU generation.
+**Expected result:** the installation verifier reports PASS and the GUI opens. If setup requests restart or reports a missing download, keep the log and retry the same setup; do not change scientific configuration to work around a hardware error. A doctor failure must be resolved before new generation; replay remains available without GPU generation.
 
-![Startup](assets/tutorial/01_home.png)
 
 ## 3. Create the first project
 
@@ -30,15 +25,13 @@ Follow the sequence: import structures → compare local regions → select targ
 
 Click **New project**. Choose the analysis mode for your structure: single structure, multiple conformations, or repeat/aggregate as appropriate. Enter a short project name, such as `My_HSA_Project`, and select an empty, writable workspace. The preview shows where the project will be stored under `20_PROJECTS`. Keep it outside the application directory so updates do not affect your results.
 
-![New project and workspace controls](assets/tutorial/02_new_project.png)
 
-**Expected result:** a new project folder and project configuration. If the name already exists, use a different name to preserve the previous project. Gray boxes in these tutorial images hide local paths; they are not application errors.
+**Expected result:** a new project folder and project configuration. If the name already exists, use a different name to preserve the previous project.
 
 ### Step 2 — Import protein structures
 
 Open **Protein States**, click **Add PDB**, choose the state and select the PDB/CIF file. Group only structures that represent the intended state. Use ordinary public HSA structures for practice. For the prepared HSA minimal example, open its supplied project instead of selecting a new pocket yourself.
 
-![Imported HSA structure](assets/tutorial/03_import_structures.png)
 
 **Expected result:** the table lists the state ID and structure path. Click **Validate**. Ambiguous or low-confidence identity mapping should stop for review rather than silently pairing residues. Do not repair that warning by guessing residue correspondences.
 
@@ -46,37 +39,30 @@ Open **Protein States**, click **Add PDB**, choose the state and select the PDB/
 
 Open **Fast Screening Settings**. For the supplied minimal example use **10 molecules**, **seed 42**, **iteration 2**. It contains one frozen HSA family and one target. Save and validate. The advanced YAML box is shown for transparency; ordinary use does not require typing Python or Conda commands.
 
-![Ten-molecule settings](assets/tutorial/04_fast_settings.png)
 
 ### Step 4 — Check readiness, then run
 
-Open **Run**, click **Backend doctor**, and wait for a successful readiness check. Click **Run** after validation succeeds. Follow the named stages rather than treating the number of written molecules as a live completion percentage. This packaging task did not launch a new calculation; the screenshot below shows the controls before execution.
+Open **Run**, click **Backend doctor**, and wait for a successful readiness check. Click **Run** after validation succeeds. Follow the named stages rather than treating the number of written molecules as a live completion percentage.
 
-![Run controls before execution](assets/tutorial/05_run_monitor.png)
 
 **Expected result:** COMPLETE with a saved run folder and result tables. If GPU support is unavailable, stop and fix the driver/runtime; do not substitute an unrecorded CPU run. Keep logs for failed attempts.
 
 ## 4. Read the results
 
-The following screenshots show the **archived 20-molecule HSA replay**, not a fresh 10-molecule result.
+The archived HSA replay and a newly generated task may have different counts.
 
-![Overview with archived counts](assets/tutorial/06_summary.png)
 
 **Regions** connects target IDs to the input state and corresponding local region. Occurrence describes representation among supplied conformations; it is not a probability of disease association.
 
-![Regions](assets/tutorial/07_regions.png)
 
 **Molecules** lists generated records, descriptors and QC flags. Select a molecule before opening its structure. A clash flag means a geometric screen failed; it is useful information, not a rendering error. The identifier is meaningful only together with its target and run.
 
-![Molecules](assets/tutorial/08_molecules.png)
 
 **Chemical Space** compares the stored candidates. Select the target first; switch between PCA and property plots. PCA positions summarize fingerprint variation, not binding affinity. **View molecules** follows the current target selection; **Source CSV** exposes the plotted data.
 
-![Chemical space and target selector](assets/tutorial/09_chemical_space.png)
 
 **Structure Location** opens a separate view for the selected molecule. Drag to rotate, scroll to zoom, and use **Focus region** to inspect the stored target neighborhood. **Export Protein–Ligand Complex** writes a receptor–ligand PDB, ligand SDF and provenance JSON to a new export folder. It preserves stored coordinates; it does not dock or minimize the molecule.
 
-![Structure and coordinate export](assets/tutorial/10_structure_export.png)
 
 **Expected result:** molecule, target and state IDs agree between the gallery and structure view. Open `info.json` beside an exported complex to see the original SDF record and hashes. A missing lining-residue highlight is reported by the viewer; do not interpret it as absence of the region.
 

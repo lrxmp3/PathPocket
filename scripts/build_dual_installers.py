@@ -63,6 +63,13 @@ def assert_clean_template(root: Path) -> None:
     present = [str(path) for path in forbidden if path.exists()]
     if present:
         raise RuntimeError("template contains installed runtime/weights: " + ", ".join(present))
+    # Do not silently carry historical test evidence into a new release.
+    evidence = [p for p in root.rglob("*") if p.is_file() and
+                ("VALIDATION" in p.name.upper() or "ACCEPTANCE" in p.name.upper()
+                 or "AUDIT" in p.name.upper() or p.suffix.lower() in {".png", ".log", ".pyc"}
+                 or any(part.lower() in {"diagnostics", "__pycache__", ".pytest_cache"} for part in p.relative_to(root).parts))]
+    if evidence:
+        raise RuntimeError("template contains local validation evidence: " + ", ".join(map(str, evidence)))
 
 
 def build_wheel(destination: Path) -> Path:
@@ -126,6 +133,7 @@ def build(args: argparse.Namespace) -> None:
 
         windows = temp / WINDOWS_NAME
         shutil.copytree(args.windows_template.resolve(), windows)
+        assert_clean_template(windows)
         for source in (ROOT / "distribution" / "windows").iterdir():
             if source.is_file():
                 copy_file(source, windows / source.name)
@@ -169,8 +177,7 @@ def build(args: argparse.Namespace) -> None:
     )
     for document in (
         "INSTALL_LINUX_EN.md", "INSTALL_LINUX_ZH.md", "INSTALL_WINDOWS_EN.md", "INSTALL_WINDOWS_ZH.md",
-        "PRERELEASE_NOTES_DRAFT.md", "THIRD_PARTY_RELEASE_AUDIT.md", "VALIDATION_LINUX.md",
-        "VALIDATION_WINDOWS_WSL2.md",
+        "THIRD_PARTY_RELEASE_AUDIT.md",
     ):
         copy_file(ROOT / "docs" / document, output / document)
     copy_file(ROOT / "KNOWN_ISSUES.md", output / "KNOWN_ISSUES.md")

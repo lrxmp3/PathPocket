@@ -17,14 +17,14 @@ PathPocket 只有一套 Linux 科学计算核心，提供两种安装方式：Li
 源码使用 Python ≥3.11，GUI 使用 PySide6 6.8.3。新生成还需要兼容的 NVIDIA 驱动、锁定的 CUDA/PyTorch 环境、fpocket 和官方 ED2Mol weights。portable 安装使用隔离 runtime，不修改用户 Conda base。[Windows 11 + WSL2 指南](docs/INSTALL_WINDOWS_ZH.md) · [Linux 直接安装指南](docs/INSTALL_LINUX_ZH.md)。
 
 ## 快速上手
-阅读[中英文图文教程](docs/PathPocket_Tutorial_ZH.md)。GUI 打开历史 replay run，选择 RF_0011_state_B → Molecules → 分子 → Structure Location → Export。源码用户可运行 `python scripts/replay.py <run-directory>`。
+阅读[中文教程](docs/PathPocket_Tutorial_ZH.md)。GUI 打开历史 replay run，选择 RF_0011_state_B → Molecules → 分子 → Structure Location → Export。源码用户可运行 `python scripts/replay.py <run-directory>`。
 
 ## 示例、测试与输出
 `examples/HSA_MINIMAL_10` 提供公开 HSA 输入和 10-molecule 验收条件；`examples/fixtures` 提供 HSA、7KWZ 与 NO_TARGETS 示例。执行 `python -m pytest tests` 检查工程契约，不需要重新生成分子。完整论文数据与 replay 单独存放。输出包括 run_manifest、区域/target 表、SDF、QC/化学空间 CSV，以及保留原坐标的 PDB/SDF/JSON 导出。
 
 ## 验证状态与已知边界
 
-当前候选版保持论文基线 v1.0.6 的 GUI、流程、报告模板和科学参数。历史 Ubuntu 22.04/RTX 3080 Ti 证据属于旧 Linux 包，并明确记录了当时 NO_TARGETS 未修复，不能作为新候选包的通过证据。Windows 11/WSL2 R1 证据验证了安装与 HSA、7KWZ、NO_TARGETS 主流程，但直接打开报告按钮失败。当前源码含针对该问题的最小修复，仍待新一轮外部实机验证。详见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md) 和分平台验证记录。
+使用限制和仍需确认的第三方资产许可见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md)。生成候选不等于结合证据。
 
 ## 引用与许可
 

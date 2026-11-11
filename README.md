@@ -17,14 +17,14 @@ PathPocket has one Linux scientific core and two installation routes: direct Lin
 Python ≥3.11 is required for source use and PySide6 6.8.3 for the GUI. New generation also needs a compatible NVIDIA driver, the pinned CUDA/PyTorch environment, fpocket, and the official ED2Mol weights. Install source with `python -m pip install .`; viewer dependencies with `python -m pip install -r requirements-viewer.txt`. Portable installation uses an isolated runtime and does not modify the user's Conda base environment. [Windows 11 + WSL2 guide](docs/INSTALL_WINDOWS_EN.md) · [Direct Linux guide](docs/INSTALL_LINUX_EN.md).
 
 ## Quick start
-Read the [illustrated tutorial](docs/PathPocket_Tutorial_EN.md). In the installed GUI open the replay's historical run. Select RF_0011_state_B → Molecules → a molecule → Structure Location → Export. Source users can run `python scripts/replay.py <run-directory>`.
+Read the [tutorial](docs/PathPocket_Tutorial_EN.md). In the installed GUI open the replay's historical run. Select RF_0011_state_B → Molecules → a molecule → Structure Location → Export. Source users can run `python scripts/replay.py <run-directory>`.
 
 ## Examples, tests and outputs
 `examples/HSA_MINIMAL_10` contains prepared public HSA inputs and a ten-molecule contract. `examples/fixtures` contains HSA, 7KWZ and NO_TARGETS examples. Run `python -m pytest tests` for unit contracts; no generation is needed for these tests. Full paper data and replay are separate from GitHub source staging. Outputs include run_manifest.json, region/target tables, SDF, QC/chemical-space CSVs and coordinate-preserving PDB/SDF/JSON exports.
 
 ## Validation status and known limits
 
-The maintained candidate preserves the paper-facing v1.0.6 GUI, workflow, report templates and scientific parameters. Historical Ubuntu 22.04/RTX 3080 Ti evidence validates an earlier Linux package but also records its unfixed NO_TARGETS failure; it is not acceptance evidence for the new candidate. Windows 11/WSL2 R1 evidence validates installation and the principal HSA, 7KWZ and NO_TARGETS workflows, but its direct report buttons failed. The source candidate contains a targeted Windows file-opening repair that still requires fresh external validation. See [known issues](KNOWN_ISSUES.md) and the platform validation records.
+See [known issues](KNOWN_ISSUES.md) for limitations and unresolved third-party asset permissions. A generated candidate is not evidence of binding.
 
 ## Citation and licensing
 

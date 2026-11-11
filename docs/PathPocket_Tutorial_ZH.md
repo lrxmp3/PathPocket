@@ -6,7 +6,6 @@
 
 PathPocket 把多个蛋白构象中的局部区域联系起来，再用预训练 ED2Mol 为选定区域生成候选分子。state（状态）是一组输入构象；region family（区域家族）代表相互对应的局部位置；target（生成目标）保存受体和中心坐标。
 
-![真实结构概念总览](assets/tutorial/00_concept.png)
 
 基本顺序是：导入结构 → 建立局部区域对应 → 选择 target → 生成分子 → 查看化学空间 → 定位到蛋白 → 导出坐标。候选区域和生成分子是后续研究的起点，不能直接当作已验证结合位点或配体。
 
@@ -16,13 +15,9 @@ PathPocket 把多个蛋白构象中的局部区域联系起来，再用预训练
 
 **原生 Ubuntu：** 解压已批准的 Linux portable 包，在该目录运行 `bash Setup_First_Run.sh`，以后运行 `bash PathPocket.sh`。科学计算使用包内私有 runtime，不使用系统 Conda/Python。先安装兼容的 NVIDIA 驱动。详见 [Windows 安装指南](INSTALL_WINDOWS_ZH.md) 和 [Linux 安装指南](INSTALL_LINUX_ZH.md)。
 
-![真实 Linux 安装下载过程，已裁去身份信息](assets/tutorial/11_linux_install.png)
-![真实 Linux 安装完成](assets/tutorial/12_linux_success.png)
-![真实 Linux doctor 检查](assets/tutorial/13_linux_doctor.png)
 
-**预期结果：** verification 显示 PASS，并能打开 GUI。上面三张图来自独立 Linux 机器；Windows 安装窗口不同。若提示重启或下载失败，保留日志并重试同一安装脚本。doctor 未通过时先解决环境问题，不要改科学参数绕过错误。
+**预期结果：** verification 显示 PASS，并能打开 GUI。若提示重启或下载失败，保留日志并重试同一安装脚本。doctor 未通过时先解决环境问题，不要改科学参数绕过错误。
 
-![启动界面](assets/tutorial/01_home.png)
 
 ## 3. 创建第一个项目
 
@@ -30,15 +25,13 @@ PathPocket 把多个蛋白构象中的局部区域联系起来，再用预训练
 
 点击 **New project（新建项目）**。根据输入选择单结构、多构象或 repeat/aggregate 模式。填写简短名称，例如 `My_HSA_Project`，选择一个可写工作目录。预览会显示 `20_PROJECTS` 下的新项目路径。工作目录放在程序目录之外，便于升级软件时保留结果。
 
-![新建项目和工作目录](assets/tutorial/02_new_project.png)
 
-**预期结果：** 新项目文件夹和配置文件。若项目重名，请换一个名字保留旧结果。图中灰框是为保护私人路径添加的遮挡，并非软件报错。
+**预期结果：** 新项目文件夹和配置文件。若项目重名，请换一个名字保留旧结果。
 
 ### 第二步：导入结构
 
 进入 **Protein States（蛋白状态）**，点击 **Add PDB**，选择 state 和 PDB/CIF 文件。同一 state 下放属于同一条件的构象。练习时可使用公开 HSA 结构；使用本文提供的 HSA 最小示例时，直接打开准备好的项目，不需要自己重新挑选口袋。
 
-![导入后的 HSA 结构](assets/tutorial/03_import_structures.png)
 
 **预期结果：** 表格显示状态名称与结构路径。点击 **Validate（验证）**。如果身份映射存在歧义或置信度不足，应检查输入，不要凭猜测强行对应残基。
 
@@ -46,37 +39,30 @@ PathPocket 把多个蛋白构象中的局部区域联系起来，再用预训练
 
 进入 **Fast Screening Settings**。最小示例使用 **10 molecules、seed 42、iteration 2**，包含一个冻结 HSA 区域家族和一个 target。保存并验证。下面的 YAML 区域用于显示配置；普通用户不需要输入 Python 或 Conda 命令。
 
-![10-molecule 参数](assets/tutorial/04_fast_settings.png)
 
 ### 第四步：检查环境，再运行
 
-进入 **Run**，先点 **Backend doctor**。验证和环境检查通过后点击 **Run**，观察各阶段名称。已写入分子数不等于实时完成百分比。下面是运行前的真实控件截图；本次打包没有启动新的科学计算。
+进入 **Run**，先点 **Backend doctor**。验证和环境检查通过后点击 **Run**，观察各阶段名称。已写入分子数不等于实时完成百分比。
 
-![运行前的控制页面](assets/tutorial/05_run_monitor.png)
 
 **预期结果：** COMPLETE 状态、保存的 run 目录和结果表。GPU 不可用时应修复驱动/runtime，不要悄悄改用 CPU。失败日志也要保留。
 
 ## 4. 看懂结果
 
-下面的截图来自**已归档的 20-molecule HSA replay**，不是新生成的 10-molecule 示例。
+已归档的 HSA replay 和新生成任务的结果数量可能不同。
 
-![结果概览](assets/tutorial/06_summary.png)
 
 **Regions（区域）**：核对 target、state 和局部区域对应。occurrence 表示输入构象中的出现比例，不代表疾病相关概率。
 
-![Regions 页面](assets/tutorial/07_regions.png)
 
 **Molecules（分子）**：查看生成记录、描述符和 QC 标记。先选择分子，再打开结构位置。clash flag 表示几何检查发现重叠，是结果信息而不是绘图出错。分子 ID 必须和 target、run 一起使用。
 
-![Molecules 页面](assets/tutorial/08_molecules.png)
 
 **Chemical Space（化学空间）**：先选 target，再切换 PCA 或性质图。PCA 表示分子指纹差异，不是亲和力。**View molecules** 跟随当前 target，**Source CSV** 打开对应数据。
 
-![Chemical Space 页面](assets/tutorial/09_chemical_space.png)
 
 **Structure Location（结构位置）**：这是独立结构窗口。拖动旋转、滚轮缩放，用 **Focus region** 观察局部区域。点击 **Export Protein–Ligand Complex**，选择原 run 之外的新导出目录，保存 complex PDB、ligand SDF 和 info JSON。导出保留原坐标，不执行 docking 或能量最小化。
 
-![结构窗口及导出按钮](assets/tutorial/10_structure_export.png)
 
 **预期结果：** 画廊和结构窗口中的分子、target、state ID 一致。导出的 `info.json` 给出源记录和哈希。若 lining mapped 显示未成功映射，不应据此推断该区域不存在。
 
