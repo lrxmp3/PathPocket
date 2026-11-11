@@ -1,4 +1,4 @@
-"""Integrated v1.0.6 presentation frontend; frozen CLI owns all science."""
+"""Integrated v1.0.7 presentation frontend; frozen CLI owns all science."""
 import os,sys,json,csv,shutil,datetime,uuid,io
 from pathlib import Path
 import yaml
@@ -34,8 +34,8 @@ class Window(QMainWindow):
             if font.exists():QFontDatabase.addApplicationFont(str(font));QApplication.instance().setFont(QFont('Noto Sans CJK SC',10))
         self.settings=settings or storage.default_settings();self.set_workspace(preferred_workspace(self.prefs),check=False)
         self.bridge=Bridge(self.settings,self);self.bridge.completed.connect(self.on_complete)
-        self.setWindowTitle('PathPocket v1.0.6');self.resize(1200,800);self.setMinimumSize(920,620)
-        base=QWidget();self.setCentralWidget(base);v=QVBoxLayout(base);top=QHBoxLayout();top.addWidget(QLabel('PathPocket  v1.0.6'));self.lang_combo=QComboBox();top.addStretch();top.addWidget(self.lang_combo);v.addLayout(top)
+        self.setWindowTitle('PathPocket v1.0.7');self.resize(1200,800);self.setMinimumSize(920,620)
+        base=QWidget();self.setCentralWidget(base);v=QVBoxLayout(base);top=QHBoxLayout();top.addWidget(QLabel('PathPocket  v1.0.7'));self.lang_combo=QComboBox();top.addStretch();top.addWidget(self.lang_combo);v.addLayout(top)
         for k in ['system','zh','en']:self.lang_combo.addItem(self.t(k),k)
         self.lang_combo.setCurrentIndex(self.lang_combo.findData(self.mode));self.lang_combo.currentIndexChanged.connect(self.change_language)
         self.scope=self.label('fast_value');v.addWidget(self.scope);body=QHBoxLayout();v.addLayout(body,1);self.nav=QListWidget();self.nav.setMaximumWidth(200);body.addWidget(self.nav);self.pages=QStackedWidget();body.addWidget(self.pages,1)
