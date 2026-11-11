@@ -10,7 +10,7 @@ This is the publishable delivery summary, not the internal license audit. Comple
 | Noto Sans CJK | font included | `LICENSES/Noto-CJK-OFL-1.1.txt` | evidence retained |
 | Qt translation | translation file included | `LICENSES/Qt/` | evidence retained |
 | fpocket 4.2.3 | conda-forge download at first run | `LICENSES/fpocket-MIT.txt` plus package-local metadata | evidence retained |
-| PySide6/Qt/Shiboken 6.8.3 | locked upstream wheels downloaded at first run | `LICENSES/Qt/` plus wheel-local notices | delivery measures documented |
+| PySide6/Qt/Shiboken 6.8.3 | locked upstream wheels planned for first-run download | `LICENSES/Qt/`; component-specific notices under review | source, applicable notices and library replacement in the actual installation remain to be verified |
 | CUDA/PyTorch userspace packages | locked upstream wheels downloaded at first run | package-local terms | no NVIDIA display driver bundled |
 
 The root MIT license applies only to PathPocket-owned source and documentation. For user-facing attribution and the exact unresolved external-asset questions, see `THIRD_PARTY_NOTICES.md`.

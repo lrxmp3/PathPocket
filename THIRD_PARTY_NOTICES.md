@@ -11,10 +11,10 @@ PathPocket v1.0.7 uses third-party software and data. The root MIT license appli
 
 ## Downloaded during first-run installation
 
-The installer obtains exact hash-locked packages from upstream distribution services rather than bundling a preinstalled runtime. This includes conda-forge runtime packages, fpocket 4.2.3, PyTorch/CUDA userspace wheels and PySide6/Shiboken6 6.8.3. ED2Mol weights and smina are not downloaded automatically: users must obtain appropriately licensed copies and supply local files. The installer does not install or redistribute an NVIDIA display driver. Downloaded packages retain their package-local license and copyright files.
+The planned installer obtains exact hash-locked packages from upstream distribution services rather than bundling a preinstalled runtime. This includes conda-forge runtime packages, fpocket 4.2.3, PyTorch/CUDA userspace wheels and PySide6/Shiboken6 6.8.3. ED2Mol weights and smina are not downloaded automatically: users must obtain appropriately licensed copies and supply local files. The installer does not install or redistribute an NVIDIA display driver. Package-specific notices and license obligations must be checked for each actual component and delivery method before release.
 
 - **fpocket 4.2.3** is obtained from conda-forge; upstream fpocket is MIT licensed. The retained upstream text is at `LICENSES/fpocket-MIT.txt`.
-- **PySide6 / Qt / Shiboken6 6.8.3** are dynamically loaded, unmodified community packages. Applicable LGPL/GPL texts are retained under `LICENSES/Qt/`; users may replace compatible shared libraries in the isolated runtime.
+- **PySide6 / Qt / Shiboken6 6.8.3** are intended to be installed from locked community wheels. LGPL/GPL texts are retained under `LICENSES/Qt/`. Qt for Python also contains components under other licenses; see the [upstream 6.8 license list](https://doc.qt.io/qtforpython-6.8/licenses.html). Applicable component notices, source availability, and the actual ability to replace compatible libraries in the installed runtime remain to be checked before release.
 - **NVIDIA/CUDA userspace packages** retain their package-specific terms. No single generic MIT or CUDA notice substitutes for those package-local terms.
 
 The complete internal audit, wheel metadata and evidence are intentionally kept outside the public source repository and release assets. Nothing in the PathPocket license grants additional rights in these third-party components.
