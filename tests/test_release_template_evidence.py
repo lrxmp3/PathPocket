@@ -155,3 +155,15 @@ def test_wheel_build_uses_selected_commit_not_working_tree(tmp_path, monkeypatch
         return real_run(args, **kwargs)
     monkeypatch.setattr(builder.subprocess, 'run', run)
     assert builder.build_wheel(tmp_path / 'wheel', commit).is_file()
+
+
+def test_build_rejects_ignored_files_without_deleting_them(tmp_path):
+    import subprocess
+    builder = load_builder()
+    subprocess.run(['git', 'init', '-q', str(tmp_path)], check=True)
+    (tmp_path / '.gitignore').write_text('private.log\n')
+    ignored = tmp_path / 'private.log'
+    ignored.write_text('fixture')
+    with pytest.raises(RuntimeError, match='Git-ignored files'):
+        builder.assert_no_ignored_source_files(tmp_path)
+    assert ignored.read_text() == 'fixture'

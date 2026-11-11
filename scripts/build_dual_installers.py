@@ -158,10 +158,21 @@ def build_wheel(destination: Path, source_sha: str) -> Path:
     return wheels[0]
 
 
+def assert_no_ignored_source_files(root: Path) -> None:
+    # The GUI and license directories are copied from the worktree.  Git's
+    # ordinary status omits ignored files, which must not be packaged silently.
+    ignored = subprocess.check_output(
+        ['git', '-C', str(root), 'ls-files', '--others', '--ignored', '--exclude-standard', '-z']
+    )
+    if ignored:
+        raise RuntimeError('refusing to build with Git-ignored files in the worktree; use a clean isolated checkout')
+
+
 def build(args: argparse.Namespace) -> None:
     source_sha = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     if subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip():
         raise RuntimeError("refusing to build from a dirty source tree")
+    assert_no_ignored_source_files(ROOT)
     verify_template(args.linux_template, args.linux_template_sha256)
     verify_template(args.windows_template, args.windows_template_sha256)
     output = args.output.resolve()
