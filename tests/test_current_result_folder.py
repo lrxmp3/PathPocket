@@ -87,3 +87,15 @@ def test_missing_result_folder_explains_cause(window, tmp_path, monkeypatch, lan
     window.result_folder_button.click()
     assert expected in warnings[0][1]
     assert str(missing) in warnings[0][1]
+
+
+def test_table_uses_target_and_molecule_identity(window):
+    from types import SimpleNamespace
+    from pathpocket_gui.ux_results import FIELDS
+    records = [dict(molecule_id='M001', target_id='target_a'),
+               dict(molecule_id='M001', target_id='target_b')]
+    window.index = SimpleNamespace(rows=records)
+    window.fill(window.mol_table, [[r.get(k) for k in FIELDS] for r in records])
+    window.mol_table.selectRow(1)
+    assert window.table_row(1) is records[1]
+    assert window.selected() == [records[1]]
