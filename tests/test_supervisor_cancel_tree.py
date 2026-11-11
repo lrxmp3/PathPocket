@@ -53,3 +53,18 @@ def test_cancel_stops_detached_descendant_and_not_unrelated_process(tmp_path):
                 pass
         unrelated.terminate()
         unrelated.wait(timeout=5)
+
+
+def test_signal_descendants_skips_reused_missing_and_zombie_pids(monkeypatch):
+    import importlib.util
+    root = Path(__file__).resolve().parents[1]
+    spec = importlib.util.spec_from_file_location('supervisor_test', root / 'gui/pathpocket_gui/wsl_supervisor.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    identities = {101: 'old', 102: 'gone', 103: 'zombie', 104: 'same'}
+    observed = {101: ('S', 1, 'new'), 102: None, 103: ('Z', 1, 'zombie'), 104: ('S', 1, 'same')}
+    sent = []
+    monkeypatch.setattr(module, 'process_identity', lambda pid: observed[pid])
+    monkeypatch.setattr(module.os, 'kill', lambda pid, sig: sent.append((pid, sig)))
+    assert module.signal_descendants(identities, signal.SIGTERM) == []
+    assert sent == [(104, signal.SIGTERM)]
