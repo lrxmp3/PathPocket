@@ -99,3 +99,16 @@ def test_table_uses_target_and_molecule_identity(window):
     window.mol_table.selectRow(1)
     assert window.table_row(1) is records[1]
     assert window.selected() == [records[1]]
+
+
+def test_duplicate_molecule_ids_receive_distinct_export_names():
+    from types import SimpleNamespace
+    from pathpocket_gui.ux_export import filenames, friendly
+    from pathpocket_gui.ux_results import thumb_id
+    records = [dict(molecule_id='M000001', target_id='target_a', region_family_id='family'),
+               dict(molecule_id='M000001', target_id='target_b', region_family_id='family')]
+    index = SimpleNamespace(rows=records)
+    names = filenames(index)
+    assert len(names) == 2
+    assert friendly(index, records[0]).casefold() != friendly(index, records[1]).casefold()
+    assert thumb_id(records[0]) != thumb_id(records[1])
