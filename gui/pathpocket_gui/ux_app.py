@@ -38,7 +38,7 @@ class Window(QMainWindow):
         base=QWidget();self.setCentralWidget(base);v=QVBoxLayout(base);top=QHBoxLayout();top.addWidget(QLabel('PathPocket  v1.0.7'));self.lang_combo=QComboBox();top.addStretch();top.addWidget(self.lang_combo);v.addLayout(top)
         for k in ['system','zh','en']:self.lang_combo.addItem(self.t(k),k)
         self.lang_combo.setCurrentIndex(self.lang_combo.findData(self.mode));self.lang_combo.currentIndexChanged.connect(self.change_language)
-        self.scope=self.label('fast_value');v.addWidget(self.scope);body=QHBoxLayout();v.addLayout(body,1);self.nav=QListWidget();self.nav.setMaximumWidth(200);body.addWidget(self.nav);self.pages=QStackedWidget();body.addWidget(self.pages,1)
+        self.scope=self.label('fast_value');self.scope.setStyleSheet('font-size:13px;font-weight:400;color:#36545c;background:#e6f0f2;border:1px solid #cedfe3;border-radius:6px;padding:7px 10px');v.addWidget(self.scope);body=QHBoxLayout();v.addLayout(body,1);self.nav=QListWidget();self.nav.setMaximumWidth(200);body.addWidget(self.nav);self.pages=QStackedWidget();body.addWidget(self.pages,1)
         for key in ['project','states','fast','run','results','settings']:self.nav.addItem(self.t(key))
         self.nav.currentRowChanged.connect(self.pages.setCurrentIndex)
         self.build_project();self.build_states();self.build_fast();self.build_run();self.build_results();self.build_settings();self.nav.setCurrentRow(0)

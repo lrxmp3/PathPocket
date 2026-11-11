@@ -53,6 +53,17 @@ def test_result_directory_label_uses_existing_bilingual_vocabulary(window):
     window.mode = 'en'
     assert window.t('run_folder') == 'Run folder'
 
+
+def test_scope_banner_remains_translated_when_language_changes(window):
+    window.lang_combo.setCurrentIndex(window.lang_combo.findData('zh'))
+    assert window.scope.text() == window.t('fast_value')
+    assert '复合物' in window.scope.text()
+    assert window.scope.wordWrap()
+    window.lang_combo.setCurrentIndex(window.lang_combo.findData('en'))
+    assert window.scope.text() == window.t('fast_value')
+    assert 'complex' in window.scope.text().lower()
+    assert window.scope.wordWrap()
+
 @pytest.mark.parametrize('manifest,summary,targets,expected', [
     ('COMPLETE', 'COMPLETE', [{}], 'Run complete'),
     ('COMPLETE', 'COMPLETE', [], 'Run complete — No targets selected'),
