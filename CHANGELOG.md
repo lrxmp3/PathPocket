@@ -2,7 +2,7 @@
 
 ## 1.0.7 (candidate)
 
-The GUI can display per-target generator log batch progress separately from the number of written molecules. The scientific backend remains at version 0.3.0. See `RELEASE_NOTES_v1.0.7.md`.
+The GUI can display per-target generator log batch progress separately from the number of written molecules, open or copy the current run folder, and display unconfirmed historical run status without calling it complete. The scientific backend remains at version 0.3.0. See `RELEASE_NOTES_v1.0.7.md`.
 
 ## 1.0.6
 
