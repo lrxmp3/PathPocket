@@ -19,16 +19,16 @@ if [[ -z "$DESKTOP_DIR" || "$DESKTOP_DIR" == "$HOME" ]]; then
 fi
 
 mkdir -p "$DESKTOP_DIR" "$APP_DIR"
-DESKTOP_FILE="$DESKTOP_DIR/PathPocket-v1.0.6-NO_TARGETS-HF5.desktop"
-APP_FILE="$APP_DIR/pathpocket-v1.0.6-no-targets-hf5.desktop"
+DESKTOP_FILE="$DESKTOP_DIR/PathPocket-v1.0.7.desktop"
+APP_FILE="$APP_DIR/pathpocket-v1.0.7.desktop"
 
 write_entry() {
     local destination="$1"
     {
         printf '%s\n' '[Desktop Entry]'
         printf '%s\n' 'Type=Application'
-        printf '%s\n' 'Name=PathPocket v1.0.6 修复版 HF5'
-        printf '%s\n' 'Comment=PathPocket v1.0.6 NO_TARGETS hotfix HF5'
+        printf '%s\n' 'Name=PathPocket v1.0.7'
+        printf '%s\n' 'Comment=PathPocket GUI maintenance release'
         printf 'Exec="%s"\n' "$LAUNCHER"
         printf '%s\n' 'Terminal=false'
         printf '%s\n' 'Categories=Science;'

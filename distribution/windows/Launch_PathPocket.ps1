@@ -9,9 +9,9 @@ if (-not (Test-Path -LiteralPath $WslExe)) {
 }
 
 try {
-    $root = (& $WslExe -d $Distro --exec bash -lc 'cat "$HOME/.pathpocket_hf5_install_root" 2>/dev/null').Trim()
+    $root = (& $WslExe -d $Distro --exec bash -lc 'cat "$HOME/.pathpocket_v1_0_7_install_root" 2>/dev/null').Trim()
     if ([string]::IsNullOrWhiteSpace($root)) {
-        Write-Host "PathPocket v1.0.6 is not installed. Run Setup_First_Run.bat first."
+        Write-Host "PathPocket v1.0.7 is not installed. Run Setup_First_Run.bat first."
         Read-Host "Press Enter to close"
         exit 2
     }

@@ -239,7 +239,7 @@ function Invoke-ElevatedSelf {
 }
 
 try {
-    Log "INFO" "PathPocket v1.0.6 Windows/WSL2 installer repair build 20261009_R1 (WIN-INSTALLER-REPAIR-20261009-R1) started."
+    Log "INFO" "PathPocket v1.0.7 Windows/WSL2 installer started."
     Log "INFO" "Package directory: $PackageRoot"
     Log "INFO" "PowerShell version: $($PSVersionTable.PSVersion); edition: $($PSVersionTable.PSEdition); bitness: $([IntPtr]::Size * 8); PSHOME: $PSHOME"
 
@@ -249,7 +249,7 @@ try {
     }
     Log "INFO" "PowerShell executable for elevation: $script:WindowsPowerShellExe"
 
-    if ([string]::IsNullOrWhiteSpace($LinuxInstallParent)) { $LinuxInstallParent = '$HOME/Applications/PathPocket-v1.0.6' }
+    if ([string]::IsNullOrWhiteSpace($LinuxInstallParent)) { $LinuxInstallParent = '$HOME/Applications/PathPocket-v1.0.7' }
     if ([string]::IsNullOrWhiteSpace($LinuxProjectRoot)) { $LinuxProjectRoot = '$HOME/PathPocket Projects' }
     foreach ($linuxPath in @($LinuxInstallParent, $LinuxProjectRoot)) {
         if ($linuxPath -notmatch '^(\$HOME|/)' -or $linuxPath -match "[`r`n]") {

@@ -61,8 +61,15 @@ def test_gpu_probe_uses_safe_official_wsl_fallback():
 
 def test_wsl_installer_root_matches_public_linux_archive_root():
     text=(WINDOWS/'wsl_setup.sh').read_text(encoding='utf-8')
-    assert 'INSTALL_ROOT="$INSTALL_PARENT/PathPocket_v1.0.6_Linux"' in text
+    assert 'INSTALL_ROOT="$INSTALL_PARENT/PathPocket_v1.0.7_Linux"' in text
     assert 'PathPocket_Linux_v1.0.6_NO_TARGETS_HF5' not in text
+
+
+def test_candidate_uses_own_install_pointer():
+    for name in ('wsl_setup.sh', 'Launch_PathPocket.ps1', 'Verify_Installation.bat'):
+        text=(WINDOWS/name).read_text(encoding='utf-8')
+        assert '.pathpocket_v1_0_7_install_root' in text
+        assert '.pathpocket_hf5_install_root' not in text
 
 
 def test_paths_logs_and_hash_guard_are_portable():

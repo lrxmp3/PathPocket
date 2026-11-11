@@ -24,8 +24,8 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LINUX_NAME = "PathPocket_v1.0.6_Linux"
-WINDOWS_NAME = "PathPocket_v1.0.6_Windows"
+LINUX_NAME = "PathPocket_v1.0.7_Linux"
+WINDOWS_NAME = "PathPocket_v1.0.7_Windows"
 
 
 def digest(path: Path) -> str:
@@ -127,7 +127,7 @@ def build(args: argparse.Namespace) -> None:
             path.chmod(path.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
         make_checksums(linux)
 
-        linux_archive = output / "PathPocket_v1.0.6_Linux.tar.gz"
+        linux_archive = output / "PathPocket_v1.0.7_Linux.tar.gz"
         with tarfile.open(linux_archive, "w:gz", dereference=False) as archive:
             archive.add(linux, arcname=LINUX_NAME, recursive=True)
 
@@ -149,13 +149,13 @@ def build(args: argparse.Namespace) -> None:
             raise RuntimeError("Setup_First_Run.ps1 runtime hash placeholder is missing")
         setup.write_text(setup_text.replace("__RUNTIME_SHA256__", digest(runtime)), encoding="utf-8-sig")
         (windows / "BUILD_STATUS.txt").write_text(
-            "PathPocket v1.0.6 Linux / Windows (WSL2) pre-release candidate\n"
+            "PathPocket v1.0.7 Linux / Windows (WSL2) pre-release candidate\n"
             f"source_commit={source_sha}\n"
             "windows_native=false\nvalidation=REQUIRES_EXTERNAL_RETEST\n",
             encoding="utf-8",
         )
         make_checksums(windows)
-        windows_archive = output / "PathPocket_v1.0.6_Windows.zip"
+        windows_archive = output / "PathPocket_v1.0.7_Windows.zip"
         with zipfile.ZipFile(windows_archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
             for path in sorted(windows.rglob("*")):
                 if path.is_file():

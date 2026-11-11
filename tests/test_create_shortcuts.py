@@ -13,8 +13,8 @@ def test_shortcut_creator_uses_current_package_and_user_home(tmp_path):
     (home/'Desktop').mkdir(parents=True)
     env={**os.environ,'HOME':str(home),'XDG_DATA_HOME':str(home/'app data'),'PATH':'/usr/bin:/bin'}
     subprocess.run(['bash',str(package)],env=env,check=True,capture_output=True,text=True)
-    desktop=home/'Desktop/PathPocket-v1.0.6.desktop'
-    app=home/'app data/applications/pathpocket-v1.0.6.desktop'
+    desktop=home/'Desktop/PathPocket-v1.0.7.desktop'
+    app=home/'app data/applications/pathpocket-v1.0.7.desktop'
     assert desktop.is_file() and os.access(desktop,os.X_OK)
     assert app.is_file() and os.access(app,os.X_OK)
     assert f'Exec="{package.parent}/PathPocket.sh"' in desktop.read_text()

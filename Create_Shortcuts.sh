@@ -19,15 +19,15 @@ if [[ -z "$DESKTOP_DIR" || "$DESKTOP_DIR" == "$HOME" ]]; then
 fi
 
 mkdir -p "$DESKTOP_DIR" "$APP_DIR"
-DESKTOP_FILE="$DESKTOP_DIR/PathPocket-v1.0.6.desktop"
-APP_FILE="$APP_DIR/pathpocket-v1.0.6.desktop"
+DESKTOP_FILE="$DESKTOP_DIR/PathPocket-v1.0.7.desktop"
+APP_FILE="$APP_DIR/pathpocket-v1.0.7.desktop"
 
 write_entry() {
     local destination="$1"
     {
         printf '%s\n' '[Desktop Entry]'
         printf '%s\n' 'Type=Application'
-        printf '%s\n' 'Name=PathPocket v1.0.6'
+        printf '%s\n' 'Name=PathPocket v1.0.7'
         printf '%s\n' 'Comment=PathPocket protein microregion workflow'
         printf 'Exec="%s"\n' "$LAUNCHER"
         printf '%s\n' 'Terminal=false'

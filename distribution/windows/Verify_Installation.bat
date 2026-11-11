@@ -7,7 +7,7 @@ if not exist "%WSL_EXE%" (
   pause
   exit /b 1
 )
-"%WSL_EXE%" -d Ubuntu-24.04 --exec bash -lc "root=$(cat \"$HOME/.pathpocket_hf5_install_root\" 2>/dev/null); test -n \"$root\" && cd \"$root\" && bash Verify_Installation.sh --quick"
+"%WSL_EXE%" -d Ubuntu-24.04 --exec bash -lc "root=$(cat \"$HOME/.pathpocket_v1_0_7_install_root\" 2>/dev/null); test -n \"$root\" && cd \"$root\" && bash Verify_Installation.sh --quick"
 set "RC=%ERRORLEVEL%"
 echo.
 pause
