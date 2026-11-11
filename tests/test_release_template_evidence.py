@@ -126,3 +126,32 @@ def test_release_notices_include_candidate_license(tmp_path):
     assert (tmp_path / 'LICENSE').read_bytes() == (builder.ROOT / 'LICENSE').read_bytes()
     assert (tmp_path / 'THIRD_PARTY_NOTICES.md').read_bytes() == (builder.ROOT / 'THIRD_PARTY_NOTICES.md').read_bytes()
     assert (tmp_path / 'LICENSES' / 'ED2Mol-MIT.txt').is_file()
+
+
+def test_wheel_build_uses_selected_commit_not_working_tree(tmp_path, monkeypatch):
+    import subprocess
+    builder = load_builder()
+    repo = tmp_path / 'repo'
+    repo.mkdir()
+    subprocess.run(['git', 'init', '-q', str(repo)], check=True)
+    (repo / '.gitignore').write_text('secret.txt\n')
+    (repo / 'tracked.txt').write_text('committed')
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), '-c', 'user.name=Test',
+                    '-c', 'user.email=test@example.invalid', 'commit', '-qm', 'fixture'], check=True)
+    commit = subprocess.check_output(['git', '-C', str(repo), 'rev-parse', 'HEAD'], text=True).strip()
+    (repo / 'tracked.txt').write_text('changed after commit')
+    (repo / 'secret.txt').write_text('ignored private fixture')
+    monkeypatch.setattr(builder, 'ROOT', repo)
+    real_run = subprocess.run
+    def run(args, **kwargs):
+        if '-m' in args and 'pip' in args:
+            source = Path(args[-1])
+            assert (source / 'tracked.txt').read_text() == 'committed'
+            assert not (source / 'secret.txt').exists()
+            destination = Path(args[args.index('-w') + 1])
+            (destination / 'pathpocket-0.3.0-py3-none-any.whl').write_bytes(b'fixture')
+            return subprocess.CompletedProcess(args, 0)
+        return real_run(args, **kwargs)
+    monkeypatch.setattr(builder.subprocess, 'run', run)
+    assert builder.build_wheel(tmp_path / 'wheel', commit).is_file()

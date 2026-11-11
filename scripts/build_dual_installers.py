@@ -136,12 +136,22 @@ def assert_clean_template(root: Path) -> None:
         raise RuntimeError("template contains local validation evidence: " + ", ".join(map(str, evidence)))
 
 
-def build_wheel(destination: Path) -> Path:
+def build_wheel(destination: Path, source_sha: str) -> Path:
     destination.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        [sys.executable, "-m", "pip", "wheel", "--no-deps", "--no-build-isolation", "-w", str(destination), str(ROOT)],
-        check=True,
-    )
+    # Build only from the selected tracked commit, not ignored or untracked
+    # files (or stale build products) in the developer's working directory.
+    with tempfile.TemporaryDirectory(prefix='pathpocket-wheel-source-') as temp_name:
+        source = Path(temp_name) / 'source'
+        source.mkdir()
+        snapshot = Path(temp_name) / 'source.tar'
+        subprocess.run(['git', '-C', str(ROOT), 'archive', '--format=tar',
+                        '--output', str(snapshot), source_sha], check=True)
+        with tarfile.open(snapshot, 'r:') as archive:
+            archive.extractall(source, filter='data')
+        subprocess.run(
+            [sys.executable, "-m", "pip", "wheel", "--no-deps", "--no-build-isolation", "-w", str(destination), str(source)],
+            check=True,
+        )
     wheels = sorted(destination.glob("pathpocket-0.3.0-*.whl"))
     if len(wheels) != 1:
         raise RuntimeError(f"expected one backend wheel, found {wheels}")
@@ -172,7 +182,7 @@ def build(args: argparse.Namespace) -> None:
             linux / "gui" / "pathpocket_gui",
             ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo"),
         )
-        wheel = build_wheel(temp / "wheel")
+        wheel = build_wheel(temp / "wheel", source_sha)
         for old in (linux / "payload" / "backend").glob("pathpocket-*.whl"):
             old.unlink()
         copy_file(wheel, linux / "payload" / "backend" / wheel.name)
