@@ -17,6 +17,7 @@ def install_qt_language(app,mode):
             translator=QTranslator(app)
             if translator.load(str(p)):_qt_translator=translator;app.installTranslator(translator);break
 TEXT={
+'open_missing':('文件或文件夹不存在','The file or folder does not exist'),
 'result_incomplete':('运行状态未确认完成（清单：{manifest}；汇总：{summary}）','Run completion unconfirmed (manifest: {manifest}; summary: {summary})'),
 'engine_batch_progress':('生成器日志批次进度（非分子数量）','Generator log batch progress (not molecule count)'),
 'engine_growth':('片段生长步骤','Fragment growth step'),'engine_placement':('初始片段放置','Initial fragment placement'),

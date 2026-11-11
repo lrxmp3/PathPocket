@@ -536,7 +536,7 @@ class Window(QMainWindow):
                     return False
                 return self.paths.open(p)
             except Exception as e:
-                detail=self.t('open_failed')+'\n'+str(path)+'\n'+str(e);self.log.appendPlainText(detail);self.run_status.setText(self.t('open_failed'));QMessageBox.warning(self,self.t('open_failed'),detail);return False
+                reason=self.t('open_missing') if isinstance(e,FileNotFoundError) else str(e);detail=self.t('open_failed')+'\n'+str(path)+'\n'+reason;self.log.appendPlainText(detail);self.run_status.setText(self.t('open_failed'));QMessageBox.warning(self,self.t('open_failed'),detail);return False
     def open_report(self,lang):
         if self.presentation:self.open_file(self.presentation/('report_'+lang+'.html'))
         else:self.prepare_presentation()

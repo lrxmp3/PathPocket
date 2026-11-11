@@ -75,3 +75,15 @@ def test_result_status_stays_consistent_during_progress_and_language(window, tmp
         window.mode = 'zh'
         window.render_progress()
         assert '运行状态未确认完成' in window.run_status.text()
+
+@pytest.mark.parametrize('language,expected', [('zh', '文件或文件夹不存在'), ('en', 'The file or folder does not exist')])
+def test_missing_result_folder_explains_cause(window, tmp_path, monkeypatch, language, expected):
+    from pathpocket_gui import ux_app
+    warnings = []
+    monkeypatch.setattr(ux_app.QMessageBox, 'warning', lambda parent, title, message: warnings.append((title, message)))
+    window.mode = language
+    missing = tmp_path / 'missing folder'
+    window.set_current_run(missing)
+    window.result_folder_button.click()
+    assert expected in warnings[0][1]
+    assert str(missing) in warnings[0][1]
