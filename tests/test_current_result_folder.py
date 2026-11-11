@@ -149,3 +149,11 @@ def test_history_uses_interruption_session_without_changing_manifest(window, tmp
     window.refresh_history()
     assert window.history.item(0, 1).text() == '已停止（清单：RUNNING）'
     assert manifest.read_bytes() == original
+
+
+def test_iteration_notice_is_available_in_both_languages(window):
+    window.mode = 'zh'
+    assert '至少需要两轮' in window.t('iteration_notice')
+    window.mode = 'en'
+    assert 'at least two iterations' in window.t('iteration_notice')
+    assert window.iteration.minimum() == 1

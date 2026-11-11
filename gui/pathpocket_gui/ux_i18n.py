@@ -17,6 +17,7 @@ def install_qt_language(app,mode):
             translator=QTranslator(app)
             if translator.load(str(p)):_qt_translator=translator;app.installTranslator(translator);break
 TEXT={
+'iteration_notice':('当前 ED2Mol 从头生成至少需要两轮才会写出生长后的候选；一轮仅放置初始片段。','The current ED2Mol de novo workflow needs at least two iterations to output grown candidates; one only places initial fragments.'),
 'zero_molecules':('运行完成 — 未生成分子','Run complete — No molecules generated'),
 'history_interrupted':('已停止（清单：{status}）','Stopped (manifest: {status})'),
 'open_missing':('文件或文件夹不存在','The file or folder does not exist'),

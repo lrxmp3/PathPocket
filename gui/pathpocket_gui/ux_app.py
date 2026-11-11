@@ -76,7 +76,7 @@ class Window(QMainWindow):
     def build_fast(self):
         v=self.page();f=QFormLayout();self.n=QSpinBox();self.n.setRange(1,10000);self.n.setValue(100);self.seed=QSpinBox();self.seed.setRange(0,2147483647);self.seed.setValue(42);self.iteration=QSpinBox();self.iteration.setRange(1,50);self.iteration.setValue(2)
         for k,w in [('molecules_per_target',self.n),('seed',self.seed),('iteration',self.iteration)]:f.addRow(self.label(k),w)
-        v.addLayout(f);v.addWidget(self.label('yaml'));self.editor=QPlainTextEdit();self.editor.textChanged.connect(self.editor_changed);v.addWidget(self.editor,1);self.row(v,[self.button('save',self.save_config),self.button('validate',self.validate_project)])
+        v.addLayout(f);v.addWidget(self.label('iteration_notice'));v.addWidget(self.label('yaml'));self.editor=QPlainTextEdit();self.editor.textChanged.connect(self.editor_changed);v.addWidget(self.editor,1);self.row(v,[self.button('save',self.save_config),self.button('validate',self.validate_project)])
         for spin in [self.n,self.seed,self.iteration]:spin.valueChanged.connect(self.invalidate)
     def build_run(self):
         v=self.page();self.run_status=self.label('idle');self.run_status.setStyleSheet('font-size:18px;font-weight:600');v.addWidget(self.run_status)
