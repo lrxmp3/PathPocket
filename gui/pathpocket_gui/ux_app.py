@@ -27,7 +27,7 @@ class NumericItem(QTableWidgetItem):
 
 class Window(QMainWindow):
     def __init__(self,settings=None):
-        super().__init__();self.prefs=read_preferences();self.mode=self.prefs['language'];self.paths=ProjectPathResolver();self.project=None;self.data=None;self.index=None;self.loaded_run=None;self.task='';self.error_text='';self.failure_code=None;self.project_validated=False;self.bound=[];self.translated_tabs=[];self.presentation=None;self.draw_process=None;self.pending_run=False;self.session=None
+        super().__init__();self.prefs=read_preferences();self.mode=self.prefs['language'];self.paths=ProjectPathResolver();self.project=None;self.data=None;self.index=None;self.loaded_run=None;self.task='';self.error_text='';self.failure_code=None;self.project_validated=False;self.bound=[];self.translated_tabs=[];self.presentation=None;self.draw_process=None;self.pending_run=False;self.session=None;self.last_run_interrupted=False
         install_qt_language(QApplication.instance(),self.mode)
         if os.name!='nt':
             font=Path(os.environ.get('PATHPOCKET_FRONTEND_BUNDLE',''))/'assets/NotoSansCJK-Regular.ttc'
@@ -156,6 +156,7 @@ class Window(QMainWindow):
         self.search.setPlaceholderText(self.t('search'));self.run_status.setText(self.t('validated' if self.project_validated else 'idle'))
         if self.index:self.show_index(reset_filters=False)
         self.render_progress();self.update_guidance()
+        if self.last_run_interrupted and not self.bridge.busy:self.run_status.setText(self.t('stopped'))
     def set_workspace(self,value,check=True):
         root=self.paths.native(value).expanduser().resolve()
         info=self.paths.preflight(root) if check else None
@@ -295,6 +296,7 @@ class Window(QMainWindow):
         if fixture:args.append(self.paths.backend(marker))
         self.set_current_run(None);self.run_button.setEnabled(False);self.call(command,args,self.project,'run');self.nav.setCurrentRow(3)
     def set_current_run(self,path):
+        if not path:self.last_run_interrupted=False
         self.loaded_run=self.paths.native(path) if path else None
         value=str(self.loaded_run) if self.loaded_run else ''
         self.run_location.setText(value);self.result_run_location.setText(value)
@@ -302,6 +304,9 @@ class Window(QMainWindow):
     def on_complete(self,result):
         self.stop_button.setEnabled(False)
         for i in [0,1,2,5]:self.pages.widget(i).setEnabled(True)
+        if result.get('status')=='INTERRUPTED' and self.task=='run':
+            if result.get('run_path'):self.set_current_run(result['run_path'])
+            self.last_run_interrupted=True;self.error_text=str(result.get('error',''));self.log.appendPlainText(self.error_text);self.run_status.setText(self.t('stopped'));self.run_button.setEnabled(self.project_validated);self.refresh_history();return
         if result.get('status')!='PASS':
             events=[]
             if result.get('run_path'):

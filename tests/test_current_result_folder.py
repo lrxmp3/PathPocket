@@ -112,3 +112,18 @@ def test_duplicate_molecule_ids_receive_distinct_export_names():
     assert len(names) == 2
     assert friendly(index, records[0]).casefold() != friendly(index, records[1]).casefold()
     assert thumb_id(records[0]) != thumb_id(records[1])
+
+
+def test_interrupted_task_is_not_reported_as_validation_failure(window, tmp_path):
+    window.task = 'run'
+    window.project_validated = True
+    run = tmp_path / 'interrupted run'
+    run.mkdir()
+    window.mode = 'en'
+    window.on_complete({'status': 'INTERRUPTED', 'run_path': str(run), 'error': 'raw diagnostic'})
+    assert window.run_status.text() == 'Stopped'
+    assert window.loaded_run == run
+    assert 'raw diagnostic' in window.log.toPlainText()
+    assert window.run_button.isEnabled()
+    window.set_current_run(None)
+    assert not window.last_run_interrupted
