@@ -52,3 +52,26 @@ def test_result_directory_label_uses_existing_bilingual_vocabulary(window):
     assert window.t('run_folder') == '运行目录'
     window.mode = 'en'
     assert window.t('run_folder') == 'Run folder'
+
+@pytest.mark.parametrize('manifest,summary,targets,expected', [
+    ('COMPLETE', 'COMPLETE', [{}], 'Run complete'),
+    ('COMPLETE', 'COMPLETE', [], 'Run complete — No targets selected'),
+    ('FAILED', 'COMPLETE', [{}], 'Run completion unconfirmed'),
+    ('COMPLETE', 'FAILED', [], 'Run completion unconfirmed'),
+    (None, 'COMPLETE', [{}], 'Run completion unconfirmed'),
+])
+def test_result_status_stays_consistent_during_progress_and_language(window, tmp_path, manifest, summary, targets, expected):
+    from types import SimpleNamespace
+    run = tmp_path / 'run'
+    run.mkdir()
+    window.index = SimpleNamespace(run=run, manifest={'status': manifest}, summary={'status': summary, 'targets': targets})
+    window.set_current_run(run)
+    window.mode = 'en'
+    window.render_progress()
+    assert expected in window.run_status.text()
+    assert expected in window.run_context.text()
+    if expected == 'Run completion unconfirmed':
+        assert str(manifest or 'UNKNOWN') in window.run_status.text()
+        window.mode = 'zh'
+        window.render_progress()
+        assert '运行状态未确认完成' in window.run_status.text()

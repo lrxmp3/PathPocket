@@ -45,6 +45,10 @@ class Window(QMainWindow):
         self.timer=QTimer(self);self.timer.timeout.connect(self.tick);self.timer.start(700)
         self.setStyleSheet('QMainWindow{background:#f3f7f8} QLabel{color:#203b43} QPushButton{padding:7px 12px} QTabBar::tab{padding:9px 14px} QTableWidget{background:white} QListWidget{background:#e6f0f2;border:0} QListWidget::item{padding:14px} QListWidget::item:selected{background:#b9dbe1;color:#163941} QGroupBox{font-weight:600}');QTimer.singleShot(150,self.discover)
     def t(self,key,**kw):return tr(key,self.mode,**kw)
+    def result_status(self):
+        manifest=str(self.index.manifest.get('status') or 'UNKNOWN');summary=str(self.index.summary.get('status') or 'UNKNOWN')
+        if manifest=='COMPLETE' and summary=='COMPLETE':return self.t('zero' if not self.index.summary.get('targets') else 'complete')
+        return self.t('result_incomplete',manifest=manifest,summary=summary)
     def label(self,key):
         w=QLabel(self.t(key));w.setWordWrap(True);w.setTextInteractionFlags(Qt.TextSelectableByMouse);self.bound.append((w,key,'setText'));return w
     def button(self,key,fn):
@@ -94,6 +98,8 @@ class Window(QMainWindow):
         names={k:z if zh else e for k,z,e in STAGES};state=snap['stage'];elapsed=snap['elapsed'];clock=f'{elapsed//60:02d}:{elapsed%60:02d}' if elapsed is not None else '—'
         current=self.t('complete') if snap['complete'] else names.get(state,self.t('preflight'))
         if snap['complete']:self.run_status.setText(self.t('complete'))
+        if self.index and self.loaded_run and Path(self.loaded_run)==self.index.run and not getattr(getattr(self,'bridge',None),'busy',False):
+            current=self.result_status();self.run_status.setText(current)
         self.run_context.setText(self.t('current_stage')+': '+current+'  |  '+self.t('target')+': '+str(snap['current_target'] or self.t('waiting')))
         batches=[]
         for target,progress in snap.get('engine_progress',{}).items():
@@ -340,7 +346,7 @@ class Window(QMainWindow):
         try:
             if self.draw_process and self.draw_process.state()!=QProcess.NotRunning:raise ValueError(self.t('busy'))
             self.error_text=''
-            self.index=ResultIndex(self.paths.native(run));self.set_current_run(self.index.run);self.presentation=None;self.show_index();self._molecule_dir=None;self.run_status.setText(self.t('zero') if not self.index.summary.get('targets') else self.t('complete'));self.nav.setCurrentRow(4)
+            self.index=ResultIndex(self.paths.native(run));self.set_current_run(self.index.run);self.presentation=None;self.show_index();self._molecule_dir=None;self.run_status.setText(self.result_status());self.nav.setCurrentRow(4)
             self.presentation_location.setText(str(self.index.run/'08_REPORT'));self.render_progress();self.update_guidance()
             # Molecule cards are expected to show their read-only 2D depictions as
             # soon as a completed run is opened.  Keep the existing button as a
@@ -351,7 +357,7 @@ class Window(QMainWindow):
         if self.index and self.index.rows and self.presentation is None:
             self.prepare_presentation()
     def show_index(self,reset_filters=True):
-        s=self.index.summary;m=s.get('key_metrics',{});self.overview.setText('\n'.join([self.t('project')+': '+str(s.get('project')),self.t('status')+': '+self.t('complete'),self.t('project_folder')+': '+str(self.index.run.parent.parent),self.t('run_folder')+': '+str(self.index.run),self.t('states')+': '+str(len(s.get('states',{}))),self.t('family')+': '+str(len(s.get('selected_region_families',[]))),self.t('target')+': '+str(len(s.get('targets',[]))),self.t('generated')+': '+str(m.get('generated','NA')),self.t('valid_unique')+': '+str(m.get('valid_unique_within_targets','NA')),self.t('physical_compatible')+': '+str(m.get('physical_compatible_unique','NA')),self.t('warnings')+': '+str(len(s.get('warnings',[]))),self.t('fast_value')]))
+        s=self.index.summary;m=s.get('key_metrics',{});self.overview.setText('\n'.join([self.t('project')+': '+str(s.get('project')),self.t('status')+': '+self.result_status(),self.t('project_folder')+': '+str(self.index.run.parent.parent),self.t('run_folder')+': '+str(self.index.run),self.t('states')+': '+str(len(s.get('states',{}))),self.t('family')+': '+str(len(s.get('selected_region_families',[]))),self.t('target')+': '+str(len(s.get('targets',[]))),self.t('generated')+': '+str(m.get('generated','NA')),self.t('valid_unique')+': '+str(m.get('valid_unique_within_targets','NA')),self.t('physical_compatible')+': '+str(m.get('physical_compatible_unique','NA')),self.t('warnings')+': '+str(len(s.get('warnings',[]))),self.t('fast_value')]))
         summary={x['target_id']:x for x in s.get('generation_summary',[])};rr=[]
         try:imported=bool(yaml.safe_load((self.index.run/'00_INPUTS/project.yml').read_text()).get('region_discovery',{}).get('imported_manifest'))
         except (OSError,ValueError):imported=False
@@ -551,7 +557,7 @@ class Window(QMainWindow):
         try:
             reports(self.index,self.presentation)
             if not self.index.unchanged():raise ValueError('Scientific input hash changed')
-            self.apply_filter();self.show_files();self.show_figure(self.figure_list.currentRow());self.run_status.setText(self.t('complete'))
+            self.apply_filter();self.show_files();self.show_figure(self.figure_list.currentRow());self.run_status.setText(self.result_status())
         except Exception as e:self.fail(str(e))
 
 def main():
