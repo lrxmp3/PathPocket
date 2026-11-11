@@ -35,7 +35,7 @@ class FigureViewer(QDialog):
 class Window(BaseWindow):
     def __init__(self,settings=None):
         self._populating=False;self._preset=False;self._details=False;self.history_all=False;self.thumbnail_queue=[];self.thumbnails_loaded=0
-        super().__init__(settings);self.setWindowTitle('PathPocket GUI v0.1.6 (portable transport) — Fast Screening')
+        super().__init__(settings);self.setWindowTitle('PathPocket GUI v1.0.7 (portable transport) — Fast Screening')
         top=self.centralWidget().layout();title=top.itemAt(0).widget();top.removeWidget(title);title.deleteLater();header=QWidget();hr=QHBoxLayout(header);hr.setContentsMargins(0,0,0,0);title=label('PathPocket');title.setStyleSheet('font-size:17px;font-weight:600');hr.addWidget(title);badge=label('Fast Screening');badge.setStyleSheet('font-size:11px;color:#286f79;background:#dceef0;border-radius:8px;padding:3px 9px');hr.addWidget(badge);hr.addStretch();top.insertWidget(0,header);top.itemAt(1).widget().setText('低精度筛选与假设生成 · GUI → PathPocket backend')
         self.nav.setFixedWidth(200);self.nav.setObjectName('navigation');self.nav.setSpacing(3)
         self.page_status=[]
@@ -353,6 +353,6 @@ class Window(BaseWindow):
         box,bv=card('Appearance');self.theme=QComboBox();self.theme.addItems(['System','Light','Dark']);self.theme.setCurrentText(self.settings['theme']);bv.addWidget(self.theme);grid.addWidget(box,1,0);box,bv=card('Behavior');self.open_after=QCheckBox('运行完成后打开 HTML 报告');self.open_after.setChecked(self.settings['open_report']);self.remember=QCheckBox('Remember last project');self.remember.setChecked(self.settings.get('remember_project',False));bv.addWidget(self.open_after);bv.addWidget(self.remember);grid.addWidget(box,1,1)
         row=QHBoxLayout()
         for text,fn in [('保存设置',self.save_preferences),('重新发现 WSL',self.discover),('Backend Doctor',self.doctor)]:row.addWidget(button(text,fn))
-        row.addStretch();v.addLayout(row);self.backend_label=label('正在检查 WSL…');v.addWidget(self.backend_label);self.doctor_table=table(['检查项','状态']);self.doctor_table.setEditTriggers(QAbstractItemView.NoEditTriggers);v.addWidget(self.doctor_table,1);self.doctor_detail=QPlainTextEdit();self.doctor_detail.setReadOnly(True);self.doctor_detail.setMaximumHeight(110);v.addWidget(fold('Doctor details / 失败原因',self.doctor_detail));self.about=label('PathPocket Fast Screening Baseline 1.0\nGUI v0.1.6 (portable transport) · Backend v0.3.0\nEngine 09f133da913179f82b285dbb046f1ecb81d1da37\n低精度筛选与假设生成 · 无 telemetry\n用户项目目录: '+str(ROOT));v.addWidget(self.about)
+        row.addStretch();v.addLayout(row);self.backend_label=label('正在检查 WSL…');v.addWidget(self.backend_label);self.doctor_table=table(['检查项','状态']);self.doctor_table.setEditTriggers(QAbstractItemView.NoEditTriggers);v.addWidget(self.doctor_table,1);self.doctor_detail=QPlainTextEdit();self.doctor_detail.setReadOnly(True);self.doctor_detail.setMaximumHeight(110);v.addWidget(fold('Doctor details / 失败原因',self.doctor_detail));self.about=label('PathPocket Fast Screening Baseline 1.0\nGUI v1.0.7 (portable transport) · Backend v0.3.0\nEngine 09f133da913179f82b285dbb046f1ecb81d1da37\n低精度筛选与假设生成 · 无 telemetry\n用户项目目录: '+str(ROOT));v.addWidget(self.about)
     def save_preferences(self):
         self.settings['remember_project']=self.remember.isChecked();super().save_preferences()
