@@ -43,6 +43,18 @@ def test_builder_rejects_restricted_assets(tmp_path, name):
         load_builder().assert_clean_template(tmp_path)
 
 
+def test_builder_rejects_renamed_restricted_asset(tmp_path, monkeypatch):
+    builder = load_builder()
+    template = tmp_path / 'template'
+    template.mkdir()
+    renamed = template / 'unrelated-name.bin'
+    renamed.write_bytes(b'fixture')
+    lock = __import__('json').loads((builder.ROOT / 'distribution/linux/weights-lock.json').read_text())
+    monkeypatch.setattr(builder, 'digest', lambda path: lock['archive_sha256'])
+    with pytest.raises(RuntimeError, match='restricted model/binary assets'):
+        builder.assert_clean_template(template)
+
+
 def test_template_digest_detects_content_mode_and_link_changes(tmp_path):
     builder = load_builder()
     template = tmp_path / 'template'

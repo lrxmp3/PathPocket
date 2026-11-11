@@ -101,7 +101,11 @@ def assert_clean_template(root: Path) -> None:
     if present:
         raise RuntimeError("template contains installed runtime/weights: " + ", ".join(present))
     restricted_names = {'smina.static', 'weights.zip', 'GPPM.pth', 'TAPM.pth', 'Pocket2ED.pt'}
-    restricted = [p for p in root.rglob('*') if p.is_file() and p.name in restricted_names]
+    weights_lock = json.loads((ROOT / 'distribution/linux/weights-lock.json').read_text(encoding='utf-8'))
+    download_lock = json.loads((ROOT / 'distribution/linux/download-lock.json').read_text(encoding='utf-8'))
+    restricted_hashes = {weights_lock['archive_sha256'], *weights_lock['weights'].values(), download_lock['smina']['sha256']}
+    restricted = [p for p in root.rglob('*') if p.is_file() and
+                  (p.name in restricted_names or digest(p) in restricted_hashes)]
     if restricted:
         raise RuntimeError('template contains restricted model/binary assets: ' + ', '.join(map(str, restricted)))
     # Do not silently carry historical test evidence into a new release.
