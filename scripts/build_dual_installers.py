@@ -36,6 +36,43 @@ def digest(path: Path) -> str:
     return h.hexdigest()
 
 
+def template_digest(root: Path) -> str:
+    """Hash a template tree, including paths, modes and internal symlinks.
+
+    The SHA256 covers compact UTF-8 JSON records in sorted relative-path order.
+    Links outside the tree, dangling links and special files are rejected.
+    """
+    root = root.resolve(strict=True)
+    if not root.is_dir():
+        raise ValueError(f"template is not a directory: {root}")
+    records = []
+    for path in sorted(root.rglob('*'), key=lambda p: p.relative_to(root).as_posix()):
+        relative = path.relative_to(root).as_posix()
+        mode = path.lstat().st_mode
+        if stat.S_ISLNK(mode):
+            target = os.readlink(path)
+            resolved = path.resolve(strict=True)
+            if not resolved.is_relative_to(root):
+                raise ValueError(f"template symlink escapes root: {relative}")
+            records.append([relative, 'link', target])
+        elif stat.S_ISDIR(mode):
+            records.append([relative, 'directory', stat.S_IMODE(mode)])
+        elif stat.S_ISREG(mode):
+            records.append([relative, 'file', stat.S_IMODE(mode), digest(path)])
+        else:
+            raise ValueError(f"unsupported template entry: {relative}")
+    payload = json.dumps(records, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    return hashlib.sha256(payload).hexdigest()
+
+
+def verify_template(root: Path, expected: str) -> None:
+    actual = template_digest(root)
+    if len(expected) != 64 or any(c not in '0123456789abcdef' for c in expected):
+        raise ValueError('template SHA256 must be 64 lowercase hexadecimal characters')
+    if actual != expected:
+        raise ValueError(f'template SHA256 mismatch: {root}; expected {expected}, got {actual}')
+
+
 def copy_file(source: Path, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
@@ -88,6 +125,8 @@ def build(args: argparse.Namespace) -> None:
     source_sha = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     if subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip():
         raise RuntimeError("refusing to build from a dirty source tree")
+    verify_template(args.linux_template, args.linux_template_sha256)
+    verify_template(args.windows_template, args.windows_template_sha256)
     output = args.output.resolve()
     if output.exists():
         raise RuntimeError(f"output already exists: {output}")
@@ -97,6 +136,7 @@ def build(args: argparse.Namespace) -> None:
         temp = Path(temp_name)
         linux = temp / LINUX_NAME
         shutil.copytree(args.linux_template.resolve(), linux, symlinks=True)
+        verify_template(linux, args.linux_template_sha256)
         assert_clean_template(linux)
 
         shutil.rmtree(linux / "gui" / "pathpocket_gui")
@@ -132,7 +172,8 @@ def build(args: argparse.Namespace) -> None:
             archive.add(linux, arcname=LINUX_NAME, recursive=True)
 
         windows = temp / WINDOWS_NAME
-        shutil.copytree(args.windows_template.resolve(), windows)
+        shutil.copytree(args.windows_template.resolve(), windows, symlinks=True)
+        verify_template(windows, args.windows_template_sha256)
         assert_clean_template(windows)
         for source in (ROOT / "distribution" / "windows").iterdir():
             if source.is_file():
@@ -188,8 +229,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--linux-template", type=Path, required=True)
     parser.add_argument("--windows-template", type=Path, required=True)
-    parser.add_argument("--linux-template-sha256", required=True)
-    parser.add_argument("--windows-template-sha256", required=True)
+    parser.add_argument("--linux-template-sha256", required=True, help="SHA256 of the template directory from template_digest(), not the original archive")
+    parser.add_argument("--windows-template-sha256", required=True, help="SHA256 of the template directory from template_digest(), not the original archive")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     build(args)
