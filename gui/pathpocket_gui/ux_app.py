@@ -95,6 +95,13 @@ class Window(QMainWindow):
         current=self.t('complete') if snap['complete'] else names.get(state,self.t('preflight'))
         if snap['complete']:self.run_status.setText(self.t('complete'))
         self.run_context.setText(self.t('current_stage')+': '+current+'  |  '+self.t('target')+': '+str(snap['current_target'] or self.t('waiting')))
+        batches=[]
+        for target,progress in snap.get('engine_progress',{}).items():
+            if progress:
+                phase=self.t('engine_growth' if progress['phase']=='growth' else 'engine_placement')
+                step=(' '+str(progress['step'])) if progress['step'] is not None else ''
+                batches.append(f"{target}: {phase}{step} {progress['current']}/{progress['total']} ({progress['percent']}%)")
+        if batches:self.run_context.setText(self.run_context.text()+'\n'+self.t('engine_batch_progress')+': '+'; '.join(batches))
         self.run_metrics.setText(self.t('target_progress')+f": {len(snap['done'])} / {len(snap['targets']) if snap['targets'] else '—'}   ·   "+self.t('written_molecules')+': '+str(snap['generated'] if snap['generated'] is not None else self.t('waiting'))+' / '+str(snap['requested'] if snap['requested'] is not None else '—')+'   ·   '+self.t('elapsed')+': '+clock)
         for i,(key,z,e) in enumerate(STAGES):
             item=snap['last'].get(key,{});status=item.get('status','pending').upper()

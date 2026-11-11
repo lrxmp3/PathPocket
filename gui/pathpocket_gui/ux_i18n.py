@@ -17,6 +17,8 @@ def install_qt_language(app,mode):
             translator=QTranslator(app)
             if translator.load(str(p)):_qt_translator=translator;app.installTranslator(translator);break
 TEXT={
+'engine_batch_progress':('生成器日志批次进度（非分子数量）','Generator log batch progress (not molecule count)'),
+'engine_growth':('片段生长步骤','Fragment growth step'),'engine_placement':('初始片段放置','Initial fragment placement'),
 'charts':('图表','Charts'),'summaries':('汇总','Summaries'),'cluster_count':('聚类数','Cluster count'),'scaffold_count':('骨架数','Scaffold count'),'within_state_diversity':('状态内多样性','Within-state diversity'),
 'project':('项目','Project'),'states':('蛋白状态','Protein States'),'fast':('快速筛选设置','Fast Screening Settings'),'run':('运行','Run'),'results':('结果','Results'),'settings':('设置与关于','Settings & About'),
 'overview':('概览','Overview'),'regions':('区域','Regions'),'molecules':('分子','Molecules'),'space':('化学空间','Chemical Space'),'files':('文件与复现','Files & Provenance'),
