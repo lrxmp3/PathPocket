@@ -17,6 +17,7 @@ def install_qt_language(app,mode):
             translator=QTranslator(app)
             if translator.load(str(p)):_qt_translator=translator;app.installTranslator(translator);break
 TEXT={
+'zero_molecules':('运行完成 — 未生成分子','Run complete — No molecules generated'),
 'history_interrupted':('已停止（清单：{status}）','Stopped (manifest: {status})'),
 'open_missing':('文件或文件夹不存在','The file or folder does not exist'),
 'result_incomplete':('运行状态未确认完成（清单：{manifest}；汇总：{summary}）','Run completion unconfirmed (manifest: {manifest}; summary: {summary})'),
@@ -57,7 +58,10 @@ def language(mode):
 def tr(key,mode='system',**values):return TEXT.get(key,(key,key))[0 if language(mode)=='zh' else 1].format(**values)
 def result_status(manifest,summary,mode):
     manifest_status=str(manifest.get('status') or 'UNKNOWN');summary_status=str(summary.get('status') or 'UNKNOWN')
-    if manifest_status=='COMPLETE' and summary_status=='COMPLETE':return tr('zero' if not summary.get('targets') else 'complete',mode)
+    if manifest_status=='COMPLETE' and summary_status=='COMPLETE':
+        if not summary.get('targets'):return tr('zero',mode)
+        if summary.get('key_metrics',{}).get('generated')==0:return tr('zero_molecules',mode)
+        return tr('complete',mode)
     return tr('result_incomplete',mode,manifest=manifest_status,summary=summary_status)
 def display(value,mode):
     if value is None or value=='':return 'NA'
