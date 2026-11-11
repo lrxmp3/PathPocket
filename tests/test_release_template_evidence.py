@@ -55,6 +55,24 @@ def test_builder_rejects_renamed_restricted_asset(tmp_path, monkeypatch):
         builder.assert_clean_template(template)
 
 
+def test_builder_rejects_renamed_nested_archive(tmp_path):
+    import zipfile
+    archive = tmp_path / 'ordinary.dat'
+    with zipfile.ZipFile(archive, 'w') as z:
+        z.writestr('private/validation.log', 'fixture')
+    with pytest.raises(RuntimeError, match='unreviewed nested archive'):
+        load_builder().assert_clean_template(tmp_path)
+
+
+def test_builder_permits_backend_wheel_replaced_during_build(tmp_path):
+    import zipfile
+    wheel = tmp_path / 'payload/backend/pathpocket-0.3.0-py3-none-any.whl'
+    wheel.parent.mkdir(parents=True)
+    with zipfile.ZipFile(wheel, 'w') as z:
+        z.writestr('placeholder', 'fixture')
+    load_builder().assert_clean_template(tmp_path)
+
+
 def test_template_digest_detects_content_mode_and_link_changes(tmp_path):
     builder = load_builder()
     template = tmp_path / 'template'

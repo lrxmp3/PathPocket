@@ -109,6 +109,24 @@ def assert_clean_template(root: Path) -> None:
                   (p.name in restricted_names or digest(p) in restricted_hashes)]
     if restricted:
         raise RuntimeError('template contains restricted model/binary assets: ' + ', '.join(map(str, restricted)))
+    # A filename/hash scan cannot see restricted files or evidence inside an
+    # archive. Reject nested archives instead of claiming their contents were
+    # checked. The old backend wheel is the sole exception: build() removes
+    # every matching wheel and replaces it with one built from this source.
+    for path in root.rglob('*'):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(root)
+        if relative.parent.as_posix() == 'payload/backend' and path.match('pathpocket-*.whl'):
+            continue
+        with path.open('rb') as stream:
+            magic = stream.read(8)
+        compressed = (magic.startswith((b'PK\x03\x04', b'PK\x05\x06', b'PK\x07\x08',
+                                         b'\x1f\x8b', b'BZh', b'\xfd7zXZ\x00',
+                                         b'7z\xbc\xaf\x27\x1c', b'Rar!\x1a\x07'))
+                      or tarfile.is_tarfile(path))
+        if compressed:
+            raise RuntimeError(f'template contains unreviewed nested archive: {relative}')
     # Do not silently carry historical test evidence into a new release.
     evidence = [p for p in root.rglob("*") if p.is_file() and
                 ("VALIDATION" in p.name.upper() or "ACCEPTANCE" in p.name.upper()
