@@ -117,6 +117,8 @@ class Window(QMainWindow):
         ov,regions,molecules,space,files=self.result_layouts
         self.space_tabs=QTabWidget();space.addWidget(self.space_tabs);chart_page=QWidget();space=QVBoxLayout(chart_page);self.space_tabs.addTab(chart_page,self.t('charts'));summary_page=QWidget();sv=QVBoxLayout(summary_page);self.diversity_table=self.table(['target_id','region_family_id','state_id','unique','cluster_count','scaffold_count','within_state_diversity']);sv.addWidget(self.diversity_table);self.space_tabs.addTab(summary_page,self.t('summaries'))
         self.result_mode_note=QLabel();self.result_mode_note.setWordWrap(True);self.result_mode_note.setStyleSheet('background:#e1eef3;padding:10px');ov.addWidget(self.result_mode_note);self.overview=QLabel();self.overview.setWordWrap(True);self.overview.setTextInteractionFlags(Qt.TextSelectableByMouse);ov.addWidget(self.overview);self.row(ov,[self.button('render',self.prepare_presentation),self.button('report_zh',lambda:self.open_report('zh')),self.button('report_en',lambda:self.open_report('en'))]);self.presentation_location=QLineEdit();self.presentation_location.setReadOnly(True);ov.addWidget(self.presentation_location)
+        self.result_run_location=QLineEdit();self.result_run_location.setReadOnly(True);self.result_folder_button=self.button('open_folder',lambda:self.open_file(self.loaded_run));self.result_folder_button.setEnabled(False)
+        self.row(ov,[self.label('run_folder'),self.result_run_location,self.result_folder_button,self.button('copy_path',lambda:QApplication.clipboard().setText(self.result_run_location.text()))])
         self.row(ov,[self.label('report_folder'),self.button('open_folder',lambda:self.open_file(self.presentation or (self.index.run/'08_REPORT' if self.index else None))),self.button('copy_path',lambda:QApplication.clipboard().setText(self.presentation_location.text()))])
         self.scope_details=QPlainTextEdit();self.scope_details.setReadOnly(True);self.scope_details.setVisible(False);self.scope_details.setMaximumHeight(180);scope_toggle=QCheckBox(self.t('warnings'));self.bound.append((scope_toggle,'warnings','setText'));scope_toggle.toggled.connect(self.scope_details.setVisible);ov.addWidget(scope_toggle);ov.addWidget(self.scope_details);ov.addStretch()
         self.region_table=self.table(['target_id','region_family_id','state_id','state_label','source_pdb','detected_pocket','center','local_fit_RMSD','consensus_residues','predicted_ED_volume','median_Q_normalized','generated','valid_unique','physical_compatible','region']);regions.addWidget(self.region_table)
@@ -166,7 +168,7 @@ class Window(QMainWindow):
         if self.bridge.busy:return self.fail(self.t('busy'))
         p=QFileDialog.getExistingDirectory(self,self.t('workspace'),self.settings['root'])
         if p:
-            try:self.set_workspace(p);self.project=None;self.data=None;self.invalidate();self.project_location.clear();self.fill(self.history,[])
+            try:self.set_workspace(p);self.project=None;self.data=None;self.set_current_run(None);self.invalidate();self.project_location.clear();self.fill(self.history,[])
             except Exception as e:self.fail(self.t(str(e)) if str(e) in ['protected','unwritable'] else str(e))
     def pick_default(self):
         p=QFileDialog.getExistingDirectory(self,self.t('default_workspace'),self.default_path.text())
@@ -202,7 +204,7 @@ class Window(QMainWindow):
         if self.bridge.busy:return self.fail(self.t('busy'))
         self.invalidate();self.error_text=''
         try:
-            p=self.paths.native(path);p=p.parent if p.suffix in ['.yml','.yaml'] else p;root=self.paths.workspace(p);self.set_workspace(root);self.project=p;self.loaded_run=None;self.folder_button.setEnabled(False);data=yaml.safe_load((p/'project.yml').read_text(encoding='utf-8-sig'))
+            p=self.paths.native(path);p=p.parent if p.suffix in ['.yml','.yaml'] else p;root=self.paths.workspace(p);self.set_workspace(root);self.project=p;self.set_current_run(None);data=yaml.safe_load((p/'project.yml').read_text(encoding='utf-8-sig'))
             if unresolved(data) and not automatic:
                 box=QMessageBox(self);box.setWindowTitle('PathPocket');box.setText(self.t('hydrate'));yes=box.addButton(self.t('yes'),QMessageBox.YesRole);box.addButton(self.t('no'),QMessageBox.NoRole);box.setDefaultButton(yes);box.exec()
                 if box.clickedButton()!=yes:self.invalidate();return
@@ -288,13 +290,19 @@ class Window(QMainWindow):
         if marker.exists() and not fixture:return self.fail('工程夹具标记无效 / Engineering fixture marker invalid')
         command='run-engineering-no-targets' if fixture else 'run';args=[self.paths.backend(self.project/'project.yml')]
         if fixture:args.append(self.paths.backend(marker))
-        self.loaded_run=None;self.folder_button.setEnabled(False);self.run_button.setEnabled(False);self.call(command,args,self.project,'run');self.nav.setCurrentRow(3)
+        self.set_current_run(None);self.run_button.setEnabled(False);self.call(command,args,self.project,'run');self.nav.setCurrentRow(3)
+    def set_current_run(self,path):
+        self.loaded_run=self.paths.native(path) if path else None
+        value=str(self.loaded_run) if self.loaded_run else ''
+        self.run_location.setText(value);self.result_run_location.setText(value)
+        self.folder_button.setEnabled(bool(self.loaded_run));self.result_folder_button.setEnabled(bool(self.loaded_run))
     def on_complete(self,result):
         self.stop_button.setEnabled(False)
         for i in [0,1,2,5]:self.pages.widget(i).setEnabled(True)
         if result.get('status')!='PASS':
             events=[]
             if result.get('run_path'):
+                self.set_current_run(result['run_path'])
                 from .contracts import progress
                 events=progress(self.paths.native(result['run_path'])/'progress.jsonl')
             self.failure_code=failure_stage(self.task,result.get('error',''),events,result.get('ed2mol_started',False),bool(result.get('run_path')));return self.fail(result.get('error',result.get('status','FAIL')))
@@ -315,7 +323,7 @@ class Window(QMainWindow):
             try:
                 state=storage.read_json(self.session/'state.json')
                 if state.get('run_path'):
-                    self.loaded_run=self.paths.native(state['run_path']);self.run_location.setText(str(self.loaded_run));self.folder_button.setEnabled(self.loaded_run.is_dir())
+                    self.set_current_run(state['run_path'])
                 self.render_progress()
             except (OSError,ValueError):pass
     def refresh_history(self):
@@ -332,7 +340,7 @@ class Window(QMainWindow):
         try:
             if self.draw_process and self.draw_process.state()!=QProcess.NotRunning:raise ValueError(self.t('busy'))
             self.error_text=''
-            self.index=ResultIndex(self.paths.native(run));self.loaded_run=self.index.run;self.presentation=None;self.run_location.setText(str(self.loaded_run));self.folder_button.setEnabled(True);self.show_index();self._molecule_dir=None;self.run_status.setText(self.t('zero') if not self.index.summary.get('targets') else self.t('complete'));self.nav.setCurrentRow(4)
+            self.index=ResultIndex(self.paths.native(run));self.set_current_run(self.index.run);self.presentation=None;self.show_index();self._molecule_dir=None;self.run_status.setText(self.t('zero') if not self.index.summary.get('targets') else self.t('complete'));self.nav.setCurrentRow(4)
             self.presentation_location.setText(str(self.index.run/'08_REPORT'));self.render_progress();self.update_guidance()
             # Molecule cards are expected to show their read-only 2D depictions as
             # soon as a completed run is opened.  Keep the existing button as a
