@@ -19,6 +19,32 @@ def heartbeat(folder,result):
         result['state_write_warning']=str(e)
 
 
+def process_identity(pid):
+    try:
+        raw=(Path('/proc')/str(pid)/'stat').read_text();fields=raw[raw.rfind(')')+2:].split()
+        return (fields[0],int(fields[1]),fields[19])
+    except (OSError,ValueError,IndexError):return None
+
+def descendants(parent):
+    processes={}
+    for path in Path('/proc').glob('[0-9]*/stat'):
+        pid=int(path.parent.name);identity=process_identity(pid)
+        if identity:processes[pid]=identity
+    children={parent};changed=True
+    while changed:
+        before=len(children);children.update(pid for pid,identity in processes.items() if identity[1] in children);changed=len(children)>before
+    return {pid:processes[pid][2] for pid in children-{parent} if pid in processes}
+
+def signal_descendants(identities,sig):
+    remaining=[]
+    for pid,start in identities.items():
+        current=process_identity(pid)
+        if not current or current[2]!=start or current[0]=='Z':continue
+        try:os.kill(pid,sig)
+        except ProcessLookupError:continue
+        except PermissionError:remaining.append(pid)
+    return remaining
+
 def observe_ed2mol(parent):
     processes={}
     for path in Path('/proc').glob('[0-9]*/stat'):
@@ -56,7 +82,7 @@ def main(request):
         with (folder/'stdout.log').open('wb') as out,(folder/'stderr.log').open('wb') as err:
             proc=subprocess.Popen(argv,stdout=out,stderr=err,start_new_session=True)
             result['pid']=proc.pid;result['ed2mol_started']=False;heartbeat(folder,result)
-            cancelled=False;sent=0
+            cancelled=False;sent=0;cancelled_children={}
             while proc.poll() is None:
                 observed=observe_ed2mol(proc.pid) if job['command'] in ['run','run-engineering-no-targets'] else []
                 if observed:
@@ -68,7 +94,10 @@ def main(request):
                         result['run_path']=None;result['discovery_warning']='Multiple new runs; refusing ambiguous association'
                 if (folder/'cancel.json').exists():
                     if not cancelled:
-                        cancelled=True;sent=time.monotonic();os.killpg(proc.pid,signal.SIGINT)
+                        cancelled=True;sent=time.monotonic()
+                        cancelled_children=descendants(proc.pid)
+                        signal_descendants(cancelled_children,signal.SIGTERM)
+                        os.killpg(proc.pid,signal.SIGINT)
                     elif time.monotonic()-sent>15:
                         try:os.killpg(proc.pid,signal.SIGKILL if time.monotonic()-sent>45 else signal.SIGTERM)
                         except ProcessLookupError:pass
@@ -86,6 +115,16 @@ def main(request):
         if cancelled:
             try:os.killpg(proc.pid,signal.SIGTERM)
             except ProcessLookupError:pass
+            deadline=time.monotonic()+2
+            while time.monotonic()<deadline and any((identity:=process_identity(pid)) and identity[2]==start and identity[0]!='Z' for pid,start in cancelled_children.items()):time.sleep(.05)
+            denied=signal_descendants(cancelled_children,signal.SIGKILL)
+            deadline=time.monotonic()+1
+            while time.monotonic()<deadline and any((identity:=process_identity(pid)) and identity[2]==start and identity[0]!='Z' for pid,start in cancelled_children.items()):time.sleep(.05)
+            survivors=[pid for pid,start in cancelled_children.items() if (identity:=process_identity(pid)) and identity[2]==start and identity[0]!='Z']
+            result['cancelled_descendants_checked']=len(cancelled_children)
+            if denied or survivors:
+                result['status']='FAIL';result['error']='Cancellation could not confirm child process termination; inspect the local task logs.'
+                result['cancel_cleanup_unconfirmed']=sorted(set(denied+survivors))
         if job['command'] in ['doctor','validate','status']:
             # This is the CLI's JSON API response, never terminal-word matching.
             try:result['data']=json.loads((folder/'stdout.log').read_text(encoding='utf-8'))
@@ -94,7 +133,9 @@ def main(request):
         if job['command']=='doctor' and proc.returncode==0:
             version=subprocess.run([job['launcher'],'--version'],capture_output=True,text=True,timeout=30)
             result['backend_version']=version.stdout.strip() if version.returncode==0 else 'unavailable'
-        if proc.returncode!=0:result['error']=(folder/'stderr.log').read_text(encoding='utf-8',errors='replace')[-10000:]
+        if proc.returncode!=0:
+            original=(folder/'stderr.log').read_text(encoding='utf-8',errors='replace')[-10000:]
+            result['error']=(result.get('error','')+'\n'+original).strip()
         put(folder/'response.json',result);return 0
     except Exception as e:
         result.update(status='FAIL',error=str(e));put(folder/'response.json',result);return 1
