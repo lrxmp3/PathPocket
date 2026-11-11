@@ -6,11 +6,5 @@
     "TAPM.pth": "a1a670e3de8bd8723f6a3d1068a7c1b69c6a6ff84552f7fc3b80364536a03163",
     "Pocket2ED.pt": "594df4ccb5c861293598913ed2c5b0583bbdded90ee6367a58662a9c52a7b555"
   },
-  "expected": {
-    "GPPM.pth": "d8d2a31c1005b8d4b003d4cd3572942fb6588d3344d905cee6235abcaf7d7293",
-    "Pocket2ED.pt": "594df4ccb5c861293598913ed2c5b0583bbdded90ee6367a58662a9c52a7b555",
-    "TAPM.pth": "a1a670e3de8bd8723f6a3d1068a7c1b69c6a6ff84552f7fc3b80364536a03163"
-  },
-  "passed": true,
   "bundled": false
 }
