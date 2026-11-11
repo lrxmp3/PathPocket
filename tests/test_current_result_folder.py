@@ -127,3 +127,25 @@ def test_interrupted_task_is_not_reported_as_validation_failure(window, tmp_path
     assert window.run_button.isEnabled()
     window.set_current_run(None)
     assert not window.last_run_interrupted
+
+
+def test_history_uses_interruption_session_without_changing_manifest(window, tmp_path):
+    import json
+    project = tmp_path / 'project'
+    run = project / 'runs' / 'RUN_001'
+    run.mkdir(parents=True)
+    manifest = run / 'run_manifest.json'
+    original = b'{"status":"RUNNING"}'
+    manifest.write_bytes(original)
+    session = tmp_path / 'sessions' / 'GUI_001'
+    session.mkdir(parents=True)
+    (session / 'response.json').write_text(json.dumps({'status': 'INTERRUPTED', 'run_path': str(run)}))
+    window.project = project
+    window.settings['work'] = str(session.parent)
+    window.mode = 'en'
+    window.refresh_history()
+    assert window.history.item(0, 1).text() == 'Stopped (manifest: RUNNING)'
+    window.mode = 'zh'
+    window.refresh_history()
+    assert window.history.item(0, 1).text() == '已停止（清单：RUNNING）'
+    assert manifest.read_bytes() == original

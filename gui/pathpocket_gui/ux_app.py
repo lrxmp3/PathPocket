@@ -155,7 +155,7 @@ class Window(QMainWindow):
         for table in self.findChildren(QTableWidget):table.setHorizontalHeaderLabels([self.t(k) for k in table.property('headers') or []])
         self.search.setPlaceholderText(self.t('search'));self.run_status.setText(self.t('validated' if self.project_validated else 'idle'))
         if self.index:self.show_index(reset_filters=False)
-        self.render_progress();self.update_guidance()
+        self.render_progress();self.update_guidance();self.refresh_history()
         if self.last_run_interrupted and not self.bridge.busy:self.run_status.setText(self.t('stopped'))
     def set_workspace(self,value,check=True):
         root=self.paths.native(value).expanduser().resolve()
@@ -335,10 +335,18 @@ class Window(QMainWindow):
                 self.render_progress()
             except (OSError,ValueError):pass
     def refresh_history(self):
-        result=[]
+        result=[];interrupted=set()
+        for response in Path(self.settings['work']).glob('GUI_*/response.json'):
+            try:
+                data=storage.read_json(response)
+                if data.get('status')=='INTERRUPTED' and data.get('run_path'):interrupted.add(self.paths.native(data['run_path']).resolve())
+            except (OSError,ValueError,TypeError,AttributeError):pass
         if self.project:
             for p in sorted((self.project/'runs').glob('RUN_*'),reverse=True):
-                try:m=storage.read_json(p/'run_manifest.json');result.append([p.name,self.t('complete') if m.get('status')=='COMPLETE' else m.get('status'),str(p)])
+                try:
+                    m=storage.read_json(p/'run_manifest.json');status=m.get('status') or 'UNKNOWN'
+                    label=self.t('history_interrupted',status=status) if p.resolve() in interrupted else self.t('complete') if status=='COMPLETE' else status
+                    result.append([p.name,label,str(p)])
                 except (OSError,ValueError):pass
         self.fill(self.history,result)
     def open_run_dialog(self):
