@@ -18,4 +18,4 @@ def test_shortcut_creator_uses_current_package_and_user_home(tmp_path):
     assert desktop.is_file() and os.access(desktop,os.X_OK)
     assert app.is_file() and os.access(app,os.X_OK)
     assert f'Exec="{package.parent}/PathPocket.sh"' in desktop.read_text()
-    assert '/home/lrx' not in desktop.read_text()
+    assert '/home/' not in desktop.read_text()
