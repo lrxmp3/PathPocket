@@ -79,6 +79,7 @@ def copy_file(source: Path, target: Path) -> None:
 
 
 def copy_release_notices(target: Path) -> None:
+    copy_file(ROOT / "LICENSE", target / "LICENSE")
     copy_file(ROOT / "THIRD_PARTY_NOTICES.md", target / "THIRD_PARTY_NOTICES.md")
     licenses = target / "LICENSES"
     if licenses.exists():

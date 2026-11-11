@@ -99,3 +99,12 @@ def test_template_digest_survives_copy_preserving_links_and_modes(tmp_path):
     target = tmp_path / 'copy'
     shutil.copytree(source, target, symlinks=True)
     builder.verify_template(target, builder.template_digest(source))
+
+
+def test_release_notices_include_candidate_license(tmp_path):
+    builder = load_builder()
+    (tmp_path / 'LICENSE').write_text('old template license')
+    builder.copy_release_notices(tmp_path)
+    assert (tmp_path / 'LICENSE').read_bytes() == (builder.ROOT / 'LICENSE').read_bytes()
+    assert (tmp_path / 'THIRD_PARTY_NOTICES.md').read_bytes() == (builder.ROOT / 'THIRD_PARTY_NOTICES.md').read_bytes()
+    assert (tmp_path / 'LICENSES' / 'ED2Mol-MIT.txt').is_file()
