@@ -6,7 +6,7 @@ PathPocket 不是 Windows 原生计算程序。本包通过 Ubuntu 24.04 + WSL2/
 2. 完整解压到可写目录。支持空格和 Unicode/中文路径；不要在 ZIP 预览窗口内运行脚本。
 3. 双击 `Test_Package_Preflight.bat`，只有看到 `Package preflight: PASS` 才继续。
 4. 双击 `Setup_First_Run.bat`。安装器可能请求管理员权限执行 `wsl.exe --install -d Ubuntu-24.04`。如提示 `RESTART_REQUIRED`，重启 Windows，打开一次 Ubuntu 完成 Linux 用户名/密码初始化，然后重新运行同一脚本。
-5. 安装过程会按嵌套 Linux 包中的锁定记录下载依赖、fpocket 和 ED2Mol 权重，需要联网。它不安装 Windows/Linux NVIDIA 驱动，不修改 Conda/base 或 GROMACS 环境。
+5. 安装需要联网获取锁定依赖和 fpocket；ED2Mol 权重及 smina 不会自动下载，需在 Linux 环境中分别以 `PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE` 和 `PATHPOCKET_SMINA_BINARY` 提供具有适当许可的本机文件。两项资产许可范围及此安装途径仍待核查。安装不会修改 NVIDIA 驱动、Conda/base 或 GROMACS 环境。
 6. 运行 `Verify_Installation.bat`，再运行 `Create_Desktop_Shortcut.bat`。以后点击该脚本创建的快捷方式，或运行 `Launch_PathPocket.bat`。
 7. 项目目录与安装目录分开。GUI 必须显示 v1.0.7。
 

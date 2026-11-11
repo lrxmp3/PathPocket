@@ -11,7 +11,7 @@ PathPocket 把多个蛋白构象中的局部区域联系起来，再用预训练
 
 ## 2. 安装并启动
 
-**Windows 11 + WSL2：** 从维护者获得已批准的 Windows/WSL2 包，完整解压到可写目录，先运行 `Test_Package_Preflight.bat`，再运行 `Setup_First_Run.bat`。首次启用 WSL2 时按提示授予管理员权限；如要求重启，重启后先初始化 Ubuntu，再次运行同一脚本。保持联网，等待 Linux 科学 runtime、固定版本组件与权重下载和检查结束。以后使用创建的桌面快捷方式或 `Launch_PathPocket.bat`。这不是 Windows 原生科学计算程序，源码 ZIP 也不是安装包。
+**Windows 11 + WSL2：** 从维护者获得已批准的 Windows/WSL2 包，完整解压到可写目录，先运行 `Test_Package_Preflight.bat`，再运行 `Setup_First_Run.bat`。首次启用 WSL2 时按提示授予管理员权限；如要求重启，重启后先初始化 Ubuntu，再次运行同一脚本。固定版本组件需要联网；权重和 smina 需自行提供，具体许可范围及安装途径仍待核查。以后使用创建的桌面快捷方式或 `Launch_PathPocket.bat`。这不是 Windows 原生科学计算程序，源码 ZIP 也不是安装包。
 
 **原生 Ubuntu：** 解压已批准的 Linux portable 包，在该目录运行 `bash Setup_First_Run.sh`，以后运行 `bash PathPocket.sh`。科学计算使用包内私有 runtime，不使用系统 Conda/Python。先安装兼容的 NVIDIA 驱动。详见 [Windows 安装指南](INSTALL_WINDOWS_ZH.md) 和 [Linux 安装指南](INSTALL_LINUX_ZH.md)。
 

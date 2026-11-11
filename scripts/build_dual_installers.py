@@ -100,6 +100,10 @@ def assert_clean_template(root: Path) -> None:
     present = [str(path) for path in forbidden if path.exists()]
     if present:
         raise RuntimeError("template contains installed runtime/weights: " + ", ".join(present))
+    restricted_names = {'smina.static', 'weights.zip', 'GPPM.pth', 'TAPM.pth', 'Pocket2ED.pt'}
+    restricted = [p for p in root.rglob('*') if p.is_file() and p.name in restricted_names]
+    if restricted:
+        raise RuntimeError('template contains restricted model/binary assets: ' + ', '.join(map(str, restricted)))
     # Do not silently carry historical test evidence into a new release.
     evidence = [p for p in root.rglob("*") if p.is_file() and
                 ("VALIDATION" in p.name.upper() or "ACCEPTANCE" in p.name.upper()

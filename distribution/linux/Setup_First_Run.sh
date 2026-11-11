@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 B="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+if ! test -f "${PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE:-}" || ! test -f "${PATHPOCKET_SMINA_BINARY:-}"; then
+ echo '请先自行准备已获使用许可的 ED2Mol 权重压缩包和 smina 文件，并分别设置 PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE 与 PATHPOCKET_SMINA_BINARY。程序不会自动下载这两项；安装时会校验其 SHA256。'
+ echo 'Supply licensed local ED2Mol weights and smina files through PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE and PATHPOCKET_SMINA_BINARY. These assets are not downloaded automatically; their SHA256 is checked during installation.'
+ exit 2
+fi
 mkdir -p "$B/diagnostics" "$B/runtime/tmp" "$B/runtime/build-home"
 cd -- "$B"
 PROBE="$B/runtime/tmp/case_probe_$$"

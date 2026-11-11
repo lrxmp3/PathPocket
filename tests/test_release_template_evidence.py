@@ -36,6 +36,13 @@ def test_builder_rejects_diagnostics_outside_docs(tmp_path):
         load_builder().assert_clean_template(tmp_path)
 
 
+@pytest.mark.parametrize('name', ['smina.static', 'weights.zip', 'GPPM.pth', 'TAPM.pth', 'Pocket2ED.pt'])
+def test_builder_rejects_restricted_assets(tmp_path, name):
+    (tmp_path / name).write_bytes(b'fixture')
+    with pytest.raises(RuntimeError, match='restricted model/binary assets'):
+        load_builder().assert_clean_template(tmp_path)
+
+
 def test_template_digest_detects_content_mode_and_link_changes(tmp_path):
     builder = load_builder()
     template = tmp_path / 'template'

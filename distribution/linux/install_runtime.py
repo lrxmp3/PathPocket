@@ -26,28 +26,40 @@ def extract_zip(p,dest):
         for n in z.namelist():
             if not (dest/n).resolve().is_relative_to(dest.resolve()):raise RuntimeError('Unsafe archive path')
         z.extractall(dest)
+def supplied_asset(variable, expected):
+    value=os.environ.get(variable)
+    if not value:raise RuntimeError(f'{variable} must point to a user-supplied local file; PathPocket does not download this asset automatically')
+    path=Path(value).expanduser().resolve()
+    if not path.is_file():raise RuntimeError(f'{variable} is not a readable local file: {path}')
+    if sha(path)!=expected:raise RuntimeError(f'{variable} SHA256 does not match the locked asset')
+    return path
 def main():
     lock=json.loads((B/'download-lock.json').read_text());cache=B/'runtime/downloads'
     if os.name=='nt':
         site=Path(sys.executable).parent/'Lib/site-packages';site.mkdir(parents=True,exist_ok=True)
         for x in lock['windows']:extract_zip(acquire(x,cache),site)
         return
+    w=json.loads((B/'weights-lock.json').read_text())
+    archive=supplied_asset('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE',w['archive_sha256'])
+    sm=supplied_asset('PATHPOCKET_SMINA_BINARY',lock['smina']['sha256'])
     os.environ.update(PYTHONNOUSERSITE='1',PYTHONPATH='',PYTHONDONTWRITEBYTECODE='1',PIP_NO_CACHE_DIR='1',PIP_DISABLE_PIP_VERSION_CHECK='1')
     wheels=[acquire(x,cache) for x in lock['linux']]
     subprocess.run([sys.executable,'-m','pip','install','--no-index','--no-deps',*[str(x) for x in wheels]],check=True)
     subprocess.run([sys.executable,'-m','pip','install','--no-index','--no-deps',str(B/'payload/backend/pathpocket-0.3.0-py3-none-any.whl')],check=True)
     shutil.copy2(B/'sitecustomize.py',Path(sys.prefix)/'lib/python3.11/site-packages/sitecustomize.py')
-    w=json.loads((B/'weights-lock.json').read_text());archive=acquire(dict(url=w['url'],sha256=w['archive_sha256'],filename='weights.zip'),cache)
     weights=B/'payload/engine/weights';weights.mkdir(exist_ok=True)
     with zipfile.ZipFile(archive) as z:
         for name,expected in w['weights'].items():
             entries=[n for n in z.namelist() if Path(n).name==name]
             if len(entries)!=1:raise RuntimeError('权重压缩包结构不符')
-            data=z.read(entries[0]);assert hashlib.sha256(data).hexdigest()==expected
+            data=z.read(entries[0])
+            if hashlib.sha256(data).hexdigest()!=expected:raise RuntimeError('Weight file SHA256 mismatch: '+name)
             (weights/name).write_bytes(data)
     fp=acquire(lock['fpocket'],cache);dest=B/'runtime/fpocket'
     if not dest.exists():subprocess.run([str(B/'runtime/tools/bin/micromamba'),'package','extract',str(fp),str(dest)],check=True)
     if sha(dest/'bin/fpocket')!=json.loads((B/'release_manifest.json').read_text())['fpocket_sha256']:raise RuntimeError('fpocket 与冻结版本不一致')
-    sm=acquire(lock['smina'],cache);shutil.copy2(sm,B/'payload/engine/utils/smina.static');(B/'payload/engine/utils/smina.static').chmod(0o755)
+    destination=B/'payload/engine/utils/smina.static'
+    if sm!=destination.resolve():shutil.copy2(sm,destination)
+    destination.chmod(0o755)
     print('运行环境与权重安装完成。正在检查 GPU。',flush=True)
 if __name__=='__main__':main()
