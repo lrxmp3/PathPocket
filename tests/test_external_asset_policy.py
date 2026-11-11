@@ -52,3 +52,17 @@ def test_installer_does_not_download_when_external_assets_are_missing(monkeypatc
     monkeypatch.setattr(module, 'acquire', lambda *args: pytest.fail('unexpected network/download'))
     with pytest.raises(RuntimeError, match='user-supplied local file'):
         module.main()
+
+
+def test_installer_does_not_download_when_only_smina_is_missing(monkeypatch, tmp_path):
+    module = installer()
+    weights = tmp_path / 'user-supplied.zip'
+    weights.write_bytes(b'local fixture')
+    (tmp_path / 'download-lock.json').write_text(json.dumps({'smina': {'sha256': '0' * 64}, 'linux': []}))
+    (tmp_path / 'weights-lock.json').write_text(json.dumps({'archive_sha256': hashlib.sha256(weights.read_bytes()).hexdigest()}))
+    monkeypatch.setattr(module, 'B', tmp_path)
+    monkeypatch.setenv('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', str(weights))
+    monkeypatch.delenv('PATHPOCKET_SMINA_BINARY', raising=False)
+    monkeypatch.setattr(module, 'acquire', lambda *args: pytest.fail('unexpected network/download'))
+    with pytest.raises(RuntimeError, match='PATHPOCKET_SMINA_BINARY'):
+        module.main()
