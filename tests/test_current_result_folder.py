@@ -64,6 +64,24 @@ def test_scope_banner_remains_translated_when_language_changes(window):
     assert 'complex' in window.scope.text().lower()
     assert window.scope.wordWrap()
 
+
+def test_linux_source_uses_installed_simplified_chinese_font(window, monkeypatch, tmp_path):
+    import os
+    from PySide6.QtGui import QFont, QFontDatabase
+
+    if os.name == 'nt' or 'Noto Sans CJK SC' not in QFontDatabase.families():
+        pytest.skip('system simplified Chinese font unavailable')
+    app = QApplication.instance()
+    original = app.font()
+    monkeypatch.setenv('PATHPOCKET_FRONTEND_BUNDLE', str(tmp_path))
+    try:
+        app.setFont(QFont('DejaVu Sans', 10))
+        second = Window()
+        assert app.font().family() == 'Noto Sans CJK SC'
+        second.close()
+    finally:
+        app.setFont(original)
+
 @pytest.mark.parametrize('manifest,summary,targets,expected', [
     ('COMPLETE', 'COMPLETE', [{}], 'Run complete'),
     ('COMPLETE', 'COMPLETE', [], 'Run complete — No targets selected'),

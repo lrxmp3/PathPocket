@@ -31,7 +31,8 @@ class Window(QMainWindow):
         install_qt_language(QApplication.instance(),self.mode)
         if os.name!='nt':
             font=Path(os.environ.get('PATHPOCKET_FRONTEND_BUNDLE',''))/'assets/NotoSansCJK-Regular.ttc'
-            if font.exists():QFontDatabase.addApplicationFont(str(font));QApplication.instance().setFont(QFont('Noto Sans CJK SC',10))
+            if font.exists():QFontDatabase.addApplicationFont(str(font))
+            if 'Noto Sans CJK SC' in QFontDatabase.families():QApplication.instance().setFont(QFont('Noto Sans CJK SC',10))
         self.settings=settings or storage.default_settings();self.set_workspace(preferred_workspace(self.prefs),check=False)
         self.bridge=Bridge(self.settings,self);self.bridge.completed.connect(self.on_complete)
         self.setWindowTitle('PathPocket v1.0.7');self.resize(1200,800);self.setMinimumSize(920,620)
