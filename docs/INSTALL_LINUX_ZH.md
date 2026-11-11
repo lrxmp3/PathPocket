@@ -7,4 +7,4 @@
 5. 运行 `./Verify_Installation.sh`。所有必需 doctor 检查通过后再做新生成。
 6. 用 `./PathPocket.sh` 启动；可选运行 `./Create_Shortcuts.sh`。项目目录与安装目录分开。
 
-GUI 必须显示 v1.0.6。如失败，保留安装/doctor 日志和退出码。源码仓库不是 portable 安装包。当前候选包仍需新的 Linux 直接安装和 GUI 流程验收，不能用旧 Linux 证据代替。见 `KNOWN_ISSUES.md`。
+GUI 必须显示 v1.0.7。如失败，保留安装/doctor 日志和退出码。源码仓库不是 portable 安装包。当前候选包仍需新的 Linux 直接安装和 GUI 流程验收，不能用旧 Linux 证据代替。见 `KNOWN_ISSUES.md`。

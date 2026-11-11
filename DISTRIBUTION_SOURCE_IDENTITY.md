@@ -1,6 +1,6 @@
 # Distribution source identity
 
-This source snapshot is the PathPocket v1.0.6 Linux / Windows (WSL2) repair candidate prepared on 2026-10-09. Both installation routes use the same Linux scientific core; Windows is not a native scientific implementation.
+The identities below describe the historical PathPocket v1.0.6 Linux / Windows (WSL2) repair candidate prepared on 2026-10-09. The v1.0.7 GUI maintenance candidate is derived from the published v1.0.6 source and retains the scientific backend identity. Both installation routes use the same Linux scientific core; Windows is not a native scientific implementation.
 
 ## Frozen scientific identities
 

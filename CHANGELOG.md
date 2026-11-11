@@ -1,5 +1,9 @@
 # PathPocket changelog
 
+## 1.0.7 (candidate)
+
+The GUI can display per-target generator log batch progress separately from the number of written molecules. The scientific backend remains at version 0.3.0. See `RELEASE_NOTES_v1.0.7.md`.
+
 ## 1.0.6
 
 The frozen scientific backend 0.3.0 and original GUI 1.0.6 are distributed with public examples, tests, bilingual documentation, and the replay entry point.

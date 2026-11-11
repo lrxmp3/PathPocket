@@ -7,4 +7,4 @@
 5. Run `./Verify_Installation.sh`. Continue to new generation only after all required doctor checks pass.
 6. Launch with `./PathPocket.sh`; optionally run `./Create_Shortcuts.sh`. Keep projects outside the installation directory.
 
-The GUI must display v1.0.6. Preserve install/doctor logs and exit codes after any failure. The source repository is not the portable installer. The current candidate still needs a fresh native-Linux install and GUI workflow acceptance; older Linux evidence cannot substitute for it. See `KNOWN_ISSUES.md`.
+The GUI must display v1.0.7. Preserve install/doctor logs and exit codes after any failure. The source repository is not the portable installer. The current candidate still needs a fresh native-Linux install and GUI workflow acceptance; older Linux evidence cannot substitute for it. See `KNOWN_ISSUES.md`.

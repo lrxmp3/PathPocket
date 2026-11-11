@@ -1,5 +1,7 @@
 # PathPocket
 
+Version 1.0.7 is a GUI maintenance candidate based on v1.0.6; its scientific backend remains at 0.3.0. See [release notes](RELEASE_NOTES_v1.0.7.md).
+
 Compare corresponding protein microregions across conformations or repeats, generate candidates with pretrained ED2Mol, and inspect chemical space with source-linked coordinate export.
 
 ## What it does

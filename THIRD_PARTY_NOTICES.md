@@ -1,6 +1,6 @@
 # Third-party notices
 
-PathPocket v1.0.6 uses third-party software and data. The root MIT license applies only to PathPocket-owned material and does not replace or relicense third-party components.
+PathPocket v1.0.7 uses third-party software and data. The root MIT license applies only to PathPocket-owned material and does not replace or relicense third-party components.
 
 ## Included in the installers
 
