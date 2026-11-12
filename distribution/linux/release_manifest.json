@@ -25,7 +25,7 @@
       "gui/pathpocket_gui/ux_draw.py": "46770a4a4870d08b5ed1e5f5da67e7081193434ade2b117d8ef43fa6a8f31f48",
       "gui/pathpocket_gui/ux_export.py": "3994b8ea1fb1587765a0b789f9d9ad37ee40513787d6fe7fe5b2240df3e20bce",
       "gui/pathpocket_gui/ux_guidance.py": "a64906eb892ffb265f4f0ccfe50fa88f5e6cdbc2721f190e1b6a23c1a3dc9d77",
-      "gui/pathpocket_gui/ux_i18n.py": "33bbe57a1327049e98ee6d4248fa7a08e64ec500bbc2164ab9d52affce18dee3",
+      "gui/pathpocket_gui/ux_i18n.py": "98942e4509b781af5d3cbb2ce146e8ccb0e2a3f167f1b33a1a24c683b2eb785c",
       "gui/pathpocket_gui/ux_paths.py": "eabf111e90bd7a36d26c300b421777200c07110935e9d68fd16ae7fb806d5846",
       "gui/pathpocket_gui/ux_plots.py": "e3f4422fa6905b905b13e9c3686709ed76d8477cc5809f9f4c124e840c196f22",
       "gui/pathpocket_gui/ux_progress.py": "ffb5619807aac6d7b0ba6a8518ec24b05e11f7e97bb2aabc90b0d904b8ac337a",
