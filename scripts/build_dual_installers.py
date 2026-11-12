@@ -130,7 +130,8 @@ def assert_clean_template(root: Path) -> None:
     # Do not silently carry historical test evidence into a new release.
     evidence = [p for p in root.rglob("*") if p.is_file() and
                 ("VALIDATION" in p.name.upper() or "ACCEPTANCE" in p.name.upper()
-                 or "AUDIT" in p.name.upper() or p.suffix.lower() in {".png", ".log", ".pyc"}
+                 or "AUDIT" in p.name.upper() or p.name.lower().endswith("_report.md")
+                 or p.name.lower() == "reference_summary.json" or p.suffix.lower() in {".png", ".log", ".pyc"}
                  or any(part.lower() in {"diagnostics", "__pycache__", ".pytest_cache"} for part in p.relative_to(root).parts))]
     if evidence:
         raise RuntimeError("template contains local validation evidence: " + ", ".join(map(str, evidence)))
@@ -204,6 +205,9 @@ def build(args: argparse.Namespace) -> None:
         copy_file(ROOT / "docs" / "INSTALL_LINUX_ZH.md", linux / "docs" / "INSTALL_LINUX_ZH.md")
         copy_file(ROOT / "KNOWN_ISSUES.md", linux / "docs" / "KNOWN_ISSUES.md")
         copy_file(ROOT / "RELEASE_NOTES_v1.0.7.md", linux / "RELEASE_NOTES_v1.0.7.md")
+        for demo in (ROOT / "examples" / "fixtures").iterdir():
+            if (demo / "README_FIRST.txt").is_file() and (linux / "payload" / "demos" / demo.name).is_dir():
+                copy_file(demo / "README_FIRST.txt", linux / "payload" / "demos" / demo.name / "README_FIRST.txt")
         copy_release_notices(linux)
         copy_file(ROOT / "tests" / "test_wsl_windows_open.py", linux / "tests" / "test_wsl_windows_open.py")
         manifest_path = linux / "release_manifest.json"

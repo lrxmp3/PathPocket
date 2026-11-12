@@ -168,3 +168,11 @@ def test_build_rejects_ignored_files_without_deleting_them(tmp_path):
     with pytest.raises(RuntimeError, match='Git-ignored files'):
         builder.assert_no_ignored_source_files(tmp_path)
     assert ignored.read_text() == 'fixture'
+
+
+@pytest.mark.parametrize('filename', ['reference_report.md', 'reference_summary.json', 'FINAL_UX_REPORT.md'])
+def test_template_rejects_historical_demo_evidence(tmp_path, filename):
+    builder = load_builder()
+    (tmp_path / filename).write_text('historical evidence')
+    with pytest.raises(RuntimeError, match='validation evidence'):
+        builder.assert_clean_template(tmp_path)
