@@ -45,3 +45,32 @@ def test_acquire_checks_sha256(monkeypatch, tmp_path):
     with pytest.raises(RuntimeError, match='校验失败'):
         module.acquire(spec, tmp_path / 'bad')
     assert not (tmp_path / 'bad/test.bin').exists()
+
+
+def test_interrupted_download_retries_without_replacing_cached_file(monkeypatch, tmp_path):
+    module = installer()
+    cached = tmp_path / 'asset.bin'
+    cached.write_bytes(b'old invalid cache')
+    attempts = []
+    def fetch(*args, **kwargs):
+        attempts.append(cached.read_bytes())
+        if len(attempts) == 1:
+            raise OSError('simulated network interruption')
+        return io.BytesIO(b'valid asset')
+    monkeypatch.setattr(module.urllib.request, 'urlopen', fetch)
+    monkeypatch.setattr(module.time, 'sleep', lambda _: None)
+    spec = {'url': 'https://example.invalid/asset.bin', 'sha256': hashlib.sha256(b'valid asset').hexdigest()}
+    assert module.acquire(spec, tmp_path).read_bytes() == b'valid asset'
+    assert attempts == [b'old invalid cache', b'old invalid cache']
+
+
+def test_download_failure_preserves_existing_cache(monkeypatch, tmp_path):
+    module = installer()
+    cached = tmp_path / 'asset.bin'
+    cached.write_bytes(b'old invalid cache')
+    monkeypatch.setattr(module.urllib.request, 'urlopen', lambda *args, **kwargs: io.BytesIO(b'bad data'))
+    monkeypatch.setattr(module.time, 'sleep', lambda _: None)
+    spec = {'url': 'https://example.invalid/asset.bin', 'sha256': hashlib.sha256(b'valid asset').hexdigest()}
+    with pytest.raises(RuntimeError, match='校验失败'):
+        module.acquire(spec, tmp_path)
+    assert cached.read_bytes() == b'old invalid cache'
