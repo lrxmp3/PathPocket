@@ -150,7 +150,7 @@ def build_wheel(destination: Path, source_sha: str) -> Path:
             archive.extractall(source, filter='data')
         subprocess.run(
             [sys.executable, "-m", "pip", "wheel", "--no-deps", "--no-build-isolation", "-w", str(destination), str(source)],
-            check=True,
+            check=True, env={**os.environ, "PATHPOCKET_BUILD_COMMIT": source_sha},
         )
     wheels = sorted(destination.glob("pathpocket-0.3.0-*.whl"))
     if len(wheels) != 1:

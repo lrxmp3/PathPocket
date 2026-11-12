@@ -146,6 +146,7 @@ def test_wheel_build_uses_selected_commit_not_working_tree(tmp_path, monkeypatch
     real_run = subprocess.run
     def run(args, **kwargs):
         if '-m' in args and 'pip' in args:
+            assert kwargs['env']['PATHPOCKET_BUILD_COMMIT'] == commit
             source = Path(args[-1])
             assert (source / 'tracked.txt').read_text() == 'committed'
             assert not (source / 'secret.txt').exists()
