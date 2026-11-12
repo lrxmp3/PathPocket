@@ -17,6 +17,9 @@ def install_qt_language(app,mode):
             translator=QTranslator(app)
             if translator.load(str(p)):_qt_translator=translator;app.installTranslator(translator);break
 TEXT={
+'close_busy_title':('后台操作仍在运行','Background operation in progress'),
+'close_busy_task':('请先停止任务并等待其退出，或保持窗口打开。','Stop the task and wait for it to finish, or keep this window open.'),
+'close_busy_render':('正在生成结果图片和报告，请等待完成后再关闭窗口。','Results and reports are being prepared. Wait until they finish before closing this window.'),
 'iteration_notice':('当前 ED2Mol 从头生成至少需要两轮才会写出生长后的候选；一轮仅放置初始片段。','The current ED2Mol de novo workflow needs at least two iterations to output grown candidates; one only places initial fragments.'),
 'zero_molecules':('运行完成 — 未生成分子','Run complete — No molecules generated'),
 'history_interrupted':('已停止（清单：{status}）','Stopped (manifest: {status})'),

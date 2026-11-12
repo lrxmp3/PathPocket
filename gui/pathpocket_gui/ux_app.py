@@ -26,6 +26,16 @@ class NumericItem(QTableWidgetItem):
         except ValueError:return self.text()<other.text()
 
 class Window(QMainWindow):
+    def closeEvent(self,event):
+        if self.bridge.busy:
+            QMessageBox.information(self,self.t('close_busy_title'),self.t('close_busy_task'))
+            event.ignore()
+        elif self.draw_process and self.draw_process.state()!=QProcess.NotRunning:
+            QMessageBox.information(self,self.t('close_busy_title'),self.t('close_busy_render'))
+            event.ignore()
+        else:
+            event.accept()
+
     def __init__(self,settings=None):
         super().__init__();self.prefs=read_preferences();self.mode=self.prefs['language'];self.paths=ProjectPathResolver();self.project=None;self.data=None;self.index=None;self.loaded_run=None;self.task='';self.error_text='';self.failure_code=None;self.project_validated=False;self.bound=[];self.translated_tabs=[];self.presentation=None;self.draw_process=None;self.pending_run=False;self.session=None;self.last_run_interrupted=False
         install_qt_language(QApplication.instance(),self.mode)
