@@ -54,6 +54,17 @@ def test_result_directory_label_uses_existing_bilingual_vocabulary(window):
     assert window.t('run_folder') == 'Run folder'
 
 
+def test_result_folder_buttons_have_distinct_bilingual_names(window):
+    report = next(widget for widget, key, method in window.bound if key == 'open_report_folder')
+    for lang, run_text, report_text in [
+        ('zh', '打开运行目录', '打开报告目录'),
+        ('en', 'Open run folder', 'Open report folder'),
+    ]:
+        window.lang_combo.setCurrentIndex(window.lang_combo.findData(lang))
+        assert window.result_folder_button.text() == run_text
+        assert report.text() == report_text
+
+
 def test_scope_banner_remains_translated_when_language_changes(window):
     window.lang_combo.setCurrentIndex(window.lang_combo.findData('zh'))
     assert window.scope.text() == window.t('fast_value')
