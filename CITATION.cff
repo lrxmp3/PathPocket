@@ -4,8 +4,14 @@ title: "PathPocket: a state-aware, repeat-aware protein microregion chemical-spa
 type: software
 version: "1.0.7"
 authors:
-  - family-names: "李"
-    given-names: "瑞熙"
+  - family-names: "Li"
+    given-names: "Ruixi"
+    affiliation: "Guizhou Medical University"
+    orcid: "https://orcid.org/0000-0002-4338-445X"
+  - family-names: "Zi"
+    given-names: "Zhenyu"
+    affiliation: "Guizhou Medical University"
+    orcid: "https://orcid.org/0009-0006-3282-8197"
 license: MIT
 repository-code: "https://github.com/lrxmp3/PathPocket"
 abstract: "Local release staging snapshot. Uses pretrained ED2Mol as the molecular generation engine."
