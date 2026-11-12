@@ -1,12 +1,10 @@
 import hashlib
 import importlib.util
+import io
 import json
-import os
 from pathlib import Path
-import subprocess
 
 import pytest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -18,51 +16,32 @@ def installer():
     return module
 
 
-def test_missing_and_mismatched_local_assets_are_rejected(monkeypatch, tmp_path):
+def test_external_download_uses_locked_sources_before_install(monkeypatch, tmp_path):
     module = installer()
-    monkeypatch.delenv('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', raising=False)
-    with pytest.raises(RuntimeError, match='user-supplied local file'):
-        module.supplied_asset('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', '0' * 64)
-    path = tmp_path / 'local weights.zip'
-    path.write_bytes(b'fixture')
-    monkeypatch.setenv('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', str(path))
-    with pytest.raises(RuntimeError, match='SHA256'):
-        module.supplied_asset('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', '0' * 64)
-    assert module.supplied_asset('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', hashlib.sha256(b'fixture').hexdigest()) == path
-
-
-def test_setup_stops_before_installing_if_assets_are_absent(tmp_path):
-    script = ROOT / 'distribution/linux/Setup_First_Run.sh'
-    env = dict(os.environ)
-    env.pop('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', None)
-    env.pop('PATHPOCKET_SMINA_BINARY', None)
-    result = subprocess.run(['bash', str(script)], cwd=tmp_path, env=env, capture_output=True, text=True)
-    assert result.returncode == 2
-    assert 'not downloaded automatically' in result.stdout
-    assert not list(tmp_path.iterdir())
-
-
-def test_installer_does_not_download_when_external_assets_are_missing(monkeypatch, tmp_path):
-    module = installer()
-    (tmp_path / 'download-lock.json').write_text(json.dumps({'smina': {'sha256': '0' * 64}, 'linux': []}))
-    (tmp_path / 'weights-lock.json').write_text(json.dumps({'archive_sha256': '0' * 64}))
+    weights = {'url': 'https://example.invalid/weights.zip', 'archive_sha256': 'a' * 64}
+    smina = {'url': 'https://example.invalid/smina.static', 'sha256': 'b' * 64}
+    (tmp_path / 'weights-lock.json').write_text(json.dumps(weights))
+    (tmp_path / 'download-lock.json').write_text(json.dumps({'smina': smina, 'linux': []}))
     monkeypatch.setattr(module, 'B', tmp_path)
-    monkeypatch.delenv('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', raising=False)
-    monkeypatch.delenv('PATHPOCKET_SMINA_BINARY', raising=False)
-    monkeypatch.setattr(module, 'acquire', lambda *args: pytest.fail('unexpected network/download'))
-    with pytest.raises(RuntimeError, match='user-supplied local file'):
+    calls = []
+    def acquire(item, cache):
+        calls.append((item, cache))
+        if len(calls) == 2:
+            raise RuntimeError('stop before installation')
+        return tmp_path / 'weights.zip'
+    monkeypatch.setattr(module, 'acquire', acquire)
+    with pytest.raises(RuntimeError, match='stop before installation'):
         module.main()
+    assert calls == [({'url': weights['url'], 'sha256': weights['archive_sha256'], 'filename': 'weights.zip'}, tmp_path / 'runtime/downloads'), (smina, tmp_path / 'runtime/downloads')]
 
 
-def test_installer_does_not_download_when_only_smina_is_missing(monkeypatch, tmp_path):
+def test_acquire_checks_sha256(monkeypatch, tmp_path):
     module = installer()
-    weights = tmp_path / 'user-supplied.zip'
-    weights.write_bytes(b'local fixture')
-    (tmp_path / 'download-lock.json').write_text(json.dumps({'smina': {'sha256': '0' * 64}, 'linux': []}))
-    (tmp_path / 'weights-lock.json').write_text(json.dumps({'archive_sha256': hashlib.sha256(weights.read_bytes()).hexdigest()}))
-    monkeypatch.setattr(module, 'B', tmp_path)
-    monkeypatch.setenv('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE', str(weights))
-    monkeypatch.delenv('PATHPOCKET_SMINA_BINARY', raising=False)
-    monkeypatch.setattr(module, 'acquire', lambda *args: pytest.fail('unexpected network/download'))
-    with pytest.raises(RuntimeError, match='PATHPOCKET_SMINA_BINARY'):
-        module.main()
+    monkeypatch.setattr(module.urllib.request, 'urlopen', lambda *args, **kwargs: io.BytesIO(b'example'))
+    monkeypatch.setattr(module.time, 'sleep', lambda _: None)
+    spec = {'url': 'https://example.invalid/test.bin', 'sha256': hashlib.sha256(b'example').hexdigest()}
+    assert module.acquire(spec, tmp_path).read_bytes() == b'example'
+    spec['sha256'] = '0' * 64
+    with pytest.raises(RuntimeError, match='校验失败'):
+        module.acquire(spec, tmp_path / 'bad')
+    assert not (tmp_path / 'bad/test.bin').exists()

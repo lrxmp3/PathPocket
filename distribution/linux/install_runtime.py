@@ -26,13 +26,6 @@ def extract_zip(p,dest):
         for n in z.namelist():
             if not (dest/n).resolve().is_relative_to(dest.resolve()):raise RuntimeError('Unsafe archive path')
         z.extractall(dest)
-def supplied_asset(variable, expected):
-    value=os.environ.get(variable)
-    if not value:raise RuntimeError(f'{variable} must point to a user-supplied local file; PathPocket does not download this asset automatically')
-    path=Path(value).expanduser().resolve()
-    if not path.is_file():raise RuntimeError(f'{variable} is not a readable local file: {path}')
-    if sha(path)!=expected:raise RuntimeError(f'{variable} SHA256 does not match the locked asset')
-    return path
 def main():
     lock=json.loads((B/'download-lock.json').read_text());cache=B/'runtime/downloads'
     if os.name=='nt':
@@ -40,8 +33,8 @@ def main():
         for x in lock['windows']:extract_zip(acquire(x,cache),site)
         return
     w=json.loads((B/'weights-lock.json').read_text())
-    archive=supplied_asset('PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE',w['archive_sha256'])
-    sm=supplied_asset('PATHPOCKET_SMINA_BINARY',lock['smina']['sha256'])
+    archive=acquire(dict(url=w['url'],sha256=w['archive_sha256'],filename='weights.zip'),cache)
+    sm=acquire(lock['smina'],cache)
     os.environ.update(PYTHONNOUSERSITE='1',PYTHONPATH='',PYTHONDONTWRITEBYTECODE='1',PIP_NO_CACHE_DIR='1',PIP_DISABLE_PIP_VERSION_CHECK='1')
     wheels=[acquire(x,cache) for x in lock['linux']]
     subprocess.run([sys.executable,'-m','pip','install','--no-index','--no-deps',*[str(x) for x in wheels]],check=True)

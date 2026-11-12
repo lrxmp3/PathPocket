@@ -5,8 +5,8 @@ This is the publishable delivery summary, not the internal license audit. Comple
 | Component | Actual delivery | Retained notice | Status |
 | --- | --- | --- | --- |
 | ED2Mol source | historical frozen subset under review | `LICENSES/ED2Mol-MIT.txt` | exact upstream relationship and file provenance pending |
-| ED2Mol v1.1 weights | user-supplied local archive; SHA256 locked | upstream project notice | external-asset scope awaiting rightsholder confirmation |
-| `smina.static` | user-supplied local binary; SHA256 locked | upstream provenance recorded internally | binary-asset scope awaiting rightsholder confirmation |
+| ED2Mol v1.1 weights | automatic download; SHA256 locked | upstream project notice | external-asset scope awaiting rightsholder confirmation |
+| `smina.static` | automatic download; SHA256 locked | upstream provenance recorded internally | binary-asset scope awaiting rightsholder confirmation |
 | Noto Sans CJK | font included | `LICENSES/Noto-CJK-OFL-1.1.txt` | evidence retained |
 | Qt translation | translation file included | `LICENSES/Qt/` | evidence retained |
 | fpocket 4.2.3 | conda-forge download at first run | `LICENSES/fpocket-MIT.txt` plus package-local metadata | evidence retained |

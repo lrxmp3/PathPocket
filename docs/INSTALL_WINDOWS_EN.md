@@ -6,7 +6,7 @@ PathPocket is not a native Windows compute program. This package installs and la
 2. Extract the complete ZIP to a writable folder. Spaces and Unicode characters are supported. Do not run scripts from inside the ZIP viewer.
 3. Double-click `Test_Package_Preflight.bat`. Continue only after `Package preflight: PASS`.
 4. Double-click `Setup_First_Run.bat`. It may request elevation to run `wsl.exe --install -d Ubuntu-24.04`. If it reports `RESTART_REQUIRED`, restart Windows, open Ubuntu once to create its Linux user/password, and rerun the same setup script.
-5. Setup requires locked dependencies and fpocket from upstream. ED2Mol weights and smina are not downloaded automatically; the Linux environment must be supplied local, appropriately licensed files through `PATHPOCKET_ED2MOL_WEIGHTS_ARCHIVE` and `PATHPOCKET_SMINA_BINARY`. Their license scope and this installation route still require review. Internet access is required for the other dependencies. Setup does not install NVIDIA drivers or alter Conda/base or GROMACS environments.
+5. Setup downloads hash-locked dependencies, fpocket, ED2Mol weights and smina from configured sources. Their license scope and this route still require review. Internet access is required. Setup does not install NVIDIA drivers or alter Conda/base or GROMACS environments.
 6. Run `Verify_Installation.bat`, then `Create_Desktop_Shortcut.bat`. Launch PathPocket from the shortcut created by the latter, or run `Launch_PathPocket.bat`.
 7. Keep projects outside the installation folder. The GUI must display v1.0.7.
 
