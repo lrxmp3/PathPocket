@@ -1,27 +1,7 @@
 # Distribution source identity
 
-The identities below describe the historical PathPocket v1.0.6 Linux / Windows (WSL2) repair candidate prepared on 2026-10-09. The v1.0.7 GUI maintenance candidate is derived from the published v1.0.6 source and retains the scientific backend identity. Both installation routes use the same Linux scientific core; Windows is not a native scientific implementation.
+PathPocket v1.0.7 is a GUI maintenance candidate derived from the published v1.0.6 source commit `b91023719d18e4889f8c6581c3ec7399674555b3`. The scientific backend retains its separate version, 0.3.0. The existing fpocket integration is unchanged and FLAME is not included.
 
-## Frozen scientific identities
+The historically recorded ED2Mol engine identifier is `09f133da913179f82b285dbb046f1ecb81d1da37`. Its exact relationship to the public upstream repository and the provenance of the frozen files remain under review. The source repository does not include model weights or a preinstalled runtime; see `THIRD_PARTY_NOTICES.md` for outstanding asset permissions.
 
-- PathPocket GUI/distribution: 1.0.6
-- Fast Screening Baseline: 1.0
-- Backend: 0.3.0, commit `f2e5d7ffd49d8e3546d6841337b4f68b58f0abd3`
-- ED2Mol: historically recorded commit `09f133da913179f82b285dbb046f1ecb81d1da37`; its exact relationship to public upstream and the frozen files remains to be verified
-- Publication helper: commit `40c5b2fa79254227d7f4ca28cb09298f31d784b5`
-
-The maintained v1.0.6 source history is based on commit `3de45d20e7ca7952a968a0ba709309a134a452d0`. Windows installer build `d616f58b4b7c698e03b627a67e7923ef0c93ef2b` was supplied as a hash-recorded source diff and final package, but its Git object is not present in this repository. Its WSL UTF-16LE/native-output fix was therefore integrated from that preserved evidence rather than represented as a cherry-pick. The integration commit and both rebuilt installer hashes are recorded separately after the private-branch commit.
-
-## Layout
-
-- `src/`: scientific backend source.
-- `gui/`: GUI source matching the shared Linux/WSL runtime.
-- `tests/`: backend, NO_TARGETS GUI, molecule-rendering, shortcut, report and SDF path tests.
-- `distribution/linux/`: Linux installer/build scripts and locked acquisition metadata.
-- `distribution/windows/`: Windows 11/WSL2 provisioning, launcher and shortcut sources.
-
-The installable Linux and Windows/WSL2 archives are separate release assets. This source archive is not itself an installer and does not bundle a preinstalled runtime or model weights.
-
-## Scope
-
-The maintenance changes cover the trusted GUI NO_TARGETS path, paths containing spaces, automatic 2D molecule rendering, and cross-platform opening of reports, result folders and SDF files. Scientific algorithms, model weights, thresholds, generation parameters, random seeds and report definitions are unchanged. No v1.0.7 interface redesign or FLAME code is included.
+The repository contains the scientific backend under `src/`, the interface under `gui/`, tests under `tests/`, and installer source under `distribution/`. A source checkout is not a portable installer. The installer candidate and its assets require separate license, content and installation review before release.
