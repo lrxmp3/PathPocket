@@ -54,6 +54,38 @@ def test_result_directory_label_uses_existing_bilingual_vocabulary(window):
     assert window.t('run_folder') == 'Run folder'
 
 
+def test_project_path_actions_are_separate_from_path_field(window):
+    page = window.pages.widget(0)
+    layout = page.layout()
+    path_row = layout.itemAt(1).layout()
+    action_row = layout.itemAt(2).layout()
+    assert path_row.indexOf(window.project_location) >= 0
+    copy_button = next(widget for widget, key, method in window.bound if key == 'copy_path')
+    assert action_row.indexOf(copy_button) >= 0
+    for language, expected in [('zh', '复制路径'), ('en', 'Copy path')]:
+        window.lang_combo.setCurrentIndex(window.lang_combo.findData(language))
+        assert copy_button.text() == expected
+
+
+def test_run_path_buttons_are_separate_from_task_buttons(window):
+    layout = window.pages.widget(3).layout()
+    copies = [widget for widget, key, method in window.bound if key == 'copy_path']
+    assert any(layout.itemAt(i).layout() and
+               layout.itemAt(i).layout().indexOf(window.folder_button) >= 0 and
+               layout.itemAt(i).layout().indexOf(copies[1]) >= 0 and
+               layout.itemAt(i).layout().indexOf(window.run_button) < 0
+               for i in range(layout.count()))
+
+
+def test_chinese_controls_inherit_window_font(window):
+    from PySide6.QtGui import QFontInfo
+    expected = QFontInfo(window.font()).family()
+    controls = [widget for widget, key, method in window.bound
+                if key in ('workspace', 'copy_path', 'advanced')]
+    assert controls
+    assert all(QFontInfo(widget.font()).family() == expected for widget in controls)
+
+
 def test_result_folder_buttons_have_distinct_bilingual_names(window):
     report = next(widget for widget, key, method in window.bound if key == 'open_report_folder')
     for lang, run_text, report_text in [

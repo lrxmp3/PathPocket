@@ -43,6 +43,7 @@ class Window(QMainWindow):
             font=Path(os.environ.get('PATHPOCKET_FRONTEND_BUNDLE',''))/'assets/NotoSansCJK-Regular.ttc'
             if font.exists():QFontDatabase.addApplicationFont(str(font))
             if 'Noto Sans CJK SC' in QFontDatabase.families():QApplication.instance().setFont(QFont('Noto Sans CJK SC',10))
+        self.setFont(QApplication.instance().font())
         self.settings=settings or storage.default_settings();self.set_workspace(preferred_workspace(self.prefs),check=False)
         self.bridge=Bridge(self.settings,self);self.bridge.completed.connect(self.on_complete)
         self.setWindowTitle('PathPocket v1.0.7');self.resize(1200,800);self.setMinimumSize(920,620)
@@ -78,7 +79,8 @@ class Window(QMainWindow):
         layout.addLayout(row)
     def build_project(self):
         v=self.page();self.workspace_text=QLineEdit(str(self.settings['root']));self.workspace_text.setReadOnly(True);self.row(v,[self.label('workspace'),self.workspace_text,self.button('browse',self.choose_workspace)])
-        self.project_location=QLineEdit();self.project_location.setReadOnly(True);self.row(v,[self.label('project_folder'),self.project_location,self.button('open_folder',lambda:self.open_file(self.project)),self.button('copy_path',lambda:QApplication.clipboard().setText(self.project_location.text()))])
+        self.project_location=QLineEdit();self.project_location.setReadOnly(True);self.row(v,[self.label('project_folder'),self.project_location])
+        self.row(v,[self.button('open_folder',lambda:self.open_file(self.project)),self.button('copy_path',lambda:QApplication.clipboard().setText(self.project_location.text()))])
         self.row(v,[self.button('new',self.new_project),self.button('open_project',self.open_project_dialog),self.button('open_demo',self.open_demo_dialog),self.button('open_run',self.open_run_dialog)])
         self.mode_banner=QLabel();self.mode_banner.setWordWrap(True);self.mode_banner.setStyleSheet('background:#e1eef3;padding:14px');v.addWidget(self.mode_banner);self.update_guidance();self.storage_notice=self.label('drvfs');v.addWidget(self.storage_notice);v.addWidget(self.label('history'));self.history=self.table(['run','status','path']);self.history.cellDoubleClicked.connect(lambda r,c:self.load_results(self.history.item(r,2).text()));v.addWidget(self.history,1)
     def build_states(self):
@@ -94,7 +96,8 @@ class Window(QMainWindow):
         self.run_mode=QLabel();self.run_mode.setWordWrap(True);v.addWidget(self.run_mode);self.run_context=QLabel();self.run_context.setWordWrap(True);v.addWidget(self.run_context)
         self.run_metrics=QLabel();self.run_metrics.setStyleSheet('background:#dcebf0;padding:12px;font-size:15px');self.run_metrics.setWordWrap(True);v.addWidget(self.run_metrics)
         self.run_location=QLineEdit();self.run_location.setReadOnly(True);self.row(v,[self.label('run_folder'),self.run_location]);self.run_button=self.button('start',self.run_clicked);self.run_button.setEnabled(False);self.stop_button=self.button('stop',lambda:self.bridge.stop());self.stop_button.setEnabled(False);self.folder_button=self.button('open_folder',lambda:self.open_file(self.loaded_run));self.folder_button.setEnabled(False)
-        self.row(v,[self.button('doctor',self.discover),self.run_button,self.stop_button,self.folder_button,self.button('copy_path',lambda:QApplication.clipboard().setText(self.run_location.text()))])
+        self.row(v,[self.button('doctor',self.discover),self.run_button,self.stop_button])
+        self.row(v,[self.folder_button,self.button('copy_path',lambda:QApplication.clipboard().setText(self.run_location.text()))])
         grid=QGridLayout();self.stage_cards={}
         for i,(key,zh,en) in enumerate(STAGES):
             card=QLabel();card.setMinimumHeight(56);card.setWordWrap(True);grid.addWidget(card,i//2,i%2);self.stage_cards[key]=card
